@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Oswald"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <title>Tasker</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <div id="container">
+      <nav id="nav">
+        <h1>Tasker</h1>
+        <ul>
+          <li>
+            <p>All notes</p>
+            <p class="material-symbols-sharp">view_kanban</p>
+          </li>
+          <li>
+            <p>Groups</p>
+            <p class="material-symbols-sharp">rebase_edit</p>
+          </li>
+          <li>
+            <p>Trash</p>
+            <p class="material-symbols-sharp">delete</p>
+          </li>
+        </ul>
+        <div class='footer'>By Orz <a href='https://github.com/orzcode' target='_blank'>
+          <i class='fa-brands fa-github'></i></a>
+      </nav>
+
+
+
+
+      <header id="header">
+        <!-- <button class="newNoteBtn" onclick="dialog.showModal()">New Note</button> -->
+        
+        <form id="form">
+          <input type="text" id="noteTitle" name="noteTitle" placeholder="Title" maxlength="25">
+          <div class="grow-wrap">
+            <textarea name="noteSpan" id="noteSpan" placeholder="Enter note..." onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+          </div>
+          <!-- <input type="text" id="noteSpan" name="noteSpan" placeholder="Enter note..."> -->
+          
+          <section id="noteDateAndPriority">
+            
+            <div><label for="noteDate">Due date: <input type="date" id="noteDate" name="noteDate"></label></div>
+            
+            <div>
+              <label for="notePriority">Priority
+                <input type="radio" id="notePriorityLow" name="notePriority" value="low">
+                <input type="radio" id="notePriorityMed" name="notePriority" value="medium">
+                <input type="radio" id="notePriorityHigh" name="notePriority" value="high">
+              </label>
+            </div>
+
+          </section>
+
+          <button type="button" id="noteGroupButton" onclick="dialog.showModal()">Group</button>
+        </form>
+
+      </header>
+
+
+
+      <dialog id="dialog">fuck</dialog>
+
+
+
+      <main id="main">
+
+
+        <!-- NOTE EXAMPLE SCAFFOLD/STYLING HERE -->
+
+        <div class="note">
+          <div class="noteTitleAndIcons">
+            <h3 class="noteTitle">Title H3</h3>
+            <div>
+              <p class="material-symbols-sharp notePaletteIcon">palette</p>
+              <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+            </div>
+          </div>
+
+          <span class="noteSpan">Fuckface ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisci.</span>
+
+         <div class="noteDateAndPriority">
+           <div class="noteDate"><!-- to be inserted magically --></div>
+                   <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+         </div>
+
+        <div class="noteGroup">Group: <!-- to be inserted magically --></div>
+        </div>
+        
+          <!-- NOTE EXAMPLE SCAFFOLD/STYLING HERE -->
+
+
+          <div class="note">
+            <div class="noteTitleAndIcons">
+              <h3 class="noteTitle">Title H3</h3>
+              <div>
+                <p class="material-symbols-sharp notePaletteIcon">palette</p>
+                <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+              </div>
+            </div>
+  
+            <span class="noteSpan">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisci.</span>
+  
+           <div class="noteDateAndPriority">
+             <div class="noteDate"><!-- to be inserted magically --></div>
+                     <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+           </div>
+  
+          <div class="noteGroup">Group: <!-- to be inserted magically --></div>
+          </div>        <div class="note">
+            <div class="noteTitleAndIcons">
+              <h3 class="noteTitle">Title H3</h3>
+              <div>
+                <p class="material-symbols-sharp notePaletteIcon">palette</p>
+                <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+              </div>
+            </div>
+  
+            <span class="noteSpan">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisci.</span>
+  
+           <div class="noteDateAndPriority">
+             <div class="noteDate"><!-- to be inserted magically --></div>
+                     <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+           </div>
+  
+          <div class="noteGroup">Group: <!-- to be inserted magically --></div>
+          </div>        <div class="note">
+            <div class="noteTitleAndIcons">
+              <h3 class="noteTitle">Title H3</h3>
+              <div>
+                <p class="material-symbols-sharp notePaletteIcon">palette</p>
+                <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+              </div>
+            </div>
+  
+            <span class="noteSpan">Lorem ipsumLorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisci dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisci.</span>
+  
+           <div class="noteDateAndPriority">
+             <div class="noteDate"><!-- to be inserted magically --></div>
+                     <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+           </div>
+  
+          <div class="noteGroup">Group: <!-- to be inserted magically --></div>
+          </div>        <div class="note">
+            <div class="noteTitleAndIcons">
+              <h3 class="noteTitle">Title H3</h3>
+              <div>
+                <p class="material-symbols-sharp notePaletteIcon">palette</p>
+                <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+              </div>
+            </div>
+  
+            <span class="noteSpan">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisci.</span>
+  
+           <div class="noteDateAndPriority">
+             <div class="noteDate"><!-- to be inserted magically --></div>
+                     <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+           </div>
+  
+          <div class="noteGroup">Group: <!-- to be inserted magically --></div>
+          </div>        <div class="note">
+            <div class="noteTitleAndIcons">
+              <h3 class="noteTitle">Title H3</h3>
+              <div>
+                <p class="material-symbols-sharp notePaletteIcon">palette</p>
+                <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+              </div>
+            </div>
+  
+            <span class="noteSpan">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, volLorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisciuptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisci.</span>
+  
+           <div class="noteDateAndPriority">
+             <div class="noteDate"><!-- to be inserted magically --></div>
+                     <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+           </div>
+  
+          <div class="noteGroup">Group: <!-- to be inserted magically --></div>
+          </div>        <div class="note">
+            <div class="noteTitleAndIcons">
+              <h3 class="noteTitle">Title H3</h3>
+              <div>
+                <p class="material-symbols-sharp notePaletteIcon">palette</p>
+                <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+              </div>
+            </div>
+  
+            <span class="noteSpan">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisciLorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisciLorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipiscideleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisci.</span>
+  
+           <div class="noteDateAndPriority">
+             <div class="noteDate"><!-- to be inserted magically --></div>
+                     <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+           </div>
+  
+          <div class="noteGroup">Group: <!-- to be inserted magically --></div>
+          </div>
+      </main>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

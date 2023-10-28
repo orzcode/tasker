@@ -1,2 +1,0 @@
-# tasker
-Todo / Notes project
