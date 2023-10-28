@@ -1,8 +1,8 @@
 console.log("index.JS from webpack is working");
 import { format } from 'date-fns'
 
-console.log(format(new Date(2014, 1, 11), 'yyyy-MM-dd'));
-document.querySelector(".noteDate").innerHTML = format(new Date(2014, 1, 11), 'yyyy-MM-dd');
+console.log(format(new Date, 'yyyy-MM-dd'));
+document.querySelector(".noteDate").innerHTML = format(new Date, 'yyyy-MM-dd');
 
 
 const noteFactory = (title, text, dueDate, priority, group, color) => {
