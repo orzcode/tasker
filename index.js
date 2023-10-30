@@ -1,4 +1,4 @@
-console.log("index.JS from webpack is working");
+console.log("index.JS from Vite is working");
 import { format } from 'date-fns'
 
 console.log(format(new Date, 'yyyy-MM-dd'));

@@ -131,7 +131,8 @@ form {
 
   grid-template-rows: 4rem auto 4rem 4rem;
 
-  /* grid-template-rows: 0 0 0 0; */
+
+  grid-template-rows: 0 auto 0 0;
 
   width: clamp(40rem, calc(40vw + 12rem), 60rem);
 
@@ -158,6 +159,7 @@ form * {
   font-size: 2rem;
   background-color: rgb(60, 60, 60);
   outline: none;
+  overflow: hidden;
 }
 
 /* ---------------------------------------------------- */
@@ -201,7 +203,7 @@ form * {
   min-height: 6rem;
   
   /* margin: 1rem 0;*/
-  padding: 1rem 0 1rem 0; 
+  /* padding: 1rem 0 1rem 0;  */
 
   max-height: 50rem;
 
@@ -227,7 +229,6 @@ form * {
 #noteDateAndPriority {
   display:flex;
   justify-content: space-between;
-  outline: 2px solid pink;
 }
 /* need to make this^ disappear when grid row is set to 0 */
 /* make it inline-flex? make it a div instead of section?? */
@@ -240,12 +241,12 @@ form * {
 /* ---------------------------------------------------- */
 /* BULLSHIT  BEGINS
 /* ---------------------------------------------------- */
-form > *:not(.grow-wrap):not(.grow-wrap > textarea), #noteDateAndPriority{
+/* form > *:not(.grow-wrap):not(.grow-wrap > textarea), #noteDateAndPriority{
   display: none;
 }
 form {
   height: 6rem;
-}
+} */
 /* ---------------------------------------------------- */
 /* BULLSHIT ENDS
 /* ---------------------------------------------------- */
