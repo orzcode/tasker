@@ -28,14 +28,8 @@ window.onclick = function(event) {
 //closes modal when clicking outside of it
 //dumb that this isn't html native
 
-document.querySelector("#form").addEventListener("click", function() {
-	document.querySelector("#form").style.height = "auto";
-	document.querySelectorAll("#form > *:not(#noteSpan)").forEach(element => {
-		element.style.display = "block";
-	  });
-	  document.querySelector(".grow-wrap").style.display = "grid";
-	//   document.querySelector(".grow-wrap > textarea").style.display = "flex";
-	//   document.querySelector(".grow-wrap::after").style.display = "flex";
 
-	document.querySelector("#noteDateAndPriority").style.display = "flex";
+
+document.querySelector("#noteSpan").addEventListener("click", function() {
+	document.querySelector("#form").style.gridTemplateRows = "4rem auto 4rem 4rem"
   });
