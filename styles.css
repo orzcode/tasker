@@ -52,7 +52,7 @@ a {
   display: grid;
   height: 100vh;
   width: 100%;
-  grid-template-columns: clamp(8rem, 20%, 30rem) 8fr;
+  grid-template-columns: clamp(6rem, 20%, 30rem) 8fr;
   grid-template-rows: 2fr 8fr;
   /* THIS MINMAX MAY NEED ATTENTION - FitContent wont work */
 }
@@ -271,7 +271,7 @@ form * {
   width: calc(34rem + 2vw);
 
    /*better for mobile? */
-  width: calc(28rem + 2vw);
+  width: calc(26rem + 2vw);
    /*better for mobile? */
 
   display: flex;
