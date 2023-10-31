@@ -30,6 +30,15 @@ window.onclick = function(event) {
 
 
 
-document.querySelector("#noteSpan").addEventListener("click", function() {
-	document.querySelector("#form").style.gridTemplateRows = "4rem auto 4rem 4rem"
-  });
+
+  window.onclick = function (event) {
+	var myBox = document.querySelector('#form');
+
+	if (event.target.contains(myBox) && event.target !== myBox) {
+	   console.log('You clicked outside the box!');
+	   document.querySelector("#form").style.gridTemplateRows = "0 auto 0 0"
+	} else {
+		console.log('You clicked inside the box!');
+		document.querySelector("#form").style.gridTemplateRows = "4rem auto 4rem 4rem"
+	}
+}
