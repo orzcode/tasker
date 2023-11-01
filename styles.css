@@ -24,6 +24,7 @@ body {
   font-size: 2rem;
   width: 100vw;
   /* WIDTH:100VW important for vertical scrollbar! */
+	max-width: 100%;
   /* font-size: calc(1.5rem + 0.4vw); */
   /* FONTSIZE TRICK-- 1 rem = 10 px here, usually 1 rem = 16px */
   /* FONTSIZE - Adding the 0.4 is for responsivity */
