@@ -24,7 +24,6 @@ body {
   font-size: 2rem;
   width: 100vw;
   /* WIDTH:100VW important for vertical scrollbar! */
-	max-width: 100%;
   /* font-size: calc(1.5rem + 0.4vw); */
   /* FONTSIZE TRICK-- 1 rem = 10 px here, usually 1 rem = 16px */
   /* FONTSIZE - Adding the 0.4 is for responsivity */
@@ -145,14 +144,12 @@ form {
 
   width: clamp(26rem, calc(40vw + 10rem), 60rem);
 
-  width: 2rem;
-
   margin: 2rem 0;
 
   gap: 1rem;
   padding: 1rem;
 
-  transition: grid-template-rows 300ms;
+  transition: 300ms;
 
   caret-color: transparent;
   color: rgb(200, 200, 200, 1);
@@ -274,7 +271,7 @@ form * {
   width: calc(34rem + 2vw);
 
    /*better for mobile? */
-  width: 2rem;
+
    /*better for mobile? */
 
   display: flex;
@@ -336,7 +333,7 @@ dialog {
   /* opacity: 0;
 	pointer-events: none;
 	visibility: hidden; */
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease;
   filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.5));
   background-color: rgb(60, 60, 60);
   color: rgb(255, 255, 255);
