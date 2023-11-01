@@ -144,7 +144,7 @@ form {
 
   width: clamp(26rem, calc(40vw + 10rem), 60rem);
 
-  width: clamp(24rem, calc(40vw + 8rem), 60rem);
+  width: 2rem;
 
   margin: 2rem 0;
 
@@ -273,7 +273,7 @@ form * {
   width: calc(34rem + 2vw);
 
    /*better for mobile? */
-  width: calc(22rem);
+  width: 2rem;
    /*better for mobile? */
 
   display: flex;
