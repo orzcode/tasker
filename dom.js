@@ -5,7 +5,7 @@ console.log("dom.JS is working");
 // #noteSpan
 // #noteDate
 // input[name="notePriority"]:checked;
-// group - from modal
+// #noteGroupButton p
 
 
 

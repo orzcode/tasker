@@ -297,7 +297,7 @@ form * {
   background-color: rgba(200, 200, 200);
   filter: drop-shadow(1px 1px 5px black);
   
-  width: calc(34rem + 2vw);
+  width: calc(28rem + 4vw);
 
 
   display: flex;
