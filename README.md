@@ -6,8 +6,14 @@ Notes: Setting `grid-template-rows: 0 0 0 0` in prep for a transition to grow, i
 100vw on `body` is important to prevent vertical scrollbar jarring.
 
 ~~~
-TODO:
+~~~
+# TODO:
+
 
 Mobile width issue
-Make 'priority' div overflow nicely at mobile
 
+Make 'priority' div in form overflow nicely at mobile
+
+Fix click-to-close form (seems quite finnicky on where you click)
+
+Fix clicking/touching form to expand properly

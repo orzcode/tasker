@@ -59,17 +59,23 @@
             
             <div><label for="noteDate">Due date: <input type="date" id="noteDate" name="noteDate"></label></div>
             
-            <div>
-              <label for="notePriority">Priority
-                <input type="radio" id="notePriorityLow" name="notePriority" value="low">
-                <input type="radio" id="notePriorityMed" name="notePriority" value="medium">
-                <input type="radio" id="notePriorityHigh" name="notePriority" value="high">
-              </label>
+            <div id="notePriorityDiv">
+              <label for="notePriority">Priority</label>
+                <div id="radiosDiv">
+                  <input type="radio" id="notePriorityLow" name="notePriority" value="low">
+                  <input type="radio" id="notePriorityMed" name="notePriority" value="medium">
+                  <input type="radio" id="notePriorityHigh" name="notePriority" value="high">
+                </div>              
             </div>
 
           </section>
 
-          <button type="button" id="noteGroupButton" onclick="dialog.showModal()">Group</button>
+          <section id="noteButtons">
+            <button type="button" id="noteGroupButton" onclick="dialog.showModal()">Group: <p>(none)</p></button>
+            <button type="submit" id="noteSubmit">Task it!</button>
+          </section>
+
+
         </form>
 
       </header>

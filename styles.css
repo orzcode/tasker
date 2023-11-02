@@ -176,6 +176,7 @@ form * {
   background-color: initial;
   border-style: none;
   caret-color: inherit;
+  color: rgb(200, 200, 200, 1);
   font-size: 2rem;
   background-color: rgb(60, 60, 60);
   outline: none;
@@ -214,11 +215,6 @@ form * {
   width: 100%;
   height: 100%;
 
-  /* min-height: 6rem; */
-  
-  /* margin: 1rem 0;*/
-  /* padding: 1rem 0 1rem 0;  */
-
   max-height: 50rem;
 
   /* Place on top of each other */
@@ -230,19 +226,21 @@ form * {
 #noteTitle {
   font-size: 3rem;
   caret-color: rgb(200, 200, 200, 1);
+  color: rgb(200, 200, 200, 1);
 }
+
 #noteSpan {
-  /* outline: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px; */
   caret-color: rgb(200, 200, 200, 1);
   /* BE CAREFUL THAT SIZING/STYLE DOESN'T CONFLICT WITH MAGIC DIV! */
 }
 #noteSpan::placeholder {
   color: rgb(200, 200, 200, 0.5);
 }
+
 #noteDateAndPriority {
   display:flex;
   justify-content: space-between;
+  align-items: center;
 }
 ::placeholder, input[type="date"], #noteGroupButton {
   color:rgb(200, 200, 200, 1);
@@ -250,8 +248,40 @@ form * {
 ::-webkit-calendar-picker-indicator {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
 }
-#noteGroupButton {
-  width: 100%;
+
+#notePriorityDiv{
+  display: flex;
+  flex-wrap: wrap;
+
+  
+
+  
+  gap: 1rem;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+#noteButtons {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+ 
+}
+#noteGroupButton p{
+  display:inline;
+}
+#noteSubmit {
+  color: white;
+  font-weight: bold;
+  padding: 0 1rem;
+  margin-right: 0.2rem;
+}
+#noteSubmit:hover {
+  outline: 1px solid rgba(245, 245, 245, 0.25);
+  border-radius: 15px;
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
 }
 /* ---------------------------------------------------- */
 /* FORM INPUTS END HERE */
@@ -269,9 +299,6 @@ form * {
   
   width: calc(34rem + 2vw);
 
-   /*better for mobile? */
-
-   /*better for mobile? */
 
   display: flex;
   flex-direction: column;
@@ -374,6 +401,10 @@ dialog:not([open]) {
   }
   #footer i{
     margin: 50%;
+  }
+
+  #notePriorityDiv{
+    gap: 0rem;
   }
 
   .noteSpan {
