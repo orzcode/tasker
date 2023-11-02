@@ -39,6 +39,6 @@ window.onclick = function(event) {
 	   document.querySelector("#form").style.gridTemplateRows = "0 auto 0 0"
 	} else {
 		console.log('You clicked inside the box!');
-		document.querySelector("#form").style.gridTemplateRows = "4rem auto 4rem 4rem"
+		document.querySelector("#form").style.gridTemplateRows = "4rem auto 5rem 4rem"
 	}
 }

@@ -22,7 +22,7 @@ html {
 }
 body {
   font-size: 2rem;
-  width: 100vw;
+  width: 100dvw;
   /* WIDTH:100VW important for vertical scrollbar! */
   /* font-size: calc(1.5rem + 0.4vw); */
   /* FONTSIZE TRICK-- 1 rem = 10 px here, usually 1 rem = 16px */
@@ -52,7 +52,7 @@ a {
   display: grid;
   height: 100vh;
   width: 100%;
-  grid-template-columns: clamp(6rem, 20%, 30rem) 8fr;
+  grid-template-columns: clamp(4rem, 15%, 30rem) 8fr;
   grid-template-rows: 2fr 8fr;
   /* THIS MINMAX MAY NEED ATTENTION - FitContent wont work */
 }
@@ -113,23 +113,26 @@ h1 {
   
   gap: 4rem 1rem;
 
+  padding: 1rem;
+
 
   display: grid;
-  width: 100%;
   align-items: center;
   justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(calc(35rem + 2vw), 1fr));
 }
 
-.footer {
+#footer {
   position: fixed;
   bottom: 1vh;
   left: 1vw;
   display: flex;
   gap: 1rem;
+}
+#footer p {
   font-size: clamp(1rem, 4vw, 2rem);
 }
-.footer i {
+#footer i {
   color: white;
   /* This is the Icon */
 }
@@ -139,10 +142,10 @@ h1 {
 /* ---------------------------------------------------- */
 form {
   display: grid;
-  /* grid-template-rows: 4rem auto 4rem 4rem; */
+
   grid-template-rows: 0 auto 0 0;
 
-  width: clamp(26rem, calc(40vw + 10rem), 60rem);
+  width: clamp(28rem, calc(45vw + 10rem), 60rem);
 
   margin: 2rem 0;
 
@@ -169,14 +172,6 @@ form {
 /* ---------------------------------------------------- */
 /* BULLSHIT for mobile */
 /* ---------------------------------------------------- */
-
-
-::placeholder, input[type="date"], #noteGroupButton {
-  color:rgb(200, 200, 200, 1);
-}
-::-webkit-calendar-picker-indicator {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
-}
 form * {
   background-color: initial;
   border-style: none;
@@ -249,8 +244,12 @@ form * {
   display:flex;
   justify-content: space-between;
 }
-/* need to make this^ disappear when grid row is set to 0 */
-/* make it inline-flex? make it a div instead of section?? */
+::placeholder, input[type="date"], #noteGroupButton {
+  color:rgb(200, 200, 200, 1);
+}
+::-webkit-calendar-picker-indicator {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+}
 #noteGroupButton {
   width: 100%;
 }
@@ -359,7 +358,7 @@ dialog:not([open]) {
 	visibility: hidden; */
 }
 /* ---------------------------------------------------- */
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 800px) {
   #nav p:nth-child(1) {
     display: none;
   }
@@ -367,6 +366,16 @@ dialog:not([open]) {
   #nav li {
     justify-content: center;
   }
+  #nav h1 {
+    visibility: hidden;
+  }
+  #footer p {
+    visibility: hidden;
+  }
+  #footer i{
+    margin: 50%;
+  }
+
   .noteSpan {
     -webkit-line-clamp: 12;
   }
