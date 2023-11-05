@@ -1,12 +1,12 @@
-console.log("index.JS is working");
+//console.log("index.JS is working");
 import { format } from 'date-fns'
-import formValues from './dom.js'
+import domMgr from './dom.js'
 
-//const formValues = domStuff();
-console.log(formValues);
 
-console.log(format(new Date, 'yyyy-MM-dd'));
-document.querySelector(".noteDate").innerHTML = format(new Date, 'yyyy-MM-dd');
+console.log(domMgr.formInputsObject.color);
+
+// console.log(format(new Date, 'yyyy-MM-dd'));
+// document.querySelector(".noteDate").innerHTML = format(new Date, 'yyyy-MM-dd');
 
 
 const noteFactory = (title, text, dueDate, priority, group, color) => {

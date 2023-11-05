@@ -1,25 +1,35 @@
-const domStuff = (() =>{
-console.log("dom.JS is working");
-
-let noteTitle = document.querySelector("#noteTitle").value;
-let noteSpan = document.querySelector("#noteSpan").value;
-let noteDate = document.querySelector("#noteDate").value;
+const domMgr = (() => {
+	console.log("dom.JS is working");
+  
+	let noteTitle = document.querySelector("#noteTitle").value;
+	let noteSpan = document.querySelector("#noteSpan").value;
+	let noteDate = document.querySelector("#noteDate").value;
 	let notePriority = document.querySelector("input[name='notePriority']:checked");
-//^?
-let noteGroup = document.querySelector("#noteGroupButton p").value;
-let noteColor = null;
+	let noteGroup = document.querySelector("#noteGroupButton p").value;
+	let noteColor = null;
+  
+	const formInputsObject = {
+		get title() {
+			return noteTitle;
+		},
+		get spanText() {
+			return noteSpan;
+		},
+		get dueDate() {
+			return noteDate;
+		},
+		get priority() {
+			return notePriority;
+		},
+		get group() {
+			return noteGroup;
+		},
+		get color() {
+			return noteColor;
+		}
+	};
 
-const formValues = {
-	title: noteTitle,
-	spanText: noteSpan,
-	dueDate: noteDate,
-	priority: notePriority,
-	group: noteGroup,
-	color: noteColor
-};
+	return { formInputsObject };
+  })();
 
-return formValues
-
-})()
-
-export default domStuff
+export default domMgr
