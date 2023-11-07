@@ -7,6 +7,9 @@ const domMgr = (() => {
 	let notePriority = document.querySelector("input[name='notePriority']:checked");
 	let noteGroup = document.querySelector("#noteGroupButton p").value;
 	let noteColor = null;
+
+	//const myBox = document.querySelector('#form');
+
   
 	const formInputsObject = {
 		get title() {
