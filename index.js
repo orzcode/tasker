@@ -17,20 +17,29 @@ import domMgr from './dom.js'
 	// }
 
 
-console.log(domMgr().formInputsObject.color);
+//console.log(domMgr.formInputsObject.color);
 
 
 const Manager = (() => {
 	let notePool = [];
+	var myBox = document.querySelector('#form');
 
+	////
 	const testObj = {title: "Sex", text: "not Sex", dueDate: 11, priority: 3, group: undefined, color: null}
 	notePool.push(testObj)
-
+	////
+	
 	const eventHandlers = (() => {
+		// myBox.addEventListener("submit", function() {
+		// 	formSubmit()
+		// 	event.preventDefault();
+		//   });
+
+		//myBox.onSubmit = formSubmit;
 
 		const windowHandlers = (() => {
 			window.onclick = function (event) {
-				var myBox = document.querySelector('#form');
+				
 			
 				if (event.target == dialog) {
 					dialog.close();
@@ -39,36 +48,23 @@ const Manager = (() => {
 			
 				if (event.target.contains(myBox) && event.target !== myBox) {
 				   console.log('You clicked outside the box!');
-				   document.querySelector("#form").style.gridTemplateRows = "0 auto 0 0"
+				   myBox.style.gridTemplateRows = "0 auto 0 0"
 				} else {
 					console.log('You clicked inside the box!');
-					document.querySelector("#form").style.gridTemplateRows = "5rem auto 5rem 5rem"
-
-					console.log(domMgr().formInputsObject.title);
+					myBox.style.gridTemplateRows = "5rem auto 5rem 5rem"
 				}
 			}
-		})()
+		})()		
 	})();
 
-
+	function formSubmit() {
+		notePool.push({ ...domMgr.formInputsObject })
+		//'converts' or spreads it to an actual object, then push
+		console.log(notePool)
+		//event.preventDefault()
+	}
+	myBox.onSubmit = formSubmit();
+	//return { formSubmit }
 })()
 
-
-
-//   window.onclick = function (event) {
-// 	var myBox = document.querySelector('#form');
-
-// 	if (event.target == dialog) {
-// 		dialog.close();
-// 	  }
-// 	//closes modal when clicking outside of it
-
-// 	if (event.target.contains(myBox) && event.target !== myBox) {
-// 	   console.log('You clicked outside the box!');
-// 	   document.querySelector("#form").style.gridTemplateRows = "0 auto 0 0"
-// 	} else {
-// 		console.log('You clicked inside the box!');
-// 		document.querySelector("#form").style.gridTemplateRows = "5rem auto 5rem 5rem"
-// 	}
-// }
-
+//console.log(Manager.formSubmit)

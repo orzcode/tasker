@@ -48,7 +48,7 @@
       <header id="header">
         <!-- <button class="newNoteBtn" onclick="dialog.showModal()">New Note</button> -->
         
-        <form id="form" tabindex="0">
+        <form id="form" method="dialog" tabindex="0">
           <input type="text" id="noteTitle" name="noteTitle" placeholder="Title" maxlength="25">
           <div class="grow-wrap">
             <textarea name="noteSpan" id="noteSpan" placeholder="Enter note..." onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
@@ -71,8 +71,8 @@
           </section>
 
           <section id="noteButtons">
-            <button type="button" id="noteGroupButton" onclick="dialog.showModal()">Group: <p>(none)</p></button>
-            <button type="submit" id="noteSubmit">Task it!</button>
+            <button type="button" form="form" id="noteGroupButton" onclick="dialog.showModal()">Group: <p>(none)</p></button>
+            <button type="submit" form="form" id="noteSubmit">Task it!</button>
           </section>
 
 
