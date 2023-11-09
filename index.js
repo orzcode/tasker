@@ -58,15 +58,16 @@ const Manager = (() => {
 
 	})();
 
-	const formSubmit = () => {
+	const formSubmit = (event) => {
 		notePool.push({ ...domMgr.formInputsObject })
 		//'converts' or spreads it to an actual object, then push
 		console.log(notePool)
-		//event.preventDefault()
+		event.preventDefault()
 	}
-	form.onSubmit = formSubmit();
+	
+	//formBox.onSubmit = formSubmit;
+
+	formBox.addEventListener('submit', formSubmit);
 
 	//return { formSubmit }
 })()
-
-//console.log(Manager.formSubmit)
