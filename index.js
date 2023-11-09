@@ -19,10 +19,9 @@ import domMgr from './dom.js'
 
 //console.log(domMgr.formInputsObject.color);
 
-
 const Manager = (() => {
 	let notePool = [];
-	var myBox = document.querySelector('#form');
+	const formBox = document.querySelector('#form');
 
 	////
 	const testObj = {title: "Sex", text: "not Sex", dueDate: 11, priority: 3, group: undefined, color: null}
@@ -38,23 +37,25 @@ const Manager = (() => {
 		//myBox.onSubmit = formSubmit;
 
 		const windowHandlers = (() => {
-			window.onclick = function (event) {
-				
+			window.onclick = function (event) {				
 			
 				if (event.target == dialog) {
 					dialog.close();
 				  }
 				//closes modal when clicking outside of it
 			
-				if (event.target.contains(myBox) && event.target !== myBox) {
-				   console.log('You clicked outside the box!');
-				   myBox.style.gridTemplateRows = "0 auto 0 0"
+				if (!formBox.contains(event.target)) {
+					console.log('You clicked outside the box!');
+					myBox.style.gridTemplateRows = "0 auto 0 0";
 				} else {
 					console.log('You clicked inside the box!');
-					myBox.style.gridTemplateRows = "5rem auto 5rem 5rem"
+					formBox.style.gridTemplateRows = "5rem auto 5rem 5rem";
 				}
 			}
-		})()		
+		})()
+		
+		
+
 	})();
 
 	const formSubmit = () => {
@@ -63,7 +64,7 @@ const Manager = (() => {
 		console.log(notePool)
 		//event.preventDefault()
 	}
-	myBox.onSubmit = formSubmit();
+	form.onSubmit = formSubmit();
 
 	//return { formSubmit }
 })()
