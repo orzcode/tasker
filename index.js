@@ -16,7 +16,8 @@ import domMgr from './dom.js'
 	// 	};
 	// }
 
-console.log(domMgr.formInputsObject.color);
+
+console.log(domMgr().formInputsObject.color);
 
 
 const Manager = (() => {
@@ -42,6 +43,8 @@ const Manager = (() => {
 				} else {
 					console.log('You clicked inside the box!');
 					document.querySelector("#form").style.gridTemplateRows = "5rem auto 5rem 5rem"
+
+					console.log(domMgr().formInputsObject.title);
 				}
 			}
 		})()

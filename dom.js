@@ -1,38 +1,38 @@
-const domMgr = (() => {
+const domMgr = () => {
 	console.log("dom.JS is working");
   
-	let noteTitle = document.querySelector("#noteTitle").value;
-	let noteSpan = document.querySelector("#noteSpan").value;
-	let noteDate = document.querySelector("#noteDate").value;
-	let notePriority = document.querySelector("input[name='notePriority']:checked");
-	let noteGroup = document.querySelector("#noteGroupButton p").value;
-	let noteColor = null;
-
+	const tags = {
+	noteTitle: document.querySelector("#noteTitle").value,
+	noteSpan: document.querySelector("#noteSpan").value,
+	noteDate: document.querySelector("#noteDate").value,
+	notePriority: document.querySelector("input[name='notePriority']:checked"),
+	noteGroup: document.querySelector("#noteGroupButton p").value,
+	noteColor: null
+	}
 	//const myBox = document.querySelector('#form');
 
-  
-	const formInputsObject = {
+  	const formInputsObject = {
 		get title() {
-			return noteTitle;
+			return tags.noteTitle;
 		},
 		get spanText() {
-			return noteSpan;
+			return tags.noteSpan;
 		},
 		get dueDate() {
-			return noteDate;
+			return tags.noteDate;
 		},
 		get priority() {
-			return notePriority;
+			return tags.notePriority;
 		},
 		get group() {
-			return noteGroup;
+			return tags.noteGroup;
 		},
 		get color() {
-			return noteColor;
+			return tags.noteColor;
 		}
 	};
 
 	return { formInputsObject };
-  })();
+  };
 
 export default domMgr
