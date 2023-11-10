@@ -29,15 +29,17 @@ const Manager = (() => {
 	
 	const formSubmit = (event) => {
 		event.preventDefault();
+		console.log("formSubmit executed");
 
 		notePool.push({ ...domMgr.formInputsObject });
 		//'converts' or spreads it to an actual object, then pushes
 
-		console.log("formSubmit executed");
+		console.log(notePool)		
+	}
 
-		console.log(notePool)
-		//console.log(document.querySelector("input[name='notePriority']:checked").value)
+	const renderCards = () => {
 		
+
 	}
 
 	const eventHandlers = (() => {
