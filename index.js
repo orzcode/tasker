@@ -23,7 +23,7 @@ const Manager = (() => {
 	let notePool = [];	
 
 ////////////////
-	const testObj = {title: "Sex", text: "not Sex", dueDate: 11, priority: 3, group: undefined, color: null}
+	const testObj = {title: "Sex", text: "not Sex", dueDate: 11, priority: 2, group: undefined, color: null}
 	notePool.push(testObj)
 ////////////////
 	
@@ -36,7 +36,7 @@ const Manager = (() => {
 		console.log("formSubmit executed");
 
 		console.log(notePool)
-		console.log(document.querySelector("input[name='notePriority']:checked").value)
+		//console.log(document.querySelector("input[name='notePriority']:checked").value)
 		
 	}
 
