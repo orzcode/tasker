@@ -20,21 +20,33 @@ import domMgr from './dom.js'
 //console.log(domMgr.formInputsObject.color);
 
 const Manager = (() => {
-	let notePool = [];
-	const formBox = document.querySelector('#form');
+	let notePool = [];	
 
-	////
+////////////////
 	const testObj = {title: "Sex", text: "not Sex", dueDate: 11, priority: 3, group: undefined, color: null}
 	notePool.push(testObj)
-	////
+////////////////
 	
-	const eventHandlers = (() => {
-		// myBox.addEventListener("submit", function() {
-		// 	formSubmit()
-		// 	event.preventDefault();
-		//   });
+	const formSubmit = (event) => {
+		event.preventDefault();
 
-		//myBox.onSubmit = formSubmit;
+		notePool.push({ ...domMgr.formInputsObject });
+		//'converts' or spreads it to an actual object, then pushes
+
+		console.log("formSubmit executed");
+
+		console.log(notePool)
+		console.log(document.querySelector("input[name='notePriority']:checked").value)
+		
+	}
+
+	const eventHandlers = (() => {
+
+		const formBox = document.querySelector('#form');
+
+		const formHandler = (() => {
+			formBox.addEventListener('submit', formSubmit);
+		})()
 
 		const windowHandlers = (() => {
 			window.onclick = function (event) {				
@@ -46,28 +58,15 @@ const Manager = (() => {
 			
 				if (!formBox.contains(event.target)) {
 					console.log('You clicked outside the box!');
-					myBox.style.gridTemplateRows = "0 auto 0 0";
+					formBox.style.gridTemplateRows = "0 auto 0 0";
 				} else {
 					console.log('You clicked inside the box!');
 					formBox.style.gridTemplateRows = "5rem auto 5rem 5rem";
 				}
+				//Expand/shrink form when clicking inside/outside of it
 			}
 		})()
-		
-		
 
 	})();
-
-	const formSubmit = (event) => {
-		notePool.push({ ...domMgr.formInputsObject })
-		//'converts' or spreads it to an actual object, then push
-		console.log(notePool)
-		event.preventDefault()
-	}
 	
-	//formBox.onSubmit = formSubmit;
-
-	formBox.addEventListener('submit', formSubmit);
-
-	//return { formSubmit }
 })()

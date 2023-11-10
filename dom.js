@@ -36,7 +36,7 @@ const domMgr = (() => {
 		}
 	};
 
-	return { formInputsObject };
+	return { formInputsObject, tags };
   })();
 
 export default domMgr
