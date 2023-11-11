@@ -9,7 +9,12 @@ const domMgr = (() => {
 	// noteGroup: document.querySelector("#noteGroupButton p"),
 	// noteColor: null,
 	// //update this later once color btn implemented
-	// }	
+	// }
+
+	const tags = {
+		formBox: document.querySelector('#form'),
+		mainDiv: document.querySelector('#main'),
+	}	
 
   	const formInputsObject = {
 		get title() {
@@ -32,7 +37,7 @@ const domMgr = (() => {
 		}
 	};
 
-	return { formInputsObject};
+	return { formInputsObject, tags};
   })();
 
 export default domMgr
