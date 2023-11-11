@@ -32,16 +32,64 @@ const Manager = (() => {
 		console.log("formSubmit executed");
 
 		notePool.push({ ...domMgr.formInputsObject });
-		//'converts' or spreads it to an actual object, then pushes
+		//'converts' or spreads it to an actual object, then pushes to library
 
-		console.log(notePool)		
+		////
+		let test = JSON.stringify(notePool);
+		notePool.push(JSON.parse(test));
+		console.log(notePool)
+		////
+
 	}
 
-	const renderCards = () => {
+
+//////////////////////////////////////////////
+	const storage = {
+		get localStorage() {
+			if (localStorage.getItem("notePool") !== null) {
+				let data = localStorage.getItem("notePool");
+				//get localStorage item "localContent" (which is a string)
+				data = JSON.parse(data);
+				//parses (de-strings) library
+				notePool.push(data);
+			  } else return;
+		},
+
+		set localStorage(stringified_notePool) {
+			localStorage.setItem("notePool", JSON.stringify(stringified_notePool));
+		}
+	}
+
+
+
+	// const localStorage = () => {
+	// 	localStorage.setItem("notePool", JSON.stringify(notePool));
+	// 	//set a localStorage item called "notePool", set it as a stringified library[]
+	//   }
+	//   function getLibrary() {
+	// 	if (localStorage.getItem("notePool") !== null) {
+	// 	  let data = localStorage.getItem("notePool");
+	// 	  //get localStorage item "localContent" (which is a string)
+	// 	  data = JSON.parse(data);
+	// 	  //parses (de-strings) library
+	// 	  //IMPORTANTLY, still needs to be MAPPED to a proper array of objects using 'reSeries':
+	// 	  data = reSeries(data);
+	// 	  //NOTE: called "data", but it's effectively the library[]
+	// 	  data.forEach((ObjFromArray) => {
+	// 		notePool.push(ObjFromArray);
+	// 	  });
+	// 	  //runs through each obj in the pulled data and pushes to library[] (cant just push whole thing)
+	// 	} else return;
+	//   }
+///////////////////////////////////////////////
+
+	const renderCards = () => {		
+
 		
 
 	}
 
+///////////////////////////////////////////////
 	const eventHandlers = (() => {
 
 		const formBox = document.querySelector('#form');
