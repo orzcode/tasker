@@ -15,7 +15,7 @@ const Manager = (() => {
   ////////////////
   const testObj = {
     title: "Sex",
-    text: "not Sex",
+    spanText: "not Sex",
     dueDate: 11,
     priority: 2,
     group: undefined,
@@ -31,11 +31,9 @@ const Manager = (() => {
     notePool.push({ ...domMgr.formInputsObject });
     //'converts' or spreads it to an actual object, then pushes to library
 
-    ////
-    let test = JSON.stringify(notePool);
-    notePool.push(JSON.parse(test));
-    console.log(notePool);
-    ////
+    storage.localStorage = notePool;
+    console.log(storage.localStorage)
+    renderCards(notePool)
   };
 
   //////////////////////////////////////////////
@@ -44,52 +42,38 @@ const Manager = (() => {
       if (localStorage.getItem("notePool") !== null) {
         let data = localStorage.getItem("notePool");
         //get localStorage item "localContent" (which is a string)
-        data = JSON.parse(data);
-        //parses (de-strings) library
-        notePool.push(data);
-      } else return;
+        return JSON.parse(data);
+        //parses (de-strings) library and returns
+        
+        //notePool.push(data);
+      } else return null;
     },
 
-    set localStorage(stringified_notePool) {
-      localStorage.setItem("notePool", JSON.stringify(stringified_notePool));
+    set localStorage(to_be_stringified_notePool) {
+      localStorage.setItem("notePool", JSON.stringify(to_be_stringified_notePool));
     },
   };
-
-  // const localStorage = () => {
-  // 	localStorage.setItem("notePool", JSON.stringify(notePool));
-  // 	//set a localStorage item called "notePool", set it as a stringified library[]
-  //   }
-  //   function getLibrary() {
-  // 	if (localStorage.getItem("notePool") !== null) {
-  // 	  let data = localStorage.getItem("notePool");
-  // 	  //get localStorage item "localContent" (which is a string)
-  // 	  data = JSON.parse(data);
-  // 	  //parses (de-strings) library
-  // 	  //IMPORTANTLY, still needs to be MAPPED to a proper array of objects using 'reSeries':
-  // 	  data = reSeries(data);
-  // 	  //NOTE: called "data", but it's effectively the library[]
-  // 	  data.forEach((ObjFromArray) => {
-  // 		notePool.push(ObjFromArray);
-  // 	  });
-  // 	  //runs through each obj in the pulled data and pushes to library[] (cant just push whole thing)
-  // 	} else return;
-  //   }
   ///////////////////////////////////////////////
-
   const renderCards = (library) => {
     if (library) {
       library.forEach((object) => {
         const card = createCard(object);
         //make a 'card' so it can be displayed on page
 
+        clearBoard()
         domMgr.tags.mainDiv.appendChild(card);
       });
     } else return;
+    //possibly add a 'card' paramater to this function for single cards?
   };
-
+  ///////////////////////////////////////////////
+  const clearBoard = () => {
+    console.log("Board cleared");
+    domMgr.tags.mainDiv.innerHTML = '';
+  }
   ///////////////////////////////////////////////
   const createCard = (object) => {
-    //dompurify the html itself afterwards//
+    //dompurifies the html itself afterwards//
     const card = document.createElement("div");
     card.classList.add("note");
 
