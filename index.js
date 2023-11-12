@@ -3,27 +3,15 @@ import { format } from "date-fns";
 import DOMPurify from "isomorphic-dompurify";
 import domMgr from "./dom.js";
 
-//const clean = DOMPurify.sanitize('<b>hello there</b>');
-//console.log(clean);
-
 // console.log(format(new Date, 'yyyy-MM-dd'));
 // document.querySelector(".noteDate").innerHTML = format(new Date, 'yyyy-MM-dd');
 
+//localStorage.clear();
+
+
 const Manager = (() => {
   let notePool = [];
-
-  ////////////////
-  const testObj = {
-    title: "Sex",
-    spanText: "not Sex",
-    dueDate: 11,
-    priority: 2,
-    group: undefined,
-    color: null,
-  };
-  notePool.push(testObj);
-  ////////////////
-
+  //////////////////////////////////////////////
   const formSubmit = (event) => {
     event.preventDefault();
     console.log("formSubmit executed");
@@ -33,19 +21,21 @@ const Manager = (() => {
 
     storage.localStorage = notePool;
     console.log(storage.localStorage)
-    renderCards(notePool)
-  };
 
+    clearBoard()
+    renderCards(notePool)
+    //should actually append only one card, not all of them
+  };
   //////////////////////////////////////////////
   const storage = {
     get localStorage() {
       if (localStorage.getItem("notePool") !== null) {
         let data = localStorage.getItem("notePool");
         //get localStorage item "localContent" (which is a string)
+
         return JSON.parse(data);
         //parses (de-strings) library and returns
-        
-        //notePool.push(data);
+
       } else return null;
     },
 
@@ -60,13 +50,12 @@ const Manager = (() => {
         const card = createCard(object);
         //make a 'card' so it can be displayed on page
 
-        clearBoard()
         domMgr.tags.mainDiv.appendChild(card);
       });
     } else return;
     //possibly add a 'card' paramater to this function for single cards?
   };
-  ///////////////////////////////////////////////
+ ///////////////////////////////////////////////
   const clearBoard = () => {
     console.log("Board cleared");
     domMgr.tags.mainDiv.innerHTML = '';
@@ -89,7 +78,7 @@ const Manager = (() => {
 			  <span class="noteSpan">${object.spanText}</span>
 		  
 			  <div class="noteDateAndPriority">
-				<div class="noteDate"><!-- dueDate via datefns --></div>
+				<div class="noteDate">Due date: ${object.dueDate}</div>
 				<p class="material-symbols-sharp notePriorityIcon">priority_high</p>
 			  </div>
 		  
@@ -127,4 +116,13 @@ const Manager = (() => {
       };
     })();
   })();
+
+///////////////////////////////////////////////
+    const firstLoad = (() =>{
+      notePool = storage.localStorage || [];
+      
+      renderCards(notePool);
+    })()
+///////////////////////////////////////////////
+
 })();
