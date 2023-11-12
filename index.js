@@ -66,6 +66,8 @@ const Manager = (() => {
     const card = document.createElement("div");
     card.classList.add("note");
 
+    const formattedDate = format(new Date(object.dueDate), "do MMM");
+
     card.innerHTML = DOMPurify.sanitize(`
 			  <div class="noteTitleAndIcons">
 				<h3 class="noteTitle">${object.title}</h3>
@@ -78,7 +80,7 @@ const Manager = (() => {
 			  <span class="noteSpan">${object.spanText}</span>
 		  
 			  <div class="noteDateAndPriority">
-				<div class="noteDate">Due date: ${object.dueDate}</div>
+				<div class="noteDate">Due date: ${formattedDate}</div>
 				<p class="material-symbols-sharp notePriorityIcon">priority_high</p>
 			  </div>
 		  
