@@ -138,17 +138,20 @@ const Manager = (() => {
   ///////////////////////////////////////////////
   const eventHandlers = (() => {
     const formBox = domMgr.tags.formBox;
+    const trashLink = domMgr.tags.trashLink;
+    const noteLink = domMgr.tags.noteLink;
 
     const formHandler = (() => {
       formBox.addEventListener("submit", formSubmit);
     })();
+    //for Form Submission
 
     const windowHandlers = (() => {
       window.onclick = function (event) {
         if (event.target == dialog) {
           dialog.close();
         }
-        //closes modal when clicking outside of it
+    //closes modal when clicking outside of it
 
         if (!formBox.contains(event.target)) {
           console.log("You clicked outside the form box!");
@@ -157,8 +160,19 @@ const Manager = (() => {
           console.log("You clicked inside the form box!");
           formBox.style.gridTemplateRows = "5rem auto 5rem 5rem";
         }
-        //Expand/shrink form when clicking inside/outside of it
+    //Expand/shrink form when clicking inside/outside of it
       };
+
+    const linksHandler = (() => {
+      trashLink.addEventListener("click", () => links(trashPool));
+      noteLink.addEventListener("click", () => links(notePool));
+    })()
+    
+    function links(array) {
+      clearBoard();
+      renderCards(array)
+    }
+
     })();
   })();
 

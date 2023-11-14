@@ -14,6 +14,8 @@ const domMgr = (() => {
 	const tags = {
 		formBox: document.querySelector('#form'),
 		mainDiv: document.querySelector('#main'),
+		trashLink: document.querySelector('[data-link="trashpool"]'),
+		noteLink: document.querySelector('[data-link="notepool"]'),
 	}	
 
   	const formInputsObject = {

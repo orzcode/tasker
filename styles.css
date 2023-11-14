@@ -30,6 +30,8 @@ body {
 }
 li {
   list-style-type: none;
+  caret-color: transparent;
+  cursor: pointer;
 }
 a {
   text-decoration: none;
