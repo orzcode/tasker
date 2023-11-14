@@ -1,9 +1,6 @@
 const domMgr = (() => {
 	console.log("dom.JS is working");
-
-	// const initializeNotes = () => {
-	// 	return document.querySelectorAll('div.note');
-	//   };
+	//let tags;
 
 	const tags = {
 		formBox: document.querySelector('#form'),
@@ -12,6 +9,24 @@ const domMgr = (() => {
 		noteLink: document.querySelector('[data-link="notepool"]'),
 		notes: document.querySelectorAll('div.note'),
 	}
+
+	const tagSetup = () => ({
+		formBox: document.querySelector('#form'),
+		mainDiv: document.querySelector('#main'),
+		trashLink: document.querySelector('[data-link="trashpool"]'),
+		noteLink: document.querySelector('[data-link="notepool"]'),
+		notes: document.querySelectorAll('div.note'),
+	})
+
+	// document.addEventListener('DOMContentLoaded', () => {
+	// 	tags = () => ({
+	// 	  formBox: document.querySelector('#form'),
+	// 	  mainDiv: document.querySelector('#main'),
+	// 	  trashLink: document.querySelector('[data-link="trashpool"]'),
+	// 	  noteLink: document.querySelector('[data-link="notepool"]'),
+	// 	  notes: document.querySelectorAll('div.note'),
+	// 	})}
+	// 	)
 
   	const formInputsObject = {
 		get title() {
@@ -34,7 +49,7 @@ const domMgr = (() => {
 		}
 	};
 
-	return { formInputsObject, tags};
+	return { formInputsObject, tags, tagSetup };
   })();
 
 export default domMgr

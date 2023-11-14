@@ -201,11 +201,17 @@ const Manager = (() => {
 
   ///////////////////////////////////////////////
   const firstLoad = (() => {
+
     notePool = storage.localStorage || [];
 
     trashPool = storage.trash || [];
 
     renderCards(notePool);
-  })();
+  })(); 
   ///////////////////////////////////////////////
 })();
+console.log(domMgr.tagSetup().notes)
+// document.addEventListener('DOMContentLoaded', () => {
+//   domMgr.tagSetup})
+
+
