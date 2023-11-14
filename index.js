@@ -140,6 +140,7 @@ const Manager = (() => {
     const formBox = domMgr.tags.formBox;
     const trashLink = domMgr.tags.trashLink;
     const noteLink = domMgr.tags.noteLink;
+    const notes = domMgr.tags.notes;
 
     const formHandler = (() => {
       formBox.addEventListener("submit", formSubmit);
@@ -169,12 +170,34 @@ const Manager = (() => {
     })()
     
     function links(array) {
-      clearBoard();
-      renderCards(array)
+      // Fade out the existing cards
+      fadeCards(0);
+    
+      // Wait for the fade-out effect to complete before rendering new cards
+      setTimeout(() => {
+        clearBoard();
+        renderCards(array);
+    
+        // Fade in the new cards
+        fadeCards(1);
+      }, 500); // Adjust the duration to match your CSS transition duration
     }
 
     })();
+
+    
   })();
+
+  //SCOPE / COMPILATION ISSUE WITH DOM-MGR TAGS
+  function fadeCards(targetOpacity) {
+    console.log(domMgr.tags.notes);
+    const notes = domMgr.tags.notes;
+    notes.forEach(note => {
+      note.style.opacity = targetOpacity;
+    });
+    console.log("fade cards executed")
+  }
+  //SCOPE / COMPILATION ISSUE WITH DOM-MGR TAGS
 
   ///////////////////////////////////////////////
   const firstLoad = (() => {

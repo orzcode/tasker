@@ -1,22 +1,17 @@
 const domMgr = (() => {
 	console.log("dom.JS is working");
-  
-	// const tags = {
-	// noteTitle: document.querySelector("#noteTitle"),
-	// noteSpan: document.querySelector("#noteSpan"),
-	// noteDate: document.querySelector("#noteDate"),
-	// notePriority: document.querySelector("input[name='notePriority']:checked"),
-	// noteGroup: document.querySelector("#noteGroupButton p"),
-	// noteColor: null,
-	// //update this later once color btn implemented
-	// }
+
+	// const initializeNotes = () => {
+	// 	return document.querySelectorAll('div.note');
+	//   };
 
 	const tags = {
 		formBox: document.querySelector('#form'),
 		mainDiv: document.querySelector('#main'),
 		trashLink: document.querySelector('[data-link="trashpool"]'),
 		noteLink: document.querySelector('[data-link="notepool"]'),
-	}	
+		notes: document.querySelectorAll('div.note'),
+	}
 
   	const formInputsObject = {
 		get title() {
