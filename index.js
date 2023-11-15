@@ -1,12 +1,13 @@
 import { format } from "date-fns";
 import DOMPurify from "isomorphic-dompurify";
 import domMgr from "./dom.js";
+import storage from "./storage.js";
+import cardManager from "./cardManager.js";
 
-//localStorage.clear();
-
+//storage.clear;
+console.log(domMgr.localArrays.notePool)
 const Manager = (() => {
-  let notePool = [];
-  let trashPool = [];
+
   //////////////////////////////////////////////
   const formSubmit = (event) => {
     event.preventDefault();
@@ -23,124 +24,124 @@ const Manager = (() => {
     //should actually append only one card, not all of them
   };
   //////////////////////////////////////////////
-  const storage = {
-    get localStorage() {
-      if (localStorage.getItem("notePool") !== null) {
-        let data = localStorage.getItem("notePool");
-        //get localStorage item "localContent" (which is a string)
+  // const storage = {
+  //   get localStorage() {
+  //     if (localStorage.getItem("notePool") !== null) {
+  //       let data = localStorage.getItem("notePool");
+  //       //get localStorage item "localContent" (which is a string)
 
-        return JSON.parse(data);
-        //parses (de-strings) library and returns
-      } else return null;
-    },
+  //       return JSON.parse(data);
+  //       //parses (de-strings) library and returns
+  //     } else return null;
+  //   },
 
-    set localStorage(to_be_stringified_notePool) {
-      localStorage.setItem(
-        "notePool",
-        JSON.stringify(to_be_stringified_notePool)
-      );
-    },
+  //   set localStorage(to_be_stringified_notePool) {
+  //     localStorage.setItem(
+  //       "notePool",
+  //       JSON.stringify(to_be_stringified_notePool)
+  //     );
+  //   },
 
-    get trash() {
-      if (localStorage.getItem("trash") !== null) {
-        let data = localStorage.getItem("trash");
-        //get localStorage item "trash" (which is a string)
+  //   get trash() {
+  //     if (localStorage.getItem("trash") !== null) {
+  //       let data = localStorage.getItem("trash");
+  //       //get localStorage item "trash" (which is a string)
 
-        return JSON.parse(data);
-        //parses (de-strings) array and returns
-      } else return null;
-    },
+  //       return JSON.parse(data);
+  //       //parses (de-strings) array and returns
+  //     } else return null;
+  //   },
 
-    set trash(to_be_stringified_trashPool) {
-      localStorage.setItem(
-        "trash",
-        JSON.stringify(to_be_stringified_trashPool)
-      );
-    },
-  };
+  //   set trash(to_be_stringified_trashPool) {
+  //     localStorage.setItem(
+  //       "trash",
+  //       JSON.stringify(to_be_stringified_trashPool)
+  //     );
+  //   },
+  // };
   ///////////////////////////////////////////////
-  const renderCards = (library) => {
-    if (library) {
-      library.forEach((object) => {
-        const card = createCard(object);
-        //make a 'card' so it can be displayed on page
+  // const renderCards = (library) => {
+  //   if (library) {
+  //     library.forEach((object) => {
+  //       const card = domMgr.createCard(object);
+  //       //make a 'card' so it can be displayed on page
 
-        domMgr.tags.mainDiv.appendChild(card);
-      });
-    } else return;
-    //possibly add a 'card' paramater to this function for single cards?
-  };
+  //       domMgr.getTags().mainDiv.appendChild(card);
+  //     });
+  //   } else return;
+  //   //possibly add a 'card' paramater to this function for single cards?
+  // };
+  // ///////////////////////////////////////////////
+  // const clearBoard = () => {
+  //   console.log("Board cleared");
+  //   domMgr.getTags().mainDiv.innerHTML = "";
+  // };
   ///////////////////////////////////////////////
-  const clearBoard = () => {
-    console.log("Board cleared");
-    domMgr.tags.mainDiv.innerHTML = "";
-  };
-  ///////////////////////////////////////////////
-  const createCard = (object) => {
-    const card = document.createElement("div");
-    card.classList.add("note");
+  // const createCard = (object) => {
+  //   const card = document.createElement("div");
+  //   card.classList.add("note");
 
-    const formattedDate = object.dueDate
-  ? format(new Date(object.dueDate), "do MMM")
-  : "N/A";
-    //Uses DATE-DNS to format to "Nov 23rd"
+  //   const formattedDate = object.dueDate
+  // ? format(new Date(object.dueDate), "do MMM")
+  // : "N/A";
+  //   //Uses DATE-DNS to format to "Nov 23rd"
 
-    card.innerHTML = DOMPurify.sanitize(`
-			  <div class="noteTitleAndIcons">
-				<h3 class="noteTitle">${object.title}</h3>
-				<div>
-				  <p class="material-symbols-sharp notePaletteIcon">palette</p>
-				  <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
-				</div>
-			  </div>
+  //   card.innerHTML = DOMPurify.sanitize(`
+	// 		  <div class="noteTitleAndIcons">
+	// 			<h3 class="noteTitle">${object.title}</h3>
+	// 			<div>
+	// 			  <p class="material-symbols-sharp notePaletteIcon">palette</p>
+	// 			  <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+	// 			</div>
+	// 		  </div>
 		  
-			  <span class="noteSpan">${object.spanText}</span>
+	// 		  <span class="noteSpan">${object.spanText}</span>
 		  
-			  <div class="noteDateAndPriority">
-				<div class="noteDate">Due date: ${formattedDate}</div>
-				<p class="material-symbols-sharp notePriorityIcon">priority_high</p>
-			  </div>
+	// 		  <div class="noteDateAndPriority">
+	// 			<div class="noteDate">Due date: ${formattedDate}</div>
+	// 			<p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+	// 		  </div>
 		  
-			  <div class="noteGroup">Group: ${object.group}</div>
-			`);
+	// 		  <div class="noteGroup">Group: ${object.group}</div>
+	// 		`);
 
-    // Add delete event listener
-    const deleteIcon = card.querySelector(".noteDeleteIcon");
-    deleteIcon.addEventListener("click", () => deleteCard(card, object));
+  //   // Add delete event listener
+  //   const deleteIcon = card.querySelector(".noteDeleteIcon");
+  //   deleteIcon.addEventListener("click", () => deleteCard(card, object));
 
-    return card;
-  };
+  //   return card;
+  // };
   ///////////////////////////////////////////////
   ///////////////////////////////////////////////
-  const deleteCard = (card, object) => {
-    // Find the index of the object in the notePool array
-    const index = notePool.indexOf(object);
+  // const deleteCard = (card, object) => {
+  //   // Find the index of the object in the notePool array
+  //   const index = notePool.indexOf(object);
   
-    if (index !== -1) {
-      // Remove the object from notePool
-      notePool.splice(index, 1);
+  //   if (index !== -1) {
+  //     // Remove the object from notePool
+  //     notePool.splice(index, 1);
   
-      // Move the object to the trash array
-      trashPool.push(object);
+  //     // Move the object to the trash array
+  //     trashPool.push(object);
 
-      storage.trash = trashPool;
-      storage.localStorage = notePool;
-      //Update localStorage trash and notepool
+  //     storage.trash = trashPool;
+  //     storage.localStorage = notePool;
+  //     //Update localStorage trash and notepool
 
-      console.log("Moved to trash!")
-      console.log(trashPool);
+  //     console.log("Moved to trash!")
+  //     console.log(trashPool);
 
-      // Remove the card from the DOM via native method
-      card.remove();
-    }
-  };
+  //     // Remove the card from the DOM via native method
+  //     card.remove();
+  //   }
+  // };
   ///////////////////////////////////////////////
   ///////////////////////////////////////////////
   const eventHandlers = (() => {
-    const formBox = domMgr.tags.formBox;
-    const trashLink = domMgr.tags.trashLink;
-    const noteLink = domMgr.tags.noteLink;
-    const notes = domMgr.tags.notes;
+    const formBox = domMgr.getTags().formBox;
+    const trashLink = domMgr.getTags().trashLink;
+    const noteLink = domMgr.getTags().noteLink;
+    const notes = domMgr.getTags().notes;
 
     const formHandler = (() => {
       formBox.addEventListener("submit", formSubmit);
@@ -190,8 +191,7 @@ const Manager = (() => {
 
   //SCOPE / COMPILATION ISSUE WITH DOM-MGR TAGS
   function fadeCards(targetOpacity) {
-    console.log(domMgr.tags.notes);
-    const notes = domMgr.tags.notes;
+    const notes = domMgr.getTags().notes;
     notes.forEach(note => {
       note.style.opacity = targetOpacity;
     });
@@ -210,8 +210,3 @@ const Manager = (() => {
   })(); 
   ///////////////////////////////////////////////
 })();
-console.log(domMgr.tagSetup().notes)
-// document.addEventListener('DOMContentLoaded', () => {
-//   domMgr.tagSetup})
-
-

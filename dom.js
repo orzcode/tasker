@@ -1,32 +1,26 @@
+// dom.js
+import { format } from "date-fns";
+import DOMPurify from "isomorphic-dompurify";
+
+
 const domMgr = (() => {
 	console.log("dom.JS is working");
-	//let tags;
 
-	const tags = {
-		formBox: document.querySelector('#form'),
-		mainDiv: document.querySelector('#main'),
-		trashLink: document.querySelector('[data-link="trashpool"]'),
-		noteLink: document.querySelector('[data-link="notepool"]'),
-		notes: document.querySelectorAll('div.note'),
-	}
+	const localArrays = (() => {
+		let notePool = [];
+		let trashPool = [];
+		return {notePool, trashPool}
+	})()
 
-	const tagSetup = () => ({
-		formBox: document.querySelector('#form'),
-		mainDiv: document.querySelector('#main'),
-		trashLink: document.querySelector('[data-link="trashpool"]'),
-		noteLink: document.querySelector('[data-link="notepool"]'),
-		notes: document.querySelectorAll('div.note'),
-	})
-
-	// document.addEventListener('DOMContentLoaded', () => {
-	// 	tags = () => ({
-	// 	  formBox: document.querySelector('#form'),
-	// 	  mainDiv: document.querySelector('#main'),
-	// 	  trashLink: document.querySelector('[data-link="trashpool"]'),
-	// 	  noteLink: document.querySelector('[data-link="notepool"]'),
-	// 	  notes: document.querySelectorAll('div.note'),
-	// 	})}
-	// 	)
+	const getTags = () => {
+		return {
+		  formBox: document.querySelector("#form"),
+		  mainDiv: document.querySelector("#main"),
+		  trashLink: document.querySelector('[data-link="trashpool"]'),
+		  noteLink: document.querySelector('[data-link="notepool"]'),
+		  notes: document.querySelectorAll("div.note"),
+		};
+	  };
 
   	const formInputsObject = {
 		get title() {
@@ -49,7 +43,7 @@ const domMgr = (() => {
 		}
 	};
 
-	return { formInputsObject, tags, tagSetup };
+	return { formInputsObject, getTags, localArrays };
   })();
 
 export default domMgr
