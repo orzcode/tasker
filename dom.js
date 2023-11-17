@@ -1,6 +1,7 @@
 // dom.js
 import storage from "./storage";
 import cardManager from "./cardManager.js";
+//import Manager from "./index.js";
 
 const domMgr = () => {
   const getTags = () => {
@@ -67,15 +68,6 @@ const eventHandlers = () => {
       //Expand/shrink form when clicking inside/outside of it
     };
   })();
-
-  const linksHandler = (() => {
-    trashLink.addEventListener("click", () =>
-      links(storage.localArrays.trashPool)
-    );
-    noteLink.addEventListener("click", () =>
-      links(storage.localArrays.notePool)
-    );
-  })();
 };
 
 const actions = () => {
@@ -83,18 +75,51 @@ const actions = () => {
     console.log("dom.js - formSubmit called");
 
     event.preventDefault();
-    console.log("formSubmit executed");
 
     storage.localArrays.notePool.push({ ...domMgr().formInputsObject });
     //'converts' or spreads it to an actual object, then pushes to library
 
     storage.localStorage = storage.localArrays.notePool;
 
-    cardManager().clearBoard;
-    cardManager().renderCards(storage.localArrays.notePool);
+    //cardManager().clearBoard;
+    cardManager().renderCards({ ...domMgr().formInputsObject });
     //should actually append only one card, not all of them
   };
-  return { formSubmit };
+
+  const linksHandler = () => {
+	console.log("linkshandler calld")
+
+    domMgr().getTags().trashLink.addEventListener("click", () =>
+      links(storage.localArrays.trashPool)
+    );
+    domMgr().getTags().noteLink.addEventListener("click", () =>
+      links(storage.localArrays.notePool)
+    );
+  };
+
+  function links(array) {
+    // Fade out the existing cards
+    fadeCards(0);
+
+    // Wait for the fade-out effect to complete before rendering new cards
+    setTimeout(() => {
+      cardManager().clearBoard;
+      cardManager().renderCards(array);
+
+      // Fade in the new cards
+      fadeCards(1);
+    }, 500); // Adjust the duration to match your CSS transition duration
+  }
+
+  function fadeCards(targetOpacity) {
+    const notes = domMgr().getTags().notes;
+    notes.forEach((note) => {
+      note.style.opacity = targetOpacity;
+    });
+    console.log("fade cards executed");
+  }
+
+  return { formSubmit, linksHandler };
 };
 
-export { domMgr, eventHandlers };
+export { domMgr, eventHandlers, actions };
