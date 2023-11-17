@@ -1,46 +1,45 @@
 // storage.js
 const storage = {
-    get localStorage() {
-      if (localStorage.getItem("notePool") !== null) {
-        let data = localStorage.getItem("notePool");
-        //get localStorage item "localContent" (which is a string)
+  localArrays: (() => {
+    let notePool = [];
+    let trashPool = [];
+    return { notePool, trashPool };
+  })(),
 
-        return JSON.parse(data);
-        //parses (de-strings) library and returns
-      } else return null;
-    },
+  get localStorage() {
+    if (localStorage.getItem("notePool") !== null) {
+      let data = localStorage.getItem("notePool");
+      //get localStorage item "localContent" (which is a string)
 
-    set localStorage(to_be_stringified_notePool) {
-      localStorage.setItem(
-        "notePool",
-        JSON.stringify(to_be_stringified_notePool)
-      );
-    },
+      return JSON.parse(data);
+      //parses (de-strings) library and returns
+    } else return null;
+  },
 
-    get trash() {
-      if (localStorage.getItem("trash") !== null) {
-        let data = localStorage.getItem("trash");
-        //get localStorage item "trash" (which is a string)
+  set localStorage(to_be_stringified_notePool) {
+    localStorage.setItem(
+      "notePool",
+      JSON.stringify(to_be_stringified_notePool)
+    );
+  },
 
-        return JSON.parse(data);
-        //parses (de-strings) array and returns
-      } else return null;
-    },
+  get trash() {
+    if (localStorage.getItem("trash") !== null) {
+      let data = localStorage.getItem("trash");
+      //get localStorage item "trash" (which is a string)
 
-    set trash(to_be_stringified_trashPool) {
-      localStorage.setItem(
-        "trash",
-        JSON.stringify(to_be_stringified_trashPool)
-      );
-    },
+      return JSON.parse(data);
+      //parses (de-strings) array and returns
+    } else return null;
+  },
 
-	clear: () => {
-		return localStorage.clear()
-	}
+  set trash(to_be_stringified_trashPool) {
+    localStorage.setItem("trash", JSON.stringify(to_be_stringified_trashPool));
+  },
 
-	
+  clear: () => {
+    return localStorage.clear();
+  },
+};
 
-
-  };
-  
-  export default storage;
+export default storage;

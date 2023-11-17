@@ -1,10 +1,16 @@
+import { domMgr } from "./dom.js";
+import storage from "./storage";
 
+import { format } from "date-fns";
+import DOMPurify from "isomorphic-dompurify";
 
 const cardManager = () => {
 
 const createCard = (object) => {
 	const card = document.createElement("div");
 	card.classList.add("note");
+
+	console.log(object)
 
 	const formattedDate = object.dueDate
   ? format(new Date(object.dueDate), "do MMM")
@@ -37,36 +43,38 @@ const createCard = (object) => {
 	return card;
   };
 
+
   const deleteCard = (card, object) => {
 	// Find the index of the object in the notePool array
-	const index = notePool.indexOf(object);
+	const index = storage.localArrays.notePool.indexOf(object);
   
 	if (index !== -1) {
 	  // Remove the object from notePool
-	  notePool.splice(index, 1);
+	  storage.localArrays.notePool.splice(index, 1);
   
 	  // Move the object to the trash array
-	  trashPool.push(object);
+	  storage.localArrays.trashPool.push(object);
 
-	  storage.trash = trashPool;
-	  storage.localStorage = notePool;
+	  storage.trash = storage.localArrays.trashPool;
+	  storage.localStorage = storage.localArrays.notePool;
 	  //Update localStorage trash and notepool
 
 	  console.log("Moved to trash!")
-	  console.log(trashPool);
+	  console.log(storage.localArrays.trashPool);
 
 	  // Remove the card from the DOM via native method
 	  card.remove();
 	}
   };
 
+  
   const renderCards = (library) => {
     if (library) {
       library.forEach((object) => {
         const card = createCard(object);
         //make a 'card' so it can be displayed on page
 
-        domMgr.getTags().mainDiv.appendChild(card);
+        domMgr().getTags().mainDiv.appendChild(card);
       });
     } else return;
     //possibly add a 'card' paramater to this function for single cards?
@@ -74,8 +82,10 @@ const createCard = (object) => {
 
   const clearBoard = () => {
     console.log("Board cleared");
-    domMgr.getTags().mainDiv.innerHTML = "";
+    domMgr().getTags().mainDiv.innerHTML = "";
   };
+
+  return { renderCards, clearBoard }
 }
 
 export default cardManager
