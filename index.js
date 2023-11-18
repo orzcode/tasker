@@ -13,8 +13,8 @@ const firstLoad = (() => {
 
   eventHandlers();
 
-  actions().linksHandler;
-  //not working
+  actions().linksHandler();
+  //appends navbar link actions
 
   cardManager().renderCards(storage.localArrays.notePool);
 })();

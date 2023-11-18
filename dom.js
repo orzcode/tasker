@@ -101,6 +101,12 @@ const actions = () => {
     // Fade out the existing cards
     fadeCards(0);
 
+    // { Need to fade top section too }
+      // Below:
+    //  { need to Clear top section }
+    // { need to render top section 
+  //  {might as well make these separate?}
+
     // Wait for the fade-out effect to complete before rendering new cards
     setTimeout(() => {
       cardManager().clearBoard;
