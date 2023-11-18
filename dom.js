@@ -109,7 +109,7 @@ const actions = () => {
 
     // Wait for the fade-out effect to complete before rendering new cards
     setTimeout(() => {
-      cardManager().clearBoard;
+      cardManager().clearBoard();
       cardManager().renderCards(array);
 
       // Fade in the new cards

@@ -64,11 +64,13 @@ const cardManager = () => {
   };
 
   const renderCards = (libraryOrObject) => {
+    console.log("RenderCards called")
     if (Array.isArray(libraryOrObject)) {
 
       libraryOrObject.forEach((object) => {
         const card = createCard(object);
         domMgr().getTags().mainDiv.appendChild(card);
+        
       });
 
     } else if (typeof libraryOrObject === "object") {
