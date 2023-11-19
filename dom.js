@@ -52,7 +52,7 @@ const eventHandlers = () => {
   //for Form Submission
 
   const windowHandlers = (() => {
-    window.onclick = function (event) {
+    window.ontouchstart = function (event) {
       if (event.target == dialog) {
         dialog.close();
       }
