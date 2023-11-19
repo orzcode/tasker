@@ -52,7 +52,7 @@ const eventHandlers = () => {
   //for Form Submission
 
   const windowHandlers = (() => {
-    window.onclick = function (event) {
+    window.addEventListener("click", function (event) {
       if (event.target == dialog) {
         dialog.close();
       }
@@ -66,7 +66,7 @@ const eventHandlers = () => {
         formBox.style.gridTemplateRows = "5rem auto 5rem 5rem";
       }
       //Expand/shrink form when clicking inside/outside of it
-    };
+    });
   })();
 };
 
