@@ -81,9 +81,12 @@ const actions = () => {
 
     storage.localStorage = storage.localArrays.notePool;
 
-    //cardManager().clearBoard;
-    cardManager().renderCards({ ...domMgr().formInputsObject });
-    //should actually append only one card, not all of them
+    cardManager().clearBoard();
+    cardManager().renderCards(storage.localArrays.notePool);
+    //clears and re-does the whole array, solving minor bug with delete button
+    //not working when this was called with just a single object.
+    //previously:
+    //cardManager().renderCards({ ...domMgr().formInputsObject });
   };
 
   const linksHandler = () => {

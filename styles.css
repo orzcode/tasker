@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
   /* outline: 1px solid rgba(165, 36, 36, 0.915); */
 }
 html {
@@ -112,11 +113,9 @@ h1 {
   );
   grid-area: 2 / 2 / 3 / 3;
 
-  
   gap: 4rem 1rem;
 
   padding: 1rem;
-
 
   display: grid;
   align-items: center;
@@ -165,7 +164,7 @@ form {
 /* ---------------------------------------------------- */
 /* BULLSHIT for mobile */
 /* ---------------------------------------------------- */
-#form:focus{
+#form:focus {
   grid-template-rows: 4rem auto 4rem 4rem;
 }
 /* #form:active{
@@ -229,12 +228,14 @@ form * {
   font-size: 3rem;
   caret-color: rgb(200, 200, 200, 1);
   color: rgb(200, 200, 200, 1);
+  user-select: auto;
 }
 .noteDeleteIcon {
   cursor: pointer;
 }
 #noteSpan {
   caret-color: rgb(200, 200, 200, 1);
+  user-select: auto;
   /* BE CAREFUL THAT SIZING/STYLE DOESN'T CONFLICT WITH MAGIC DIV! */
 }
 #noteSpan::placeholder {
@@ -242,23 +243,25 @@ form * {
 }
 
 #noteDateAndPriority {
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
-::placeholder, input[type="date"], #noteGroupButton {
-  color:rgb(200, 200, 200, 1);
+::placeholder,
+input[type="date"],
+#noteGroupButton {
+  color: rgb(200, 200, 200, 1);
 }
 ::-webkit-calendar-picker-indicator {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
 }
 
-#notePriorityDiv{
+#notePriorityDiv {
   display: flex;
   flex-wrap: wrap;
-  
+
   gap: 1rem;
-  
+
   justify-content: center;
   align-items: center;
 }
@@ -268,10 +271,9 @@ form * {
 
   justify-content: space-between;
   align-items: center;
- 
 }
-#noteGroupButton p{
-  display:inline;
+#noteGroupButton p {
+  display: inline;
 }
 #noteSubmit {
   color: white;
@@ -297,7 +299,7 @@ form * {
   /* background-color: rgb(60, 60, 60); */
   background-color: rgba(200, 200, 200);
   filter: drop-shadow(1px 1px 5px black);
-  
+
   width: calc(28rem + 4vw);
 
   display: flex;
@@ -402,11 +404,11 @@ dialog:not([open]) {
   #footer p {
     visibility: hidden;
   }
-  #footer i{
+  #footer i {
     margin: 50%;
   }
 
-  #notePriorityDiv{
+  #notePriorityDiv {
     gap: 0rem;
   }
 

@@ -36,6 +36,8 @@ const cardManager = () => {
     // Add delete event listener
     const deleteIcon = card.querySelector(".noteDeleteIcon");
     deleteIcon.addEventListener("click", () => deleteCard(card, object));
+    //May be the cause of deleteIcon bug when only rendering one object
+    //Though, fixed that by rendering full array each time.
 
     return card;
   };
