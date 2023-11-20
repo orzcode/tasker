@@ -42,6 +42,11 @@ a {
   cursor: pointer;
   box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(50, 50, 50, 1);
   transition: box-shadow 0.1s;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
 }
 .btnShadow:hover {
   box-shadow: 1.5px 1.5px 1.5px 1.5px rgb(50, 50, 50, 0.5);
@@ -136,12 +141,17 @@ h1 {
   color: white;
   /* This is the Icon */
 }
-
+/* ---------------------------------------------------- */
+#emptyTrashBtn {
+  font-size: clamp(3rem, 2vw, 6rem);
+  border-radius: 15px;
+  padding: 1rem 2rem;
+}
 /* ---------------------------------------------------- */
 /* FORM INPUTS START HERE */
 /* ---------------------------------------------------- */
 form {
-  display: grid;
+  display: none;
 
   grid-template-rows: 0 auto 0 0;
 
@@ -160,18 +170,6 @@ form {
   border-radius: 15px;
 }
 
-/* ---------------------------------------------------- */
-/* BULLSHIT for mobile */
-/* ---------------------------------------------------- */
-/* #form:focus {
-  grid-template-rows: 4rem auto 4rem 4rem;
-} */
-/* #form:active{
-  grid-template-rows: 4rem auto 4rem 4rem;
-} */
-/* ---------------------------------------------------- */
-/* BULLSHIT for mobile */
-/* ---------------------------------------------------- */
 form * {
   background-color: initial;
   border-style: none;
