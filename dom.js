@@ -53,9 +53,9 @@ const eventHandlers = () => {
 
   const windowHandlers = (() => {
     window.addEventListener("click", function (event) {
-      // if (event.target == dialog) {
-      //   dialog.close();
-      // }
+      if (event.target == dialog) {
+        dialog.close();
+      }
       //closes modal when clicking outside of it
 
       if (!formBox.contains(event.target)) {

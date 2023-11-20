@@ -56,7 +56,7 @@ a {
   height: 100vh;
   width: 100%;
   grid-template-columns: clamp(4rem, 15%, 30rem) 8fr;
-  grid-template-rows: 2fr 8fr;
+  grid-template-rows: minmax(30%, auto) 7fr;
 }
 #nav {
   background-color: rgb(10, 10, 10);
