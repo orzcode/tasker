@@ -46,7 +46,6 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 .btnShadow:hover {
   box-shadow: 1.5px 1.5px 1.5px 1.5px rgb(50, 50, 50, 0.5);
@@ -61,7 +60,7 @@ a {
   height: 100vh;
   width: 100%;
   grid-template-columns: clamp(4rem, 15%, 30rem) 8fr;
-  grid-template-rows: minmax(30%, auto) 7fr;
+  grid-template-rows: minmax(25%, auto) 7.5fr;
 }
 #nav {
   background-color: rgb(10, 10, 10);
@@ -142,16 +141,33 @@ h1 {
   /* This is the Icon */
 }
 /* ---------------------------------------------------- */
-#emptyTrashBtn {
+.trashBtns {
   font-size: clamp(3rem, 2vw, 6rem);
   border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: rgba(200, 200, 200);
+  filter: drop-shadow(1px 1px 5px black);
   padding: 1rem 2rem;
+}
+#trashBtnsMainDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  display: none;
+}
+#trashBtnsConfirmDiv {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+#trashBtnsConfirmDiv button {
+  padding: 0 1rem;
 }
 /* ---------------------------------------------------- */
 /* FORM INPUTS START HERE */
 /* ---------------------------------------------------- */
 form {
-  display: none;
+  display: grid;
 
   grid-template-rows: 0 auto 0 0;
 
@@ -291,7 +307,7 @@ input[type="date"],
 /* CARD DESIGNS START HERE */
 /* ---------------------------------------------------- */
 .note {
-  border-radius: 10px;
+  border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   /* background-color: rgb(60, 60, 60); */
   background-color: rgba(200, 200, 200);

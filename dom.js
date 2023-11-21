@@ -11,6 +11,11 @@ const domMgr = () => {
       trashLink: document.querySelector('[data-link="trashpool"]'),
       noteLink: document.querySelector('[data-link="notepool"]'),
       notes: document.querySelectorAll("div.note"),
+
+      trashBtnsConfirmDiv: document.querySelector("#trashBtnsConfirmDiv"),
+      emptyTrash: document.querySelector("#emptyTrash"),
+      emptyTrashYes: document.querySelector("#emptyTrashYes"),
+      emptyTrashNo: document.querySelector("#emptyTrashNo")
     };
   };
 
@@ -51,6 +56,12 @@ const eventHandlers = () => {
   })();
   //for Form Submission
 
+  const trashHandler = (() => {
+    emptyTrash.addEventListener("click", () => trashButtons().showHide("show"));
+    emptyTrashNo.addEventListener("click", () => trashButtons().showHide("hide"));
+    emptyTrashYes.addEventListener("click", () => trashButtons().emptyTrash());
+  })();
+
   const windowHandlers = (() => {
     window.addEventListener("click", function (event) {
       if (event.target == dialog) {
@@ -69,6 +80,27 @@ const eventHandlers = () => {
     });
   })();
 };
+
+const trashButtons = () => {
+  const showHide = (showHide) => {
+    switch(showHide) {
+      case "show":
+        trashBtnsConfirmDiv.style.visibility = "visible"
+        break;
+      case "hide":
+        trashBtnsConfirmDiv.style.visibility = "hidden"
+        break;
+    }
+  }
+
+  const emptyTrash = () => {
+    storage.localArrays.trashPool = []
+    storage.trash = null;
+    cardManager().clearBoard()
+  }
+
+  return { showHide, emptyTrash }
+}
 
 const actions = () => {
   const formSubmit = (event) => {
