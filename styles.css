@@ -141,6 +141,10 @@ h1 {
   /* This is the Icon */
 }
 /* ---------------------------------------------------- */
+#headerContainer {
+  transition: opacity 0.5s ease;
+}
+/* ---------------------------------------------------- */
 .trashBtns {
   font-size: clamp(3rem, 2vw, 6rem);
   border-radius: 15px;
@@ -162,6 +166,10 @@ h1 {
 }
 #trashBtnsConfirmDiv button {
   padding: 0 1rem;
+}
+/* ---------------------------------------------------- */
+#groupsMainDiv {
+  display: none;
 }
 /* ---------------------------------------------------- */
 /* FORM INPUTS START HERE */

@@ -29,7 +29,7 @@
             <p>All notes</p>
             <p class="material-symbols-sharp">view_kanban</p>
           </li>
-          <li>
+          <li data-link="groupsLink">
             <p>Groups</p>
             <p class="material-symbols-sharp">rebase_edit</p>
           </li>
@@ -48,42 +48,48 @@
       <header id="header">
         <!-- <button class="newNoteBtn" onclick="dialog.showModal()">New Note</button> -->
         
-        <form id="form" tabindex="0">
-          <input type="text" id="noteTitle" name="noteTitle" placeholder="Title" maxlength="25" autocomplete="off">
-          <div class="grow-wrap">
-            <textarea required name="noteSpan" id="noteSpan" placeholder="Enter note..." onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+        <div id="headerContainer">
+
+          <div id="formBoxDiv">
+            <form id="form" tabindex="0">
+              <input type="text" id="noteTitle" name="noteTitle" placeholder="Title" maxlength="25" autocomplete="off">
+              <div class="grow-wrap">
+                <textarea required name="noteSpan" id="noteSpan" placeholder="Enter note..." onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+              </div>
+              <!-- <input type="text" id="noteSpan" name="noteSpan" placeholder="Enter note..."> -->
+            
+              <section id="noteDateAndPriority">
+            
+                <div><label for="noteDate">Due date: <input type="date" id="noteDate" name="noteDate"></label></div>
+            
+                <div id="notePriorityDiv">
+                  <legend>Priority</legend>
+                    <div id="radiosDiv">
+                      <input type="radio" id="notePriorityLow" name="notePriority" value="low" checked>
+                      <input type="radio" id="notePriorityMed" name="notePriority" value="medium">
+                      <input type="radio" id="notePriorityHigh" name="notePriority" value="high">
+                    </div>
+                </div>
+              </section>
+              <section id="noteButtons">
+                <button type="button" form="form" id="noteGroupButton" onclick="dialog.showModal()">Group: <p>(none)</p></button>
+                <button type="submit" form="form" id="noteSubmit">Task it!</button>
+              </section>
+            </form>
           </div>
-          <!-- <input type="text" id="noteSpan" name="noteSpan" placeholder="Enter note..."> -->
-          
-          <section id="noteDateAndPriority">
-            
-            <div><label for="noteDate">Due date: <input type="date" id="noteDate" name="noteDate"></label></div>
-            
-            <div id="notePriorityDiv">
-              <legend>Priority</legend>
-                <div id="radiosDiv">
-                  <input type="radio" id="notePriorityLow" name="notePriority" value="low" checked>
-                  <input type="radio" id="notePriorityMed" name="notePriority" value="medium">
-                  <input type="radio" id="notePriorityHigh" name="notePriority" value="high">
-                </div>              
+
+          <div id="trashBtnsMainDiv">
+            <button type="button" id="emptyTrash" class="btnShadow trashBtns">Empty Trash?</button>
+            <div id="trashBtnsConfirmDiv">
+              <button type="button" id="emptyTrashYes" class="btnShadow trashBtns">Y</button>
+              <button type="button" id="emptyTrashNo" class="btnShadow trashBtns">N</button>
             </div>
-
-          </section>
-
-          <section id="noteButtons">
-            <button type="button" form="form" id="noteGroupButton" onclick="dialog.showModal()">Group: <p>(none)</p></button>
-            <button type="submit" form="form" id="noteSubmit">Task it!</button>
-          </section>
-
-
-        </form>
-
-        <div id="trashBtnsMainDiv">
-          <button type="button" id="emptyTrash" class="btnShadow trashBtns">Empty Trash?</button>
-          <div id="trashBtnsConfirmDiv">
-            <button type="button" id="emptyTrashYes" class="btnShadow trashBtns">Y</button>
-            <button type="button" id="emptyTrashNo" class="btnShadow trashBtns">N</button>
           </div>
+
+          <div id="groupsMainDiv">
+            <p>Fuck</p>
+          </div>
+
         </div>
 
       </header>

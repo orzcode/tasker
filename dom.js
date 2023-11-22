@@ -10,12 +10,19 @@ const domMgr = () => {
       mainDiv: document.querySelector("#main"),
       trashLink: document.querySelector('[data-link="trashpool"]'),
       noteLink: document.querySelector('[data-link="notepool"]'),
+      groupsLink: document.querySelector('[data-link="groupsLink"]'),
       notes: document.querySelectorAll("div.note"),
 
-      trashBtnsConfirmDiv: document.querySelector("#trashBtnsConfirmDiv"),
+      trashDiv: document.querySelector("#trashBtnsMainDiv"),
       emptyTrash: document.querySelector("#emptyTrash"),
       emptyTrashYes: document.querySelector("#emptyTrashYes"),
-      emptyTrashNo: document.querySelector("#emptyTrashNo")
+      emptyTrashNo: document.querySelector("#emptyTrashNo"),
+
+      groupsDiv: document.querySelector("#groupsMainDiv"),
+
+      formDiv: document.querySelector("#formBoxDiv"),
+
+      headerContainer: document.querySelector("#headerContainer"),
     };
   };
 
@@ -58,7 +65,9 @@ const eventHandlers = () => {
 
   const trashHandler = (() => {
     emptyTrash.addEventListener("click", () => trashButtons().showHide("show"));
-    emptyTrashNo.addEventListener("click", () => trashButtons().showHide("hide"));
+    emptyTrashNo.addEventListener("click", () =>
+      trashButtons().showHide("hide")
+    );
     emptyTrashYes.addEventListener("click", () => trashButtons().emptyTrash());
   })();
 
@@ -83,24 +92,24 @@ const eventHandlers = () => {
 
 const trashButtons = () => {
   const showHide = (showHide) => {
-    switch(showHide) {
+    switch (showHide) {
       case "show":
-        trashBtnsConfirmDiv.style.visibility = "visible"
+        trashBtnsConfirmDiv.style.visibility = "visible";
         break;
       case "hide":
-        trashBtnsConfirmDiv.style.visibility = "hidden"
+        trashBtnsConfirmDiv.style.visibility = "hidden";
         break;
     }
-  }
+  };
 
   const emptyTrash = () => {
-    storage.localArrays.trashPool = []
+    storage.localArrays.trashPool = [];
     storage.trash = null;
-    cardManager().clearBoard()
-  }
+    cardManager().clearBoard();
+  };
 
-  return { showHide, emptyTrash }
-}
+  return { showHide, emptyTrash };
+};
 
 const actions = () => {
   const formSubmit = (event) => {
@@ -122,32 +131,51 @@ const actions = () => {
   };
 
   const linksHandler = () => {
-	console.log("linkshandler calld")
+    console.log("linkshandler calld");
 
-    domMgr().getTags().trashLink.addEventListener("click", () =>
-      links(storage.localArrays.trashPool)
-    );
-    domMgr().getTags().noteLink.addEventListener("click", () =>
-      links(storage.localArrays.notePool)
-    );
+    domMgr()
+      .getTags()
+      .trashLink.addEventListener("click", () =>
+        // links(storage.localArrays.trashPool)
+        links("trashDiv")
+      );
+    domMgr()
+      .getTags()
+      .noteLink.addEventListener("click", () =>
+        // links(storage.localArrays.notePool)
+        links("formDiv")
+      );
+    domMgr()
+      .getTags()
+      .groupsLink.addEventListener("click", () =>
+        // links(storage.localArrays.notePool)
+        links("groupsDiv")
+      );
   };
 
-  function links(array) {
+
+
+
+  function links(link) {
     // Fade out the existing cards
-    fadeCards(0);
+    fadeCards(0);    
 
-    // { Need to fade top section too }
-      // Below:
-    //  { need to Clear top section }
-    // { need to render top section 
-  //  {might as well make these separate?}
-
-    // Wait for the fade-out effect to complete before rendering new cards
+    //formDiv
+    //trashDiv
+    //groupsDiv
+    
     setTimeout(() => {
+    // Waits for  fade-out to complete before actioning
+
       cardManager().clearBoard();
+      //clears cards
+      domMgr().getTags()[link].style.display = "none"
+      //wrong - should isable current page
+      //can i disable the first div child?
+
       cardManager().renderCards(array);
 
-      // Fade in the new cards
+      
       fadeCards(1);
     }, 500); // Adjust the duration to match your CSS transition duration
   }
@@ -157,6 +185,14 @@ const actions = () => {
     notes.forEach((note) => {
       note.style.opacity = targetOpacity;
     });
+    //fades cards
+
+    domMgr().getTags().headerContainer.style.opacity = targetOpacity;
+    //fades header container
+
+    //  THIS WORKS BOTH WAYS FOR HEADER!
+    // PROBLEM IS THEREFORE AS SUSPECTED: THE NOTES
+
     console.log("fade cards executed");
   }
 
