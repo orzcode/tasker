@@ -9,7 +9,7 @@ const firstLoad = (() => {
 
   storage.localArrays.trashPool = storage.trash || [];
 
-  eventHandlers();
+  eventHandlers().formHandler();
 
   actions().linksHandler();
   //appends navbar link actions

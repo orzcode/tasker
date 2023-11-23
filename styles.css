@@ -157,19 +157,20 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  display: none;
+  /* display: none; */
 }
 #trashBtnsConfirmDiv {
   display: flex;
   justify-content: space-around;
   gap: 1rem;
+  visibility: hidden;
 }
 #trashBtnsConfirmDiv button {
   padding: 0 1rem;
 }
 /* ---------------------------------------------------- */
 #groupsMainDiv {
-  display: none;
+  /* display: none; */
 }
 /* ---------------------------------------------------- */
 /* FORM INPUTS START HERE */

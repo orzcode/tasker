@@ -58,25 +58,8 @@ const eventHandlers = () => {
   const noteLink = domMgr().getTags().noteLink;
   const notes = domMgr().getTags().notes;
 
-  const formHandler = (() => {
-    formBox.addEventListener("submit", actions().formSubmit);
-  })();
-  //for Form Submission
-
-  const trashHandler = (() => {
-    emptyTrash.addEventListener("click", () => trashButtons().showHide("show"));
-    emptyTrashNo.addEventListener("click", () =>
-      trashButtons().showHide("hide")
-    );
-    emptyTrashYes.addEventListener("click", () => trashButtons().emptyTrash());
-  })();
-
-  const windowHandlers = (() => {
+  const formHandler = () => {
     window.addEventListener("click", function (event) {
-      if (event.target == dialog) {
-        dialog.close();
-      }
-      //closes modal when clicking outside of it
 
       if (!formBox.contains(event.target)) {
         //console.log("You clicked outside the form box!");
@@ -87,8 +70,34 @@ const eventHandlers = () => {
       }
       //Expand/shrink form when clicking inside/outside of it
     });
-  })();
+
+    formBox.addEventListener("submit", actions().formSubmit);
+    //for Form Submission
+  };
+
+
+  const trashHandler = () => {
+    emptyTrash.addEventListener("click", () => trashButtons().showHide("show"));
+    emptyTrashNo.addEventListener("click", () =>
+      trashButtons().showHide("hide")
+    );
+    emptyTrashYes.addEventListener("click", () => trashButtons().emptyTrash());
+  };
+
+  const dialogHandler = () => {
+    window.addEventListener("click", function (event) {
+      if (event.target == dialog) {
+        dialog.close();
+      }
+      //closes modal when clicking outside of it
+    });
+    //CURRENTLY UNUSED - NEEDS TO BE CALLED
+  };
+
+  return {trashHandler, formHandler}
 };
+
+
 
 const trashButtons = () => {
   const showHide = (showHide) => {
@@ -113,7 +122,7 @@ const trashButtons = () => {
 
 const actions = () => {
   const formSubmit = (event) => {
-    console.log("dom.js - formSubmit called");
+    console.log("formSubmit called");
 
     event.preventDefault();
 
@@ -131,53 +140,57 @@ const actions = () => {
   };
 
   const linksHandler = () => {
-    console.log("linkshandler calld");
-
+    console.log("linkshandler called");
     domMgr()
       .getTags()
       .trashLink.addEventListener("click", () =>
-        // links(storage.localArrays.trashPool)
         links("trashDiv")
       );
     domMgr()
       .getTags()
       .noteLink.addEventListener("click", () =>
-        // links(storage.localArrays.notePool)
         links("formDiv")
       );
     domMgr()
       .getTags()
       .groupsLink.addEventListener("click", () =>
-        // links(storage.localArrays.notePool)
         links("groupsDiv")
       );
   };
 
-
-
-
   function links(link) {
     // Fade out the existing cards
-    fadeCards(0);    
+    fadeCards(0);
 
-    //formDiv
-    //trashDiv
-    //groupsDiv
-    
     setTimeout(() => {
-    // Waits for  fade-out to complete before actioning
+      // Waits for  fade-out to complete before actioning
 
       cardManager().clearBoard();
       //clears cards
-      domMgr().getTags()[link].style.display = "none"
-      //wrong - should isable current page
-      //can i disable the first div child?
 
-      cardManager().renderCards(array);
+      replaceHeader(link);
 
-      
+      //cardManager().renderCards(array);
+
       fadeCards(1);
     }, 500); // Adjust the duration to match your CSS transition duration
+  }
+
+  function replaceHeader(link) {
+    switch (link) {
+      case "trashDiv":
+        domMgr().getTags().headerContainer.innerHTML = headerVariants.trashDiv;
+        eventHandlers().trashHandler();
+        break;
+      case "formDiv":
+        domMgr().getTags().headerContainer.innerHTML = headerVariants.formDiv;
+        eventHandlers().formHandler();
+        break;
+      case "groupsDiv":
+        domMgr().getTags().headerContainer.innerHTML = headerVariants.groupsDiv;
+        break;
+    }
+    //console.log(domMgr().getTags().headerContainer.innerHTML)
   }
 
   function fadeCards(targetOpacity) {
@@ -195,6 +208,47 @@ const actions = () => {
 
     console.log("fade cards executed");
   }
+
+  const headerVariants = {
+    formDiv: `<div id="formBoxDiv">
+        <form id="form" tabindex="0">
+          <input type="text" id="noteTitle" name="noteTitle" placeholder="Title" maxlength="25" autocomplete="off">
+          <div class="grow-wrap">
+            <textarea required name="noteSpan" id="noteSpan" placeholder="Enter note..." onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+          </div>
+        
+          <section id="noteDateAndPriority">
+        
+            <div><label for="noteDate">Due date: <input type="date" id="noteDate" name="noteDate"></label></div>
+        
+            <div id="notePriorityDiv">
+              <legend>Priority</legend>
+                <div id="radiosDiv">
+                  <input type="radio" id="notePriorityLow" name="notePriority" value="low" checked>
+                  <input type="radio" id="notePriorityMed" name="notePriority" value="medium">
+                  <input type="radio" id="notePriorityHigh" name="notePriority" value="high">
+                </div>
+            </div>
+          </section>
+          <section id="noteButtons">
+            <button type="button" form="form" id="noteGroupButton" onclick="dialog.showModal()">Group: <p>(none)</p></button>
+            <button type="submit" form="form" id="noteSubmit">Task it!</button>
+          </section>
+        </form>
+      </div>`,
+
+    trashDiv: `<div id="trashBtnsMainDiv">
+        <button type="button" id="emptyTrash" class="btnShadow trashBtns">Empty Trash?</button>
+        <div id="trashBtnsConfirmDiv">
+          <button type="button" id="emptyTrashYes" class="btnShadow trashBtns">Y</button>
+          <button type="button" id="emptyTrashNo" class="btnShadow trashBtns">N</button>
+        </div>
+      </div>`,
+
+    groupsDiv: `<div id="groupsMainDiv">
+        <p>Fuck</p>
+      </div>`,
+  };
 
   return { formSubmit, linksHandler };
 };
