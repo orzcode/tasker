@@ -14,5 +14,5 @@ const firstLoad = (() => {
   actions().linksHandler();
   //appends navbar link actions
 
-  cardManager().renderCards(storage.localArrays.notePool);
+  cardManager().renderCards("formDiv");
 })();

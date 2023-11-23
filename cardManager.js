@@ -65,25 +65,46 @@ const cardManager = () => {
     }
   };
 
-  const renderCards = (libraryOrObject) => {
+  const renderCards = (pageLink_or_object) => {
     console.log("RenderCards called")
-    if (Array.isArray(libraryOrObject)) {
 
-      libraryOrObject.forEach((object) => {
-        const card = createCard(object);
-        domMgr().getTags().mainDiv.appendChild(card);
-        
-      });
-
-    } else if (typeof libraryOrObject === "object") {
-      const card = createCard(libraryOrObject);
-      domMgr().getTags().mainDiv.appendChild(card);
-
-    } else {
-      // Handle other types or return accordingly
-      console.log("Invalid type given renderCards function");
+    switch (pageLink_or_object) {
+      case "trashDiv":
+        storage.localArrays.trashPool.forEach((object) => {
+          const card = createCard(object);
+          domMgr().getTags().mainDiv.appendChild(card);          
+        })
+        break;
+      case "formDiv":
+        storage.localArrays.notePool.forEach((object) => {
+          const card = createCard(object);
+          domMgr().getTags().mainDiv.appendChild(card);          
+        })
+        break;
+      case "groupsDiv":
+          storage.localArrays.notePool.forEach((object) => {
+            const card = createCard(object);
+            domMgr().getTags().mainDiv.appendChild(card);          
+          })
+          break;
     }
 
+    // if (Array.isArray(pageLink_or_object)) {
+
+    //   pageLink_or_object.forEach((object) => {
+    //     const card = createCard(object);
+    //     domMgr().getTags().mainDiv.appendChild(card);
+        
+    //   });
+
+    //   //this part probably wont be used, but keeping here anyway
+    // } else 
+    
+    if (typeof pageLink_or_object === "object") {
+      const card = createCard(pageLink_or_object);
+      domMgr().getTags().mainDiv.appendChild(card);
+    }
+      //this part probably wont be used, but keeping here anyway
   };
 
   const clearBoard = () => {

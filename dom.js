@@ -132,7 +132,7 @@ const actions = () => {
     storage.localStorage = storage.localArrays.notePool;
 
     cardManager().clearBoard();
-    cardManager().renderCards(storage.localArrays.notePool);
+    cardManager().renderCards("formDiv");
     //clears and re-does the whole array, solving minor bug with delete button
     //not working when this was called with just a single object.
     //previously:
@@ -170,7 +170,7 @@ const actions = () => {
 
       replaceHeader(link);
 
-      //cardManager().renderCards(array);
+      cardManager().renderCards(link);
 
       fadeCards(1);
     }, 500); // Adjust the duration to match your CSS transition duration
