@@ -4,7 +4,11 @@ import cardManager from "./cardManager.js";
 
 //storage.clear;
 
-const firstLoad = (() => {
+document.addEventListener("DOMContentLoaded", (event) => {
+  firstLoad();
+});
+
+const firstLoad = () => {
   storage.localArrays.notePool = storage.localStorage || [];
 
   storage.localArrays.trashPool = storage.trash || [];
@@ -15,4 +19,4 @@ const firstLoad = (() => {
   //appends navbar link actions
 
   cardManager().renderCards("formDiv");
-})();
+};
