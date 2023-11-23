@@ -194,17 +194,20 @@ const actions = () => {
   }
 
   function fadeCards(targetOpacity) {
-    const notes = domMgr().getTags().notes;
-    notes.forEach((note) => {
-      note.style.opacity = targetOpacity;
-    });
+    // const notes = domMgr().getTags().notes;
+    // notes.forEach((note) => {
+    //   note.style.opacity = targetOpacity;
+    // });
     //fades cards
+
+    //Problem is that 'new' cards don't get faded in
+    //Solution: fade the container instead
+
+    domMgr().getTags().mainDiv.style.opacity = targetOpacity;
+    //fades #main area (all the cards)
 
     domMgr().getTags().headerContainer.style.opacity = targetOpacity;
     //fades header container
-
-    //  THIS WORKS BOTH WAYS FOR HEADER!
-    // PROBLEM IS THEREFORE AS SUSPECTED: THE NOTES
 
     console.log("fade cards executed");
   }
