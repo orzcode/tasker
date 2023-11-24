@@ -84,17 +84,18 @@ const eventHandlers = () => {
     emptyTrashYes.addEventListener("click", () => trashButtons().emptyTrash());
   };
 
+
   const dialogHandler = () => {
-    window.addEventListener("click", function (event) {
+    window.addEventListener("click", (event) => {
       if (event.target == dialog) {
         dialog.close();
+        console.log("fired")
       }
       //closes modal when clicking outside of it
     });
-    //CURRENTLY UNUSED - NEEDS TO BE CALLED
   };
 
-  return {trashHandler, formHandler}
+  return {trashHandler, formHandler, dialogHandler}
 };
 
 
