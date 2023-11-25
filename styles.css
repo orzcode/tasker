@@ -374,21 +374,20 @@ input[type="date"],
 /*--Modal Dialog--*/
 dialog {
   z-index: 10;
-  position: absolute;
+
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) scale(0);
   /*Transform function above*/
   /*Other properties below*/
 
-  width: 100rem;
-  height: 60%;
+  width: min-content;
+  height: min-content;
 
   border: none;
   border-radius: 15px;
 
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 

@@ -63,31 +63,34 @@ const eventHandlers = () => {
 // Most of this horseshit is to handle box shrinkage/growth
 ////////////////////////////////////////////////////////////
   const formHandler = () => {
-    let isMouseInside = false;
+    let mouseClickedInside = false;
 
     // Mouse enters the form box
     formBox.addEventListener("mouseenter", function () {
-        isMouseInside = true;
-        // Expand the form box
         formBox.style.gridTemplateRows = "5rem auto 5rem 5rem";
     });
 
     // Mouse leaves the form box
+    // AND it has no content
+    // AND it wasn't clicked:
     formBox.addEventListener("mouseleave", function () {
-        isMouseInside = false;
+      if (!formHasContent() && !mouseClickedInside) {
+        formBox.style.gridTemplateRows = "0 auto 0 0";
+        mouseClickedInside = false;
+    }
+    });
+
+    formBox.addEventListener("mousedown", function () {
+      mouseClickedInside = true;
     });
 
     // Click anywhere on the document
     document.addEventListener("mousedown", function (event) {
-        // Check if the click is inside the form box
-        if (formBox.contains(event.target)) {
-            isMouseInside = true;
-        } else {
-            // Shrink the form box if there's no content and not clicked inside
-            if (!formHasContent() && !isMouseInside) {
-                formBox.style.gridTemplateRows = "0 auto 0 0";
-            }
-            isMouseInside = false;
+        // Check if the form has content
+        if (!formBox.contains(event.target)) {
+          if (!formHasContent()) {
+            formBox.style.gridTemplateRows = "0 auto 0 0";
+        }
         }
     });
 
