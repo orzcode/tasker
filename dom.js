@@ -58,23 +58,57 @@ const eventHandlers = () => {
   const noteLink = domMgr().getTags().noteLink;
   const notes = domMgr().getTags().notes;
 
+////////////////////////////////////////////////////////////
+// Actual form submission is called at bottom of this.
+// Most of this horseshit is to handle box shrinkage/growth
+////////////////////////////////////////////////////////////
   const formHandler = () => {
-    window.addEventListener("click", function (event) {
+    let isMouseInside = false;
 
-      if (!formBox.contains(event.target)) {
-        //console.log("You clicked outside the form box!");
-        formBox.style.gridTemplateRows = "0 auto 0 0";
-      } else {
-        //console.log("You clicked inside the form box!");
+    // Mouse enters the form box
+    formBox.addEventListener("mouseenter", function () {
+        isMouseInside = true;
+        // Expand the form box
         formBox.style.gridTemplateRows = "5rem auto 5rem 5rem";
-      }
-      //Expand/shrink form when clicking inside/outside of it
     });
+
+    // Mouse leaves the form box
+    formBox.addEventListener("mouseleave", function () {
+        isMouseInside = false;
+    });
+
+    // Click anywhere on the document
+    document.addEventListener("mousedown", function (event) {
+        // Check if the click is inside the form box
+        if (formBox.contains(event.target)) {
+            isMouseInside = true;
+        } else {
+            // Shrink the form box if there's no content and not clicked inside
+            if (!formHasContent() && !isMouseInside) {
+                formBox.style.gridTemplateRows = "0 auto 0 0";
+            }
+            isMouseInside = false;
+        }
+    });
+
+    // Function to check if the form has content
+    function formHasContent() {
+        // Check input fields of type text
+        const textInputs = formBox.querySelectorAll('input[type="text"]');
+        for (const input of textInputs) {
+            if (input.value.trim() !== '') {
+                return true;
+            }
+        }
+        // Check textarea
+        const textarea = formBox.querySelector('textarea');
+        return textarea && textarea.value.trim() !== '';
+    }
 
     formBox.addEventListener("submit", actions().formSubmit);
     //for Form Submission
   };
-
+////////////////////////////////////////////////////////////
 
   const trashHandler = () => {
     emptyTrash.addEventListener("click", () => trashButtons().showHide("show"));
@@ -87,11 +121,11 @@ const eventHandlers = () => {
 
   const dialogHandler = () => {
     window.addEventListener("click", (event) => {
-      if (event.target == dialog) {
-        dialog.close();
-        console.log("fired")
+      if (event.target == document.querySelector("dialog")) {
+        document.querySelector("dialog").close();
+        console.log("dialog close() fired")
       }
-      //closes modal when clicking outside of it
+      //closes modal when clicking outside of it? I'm Ron Burgundy???
     });
   };
 
