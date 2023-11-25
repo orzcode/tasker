@@ -88,6 +88,7 @@ const eventHandlers = () => {
     document.addEventListener("mousedown", function (event) {
         // Check if the form has content
         if (!formBox.contains(event.target)) {
+          mouseClickedInside = false;
           if (!formHasContent()) {
             formBox.style.gridTemplateRows = "0 auto 0 0";
         }
