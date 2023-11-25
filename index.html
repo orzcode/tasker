@@ -67,7 +67,7 @@
                 </div>
               </section>
               <section id="noteButtons">
-                <button type="button" form="form" id="noteGroupButton" onclick="dialog.showModal()">Group: <p>(none)</p></button>
+                <button type="button" form="form" id="noteGroupButton" popovertarget="groupPopup">Group: <p>(none)</p></button>
                 <button type="submit" form="form" id="noteSubmit">Task it!</button>
               </section>
             </form>
@@ -90,11 +90,13 @@
       </header>
 
 
-      <dialog popover id="dialog">
-        <button class="group-btn" onclick="selectGroup('(none)')">(None)</button>
-        <button class="group-btn" onclick="selectGroup('Work')">Work</button>
-        <button class="group-btn" onclick="selectGroup('Personal')">Personal</button>
-      </dialog>
+
+        <div popover id="groupPopup">
+          <button class="group-btn" onclick="selectGroup('(none)')">(None)</button>
+          <button class="group-btn" onclick="selectGroup('Work')">Work</button>
+          <button class="group-btn" onclick="selectGroup('Personal')">Personal</button>
+        </div>
+
 
 
       <main id="mainContainer">

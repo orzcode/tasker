@@ -300,7 +300,6 @@ input[type="date"],
 
 #noteButtons {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
 }
@@ -450,3 +449,11 @@ dialog:not([open]) {
   /* max lines of text before ellipsis, for notes */
 }
 /* ---------------------------------------------------- */
+#formBoxDiv {
+  position: relative;
+}
+#groupPopup{
+  position: absolute;
+left: 50px;
+top: 50px;
+}
