@@ -450,7 +450,6 @@ dialog:not([open]) {
   /* max lines of text before ellipsis, for notes */
 }
 /* ---------------------------------------------------- */
-
 #groupPopup {
   display: none;
   position: absolute;
@@ -466,7 +465,6 @@ dialog:not([open]) {
 
   width: min-content;
   max-width: 50%;
-
 }
 
 .group-btns {
@@ -485,3 +483,4 @@ dialog:not([open]) {
 .group-btns:hover {
   filter: brightness(1.1) drop-shadow(1px 1px 3px rgba(0, 0, 0, 1));
 }
+/* ---------------------------------------------------- */
