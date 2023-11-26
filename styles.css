@@ -118,13 +118,6 @@ h1 {
 }
 
 #main {
-  /* background: linear-gradient(
-    0deg,
-    rgba(40, 40, 40, 1) 90%,
-    rgba(60, 60, 60, 1) 100%
-  );
-  grid-area: 2 / 2 / 3 / 3; */
-  
   transition: opacity 0.5s ease;
   height: 100%;
   gap: 4rem 1rem;
@@ -187,7 +180,7 @@ h1 {
 /* ---------------------------------------------------- */
 form {
   display: grid;
-
+  position: relative;
   grid-template-rows: 0 auto 0 0;
 
   width: clamp(28rem, calc(45vw + 10rem), 60rem);
@@ -288,6 +281,11 @@ input[type="date"],
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
 }
 
+input[type="date"]:hover, ::-webkit-calendar-picker-indicator:hover{
+  border-radius: 2px;
+  filter: brightness(1.1) drop-shadow(1px 1px 2px rgba(0, 0, 0, 1)); 
+}
+
 #notePriorityDiv {
   display: flex;
   flex-wrap: wrap;
@@ -302,10 +300,13 @@ input[type="date"],
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
 }
 #noteGroupButton p {
   display: inline;
+}
+#noteGroupButton:hover {
+  border-radius: 1rem;
+  filter: brightness(1.1) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5)); 
 }
 #noteSubmit {
   color: white;
@@ -368,7 +369,6 @@ input[type="date"],
 /* ---------------------------------------------------- */
 
 /* ---------------------------------------------------- */
-
 
 /* ---------------------------------------------------- */
 /*--Modal Dialog--*/
@@ -451,9 +451,37 @@ dialog:not([open]) {
 }
 /* ---------------------------------------------------- */
 
-#groupPopup{
+#groupPopup {
   display: none;
   position: absolute;
-z-index: 5;
-bottom: 2rem;
+  z-index: 5;
+
+  bottom: -2rem;
+  padding: 4px;
+  border-radius: 1rem;
+
+  background-color: rgb(69, 69, 69);
+  outline: 1px solid rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(1px 1px 2px black);
+
+  width: min-content;
+  max-width: 50%;
+
+}
+
+.group-btns {
+  color: whitesmoke;
+
+  border-radius: 1rem;
+  background-color: rgb(100, 100, 100);
+  padding: 1px 5px;
+
+  margin: 2px;
+
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.5));
+
+  font-size:smaller;
+}
+.group-btns:hover {
+  filter: brightness(1.1) drop-shadow(1px 1px 3px rgba(0, 0, 0, 1));
 }

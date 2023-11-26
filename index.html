@@ -67,14 +67,17 @@
                 </div>
               </section>
               <section id="noteButtons">
-                <div id="groupPopup">
-                  <button class="group-btn" onclick="selectGroup('(none)')">(None)</button>
-                  <button class="group-btn" onclick="selectGroup('Work')">Work</button>
-                  <button class="group-btn" onclick="selectGroup('Personal')">Personal</button>
-                </div>
-                <button type="button" form="form" id="noteGroupButton" onclick="fuck()">Group: <p>(none)</p></button>
+
+                <button type="button" form="form" id="noteGroupButton">Group: <p id="noteGroupP">All</p></button>
                 <button type="submit" form="form" id="noteSubmit">Task it!</button>
               </section>
+
+              <div id="groupPopup">
+                <button class="group-btns">All</button>
+                <button class="group-btns">Work</button>
+                <button class="group-btns">Personal</button>
+              </div>
+
             </form>
           </div>
 

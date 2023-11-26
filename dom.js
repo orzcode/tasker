@@ -22,6 +22,13 @@ const domMgr = () => {
 
       formDiv: document.querySelector("#formBoxDiv"),
 
+      noteGroupBtn: document.querySelector("#noteGroupButton"),
+      noteGroupP: document.querySelector("#noteGroupP"),
+      groupPopup: document.querySelector("#groupPopup"),
+      groupBtns: document.querySelectorAll(".group-btns"),
+
+      ddmmyy: document.querySelector('input[type="date"]'),
+
       headerContainer: document.querySelector("#headerContainer"),
     };
   };
@@ -40,7 +47,7 @@ const domMgr = () => {
       return document.querySelector("input[name='notePriority']:checked").value;
     },
     get group() {
-      return document.querySelector("#noteGroupButton p").value;
+      return document.querySelector("#noteGroupP").innerHTML;
     },
     get color() {
       return null;
@@ -58,16 +65,16 @@ const eventHandlers = () => {
   const noteLink = domMgr().getTags().noteLink;
   const notes = domMgr().getTags().notes;
 
-////////////////////////////////////////////////////////////
-// Actual form submission is called at bottom of this.
-// Most of this horseshit is to handle box shrinkage/growth
-////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+  // Actual form submission is called at bottom of this.
+  // Most of this horseshit is to handle box shrinkage/growth
+  ////////////////////////////////////////////////////////////
   const formHandler = () => {
     let mouseClickedInside = false;
 
     // Mouse enters the form box
     formBox.addEventListener("mouseenter", function () {
-        formBox.style.gridTemplateRows = "5rem auto 5rem 5rem";
+      formBox.style.gridTemplateRows = "5rem auto 5rem 5rem";
     });
 
     // Mouse leaves the form box
@@ -77,7 +84,7 @@ const eventHandlers = () => {
       if (!formHasContent() && !mouseClickedInside) {
         formBox.style.gridTemplateRows = "0 auto 0 0";
         mouseClickedInside = false;
-    }
+      }
     });
 
     formBox.addEventListener("mousedown", function () {
@@ -86,33 +93,74 @@ const eventHandlers = () => {
 
     // Click anywhere on the document
     document.addEventListener("mousedown", function (event) {
-        // Check if the form has content
-        if (!formBox.contains(event.target)) {
-          mouseClickedInside = false;
-          if (!formHasContent()) {
-            formBox.style.gridTemplateRows = "0 auto 0 0";
+      // Check if the form has content
+      if (!formBox.contains(event.target)) {
+        mouseClickedInside = false;
+        if (!formHasContent()) {
+          formBox.style.gridTemplateRows = "0 auto 0 0";
         }
-        }
+      }
     });
 
     // Function to check if the form has content
     function formHasContent() {
-        // Check input fields of type text
-        const textInputs = formBox.querySelectorAll('input[type="text"]');
-        for (const input of textInputs) {
-            if (input.value.trim() !== '') {
-                return true;
-            }
+      // Check input fields of type text
+      const textInputs = formBox.querySelectorAll('input[type="text"]');
+      for (const input of textInputs) {
+        if (input.value.trim() !== "") {
+          return true;
         }
-        // Check textarea
-        const textarea = formBox.querySelector('textarea');
-        return textarea && textarea.value.trim() !== '';
+      }
+      // Check textarea
+      const textarea = formBox.querySelector("textarea");
+      return textarea && textarea.value.trim() !== "";
     }
 
     formBox.addEventListener("submit", actions().formSubmit);
     //for Form Submission
   };
-////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+  const popupHandler = () => {
+    document.addEventListener("mousedown", function (event) {
+      groupPopup.style.display = "none";
+    });
+    //closes popup when clicking outside it
+
+    // window.onclick = function(event) {
+    //   if (event.target == modal) {
+    //     modal.style.display = "none";
+    //   }
+
+    domMgr()
+      .getTags()
+      .noteGroupBtn.addEventListener("click", function (event) {
+        groupPopup.style.display = "flex";
+      });
+    //displays (flex) popup when clicking notegroup button
+
+    domMgr()
+      .getTags()
+      .ddmmyy.addEventListener("click", function (event) {
+        domMgr().getTags().ddmmyy.showPicker();
+      });
+    //makes date picker click area extend to date itself, not just the icon
+
+    const selectGroup = (group) => {
+      domMgr().getTags().noteGroupP.innerHTML = group
+    }
+    //updates Group on form - which is used during submission
+
+    domMgr().getTags().groupBtns.forEach(function(button) {
+      button.addEventListener('mousedown', function() {
+        let buttonText = button.textContent.trim();
+        selectGroup(buttonText);
+      });
+    });
+    //adds click to each button to update with the respective text
+
+    return {selectGroup}
+  };
+  ////////////////////////////////////////////////////////////
 
   const trashHandler = () => {
     emptyTrash.addEventListener("click", () => trashButtons().showHide("show"));
@@ -122,21 +170,18 @@ const eventHandlers = () => {
     emptyTrashYes.addEventListener("click", () => trashButtons().emptyTrash());
   };
 
-
   const dialogHandler = () => {
     window.addEventListener("click", (event) => {
       if (event.target == document.querySelector("dialog")) {
         document.querySelector("dialog").close();
-        console.log("dialog close() fired")
+        console.log("dialog close() fired");
       }
       //closes modal when clicking outside of it? I'm Ron Burgundy???
     });
   };
 
-  return {trashHandler, formHandler, dialogHandler}
+  return { trashHandler, formHandler, dialogHandler, popupHandler };
 };
-
-
 
 const trashButtons = () => {
   const showHide = (showHide) => {
@@ -161,8 +206,6 @@ const trashButtons = () => {
 
 const actions = () => {
   const formSubmit = (event) => {
-    console.log("formSubmit called");
-
     event.preventDefault();
 
     storage.localArrays.notePool.push({ ...domMgr().formInputsObject });
@@ -182,19 +225,13 @@ const actions = () => {
     console.log("linkshandler called");
     domMgr()
       .getTags()
-      .trashLink.addEventListener("click", () =>
-        links("trashDiv")
-      );
+      .trashLink.addEventListener("click", () => links("trashDiv"));
     domMgr()
       .getTags()
-      .noteLink.addEventListener("click", () =>
-        links("formDiv")
-      );
+      .noteLink.addEventListener("click", () => links("formDiv"));
     domMgr()
       .getTags()
-      .groupsLink.addEventListener("click", () =>
-        links("groupsDiv")
-      );
+      .groupsLink.addEventListener("click", () => links("groupsDiv"));
   };
 
   function links(link) {
@@ -229,7 +266,6 @@ const actions = () => {
         domMgr().getTags().headerContainer.innerHTML = headerVariants.groupsDiv;
         break;
     }
-    //console.log(domMgr().getTags().headerContainer.innerHTML)
   }
 
   function fadeCards(targetOpacity) {
@@ -247,8 +283,6 @@ const actions = () => {
 
     domMgr().getTags().headerContainer.style.opacity = targetOpacity;
     //fades header container
-
-    console.log("fade cards executed");
   }
 
   const headerVariants = {
