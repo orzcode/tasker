@@ -39,6 +39,18 @@ const cardManager = () => {
     //May be the cause of deleteIcon bug when only rendering one object
     //Though, fixed that by rendering full array each time.
 
+    ////////////////////////////////////////////////////////////
+    card.addEventListener("click", () => cardEditModal(card.innerHTML, object, card));
+
+    const cardEditModal = (cardHTML, object, card) => {
+      const cardModal = document.querySelector("#cardModal");
+      
+      cardModal.innerHTML = cardHTML;
+      cardModal.showModal()
+
+    }
+
+    ////////////////////////////////////////////////////////////
     return card;
   };
 

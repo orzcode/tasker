@@ -57,8 +57,6 @@ const domMgr = () => {
 };
 
 const eventHandlers = () => {
-  console.log("dom.js - eventHandlers called");
-
   const formBox = domMgr().getTags().formBox;
   const trashLink = domMgr().getTags().trashLink;
   const noteLink = domMgr().getTags().noteLink;
