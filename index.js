@@ -11,7 +11,7 @@ const firstLoad = (() => {
   storage.localArrays.trashPool = storage.trash || [];
 
   eventHandlers().formHandler();
-  eventHandlers().dialogHandler();
+  //eventHandlers().dialogHandler();
   eventHandlers().popupHandler();
 
   actions().linksHandler();

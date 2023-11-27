@@ -170,17 +170,17 @@ const eventHandlers = () => {
     emptyTrashYes.addEventListener("click", () => trashButtons().emptyTrash());
   };
 
-  const dialogHandler = () => {
-    window.addEventListener("click", (event) => {
-      if (event.target == document.querySelector("dialog")) {
-        document.querySelector("dialog").close();
-        console.log("dialog close() fired");
-      }
-      //closes modal when clicking outside of it? I'm Ron Burgundy???
-    });
-  };
+  // const dialogHandler = () => {
+  //   window.addEventListener("click", (event) => {
+  //     if (event.target == document.querySelector("dialog")) {
+  //       document.querySelector("dialog").close();
+  //       console.log("dialog close() fired");
+  //     }
+  //     //closes modal when clicking outside of it? I'm Ron Burgundy???
+  //   });
+  // };
 
-  return { trashHandler, formHandler, dialogHandler, popupHandler };
+  return { trashHandler, formHandler, popupHandler };
 };
 
 const trashButtons = () => {
@@ -287,31 +287,39 @@ const actions = () => {
 
   const headerVariants = {
     formDiv: `<div id="formBoxDiv">
-        <form id="form" tabindex="0">
-          <input type="text" id="noteTitle" name="noteTitle" placeholder="Title" maxlength="25" autocomplete="off">
-          <div class="grow-wrap">
-            <textarea required name="noteSpan" id="noteSpan" placeholder="Enter note..." onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
-          </div>
-        
-          <section id="noteDateAndPriority">
-        
-            <div><label for="noteDate">Due date: <input type="date" id="noteDate" name="noteDate"></label></div>
-        
-            <div id="notePriorityDiv">
-              <legend>Priority</legend>
-                <div id="radiosDiv">
-                  <input type="radio" id="notePriorityLow" name="notePriority" value="low" checked>
-                  <input type="radio" id="notePriorityMed" name="notePriority" value="medium">
-                  <input type="radio" id="notePriorityHigh" name="notePriority" value="high">
-                </div>
+    <form id="form" tabindex="0">
+      <input type="text" id="noteTitle" name="noteTitle" placeholder="Title" maxlength="25" autocomplete="off">
+      <div class="grow-wrap">
+        <textarea required name="noteSpan" id="noteSpan" placeholder="Enter note..." onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+      </div>
+    
+      <section id="noteDateAndPriority">
+    
+        <div><label for="noteDate">Due date: <input type="date" id="noteDate" name="noteDate"></label></div>
+    
+        <div id="notePriorityDiv">
+          <legend>Priority</legend>
+            <div id="radiosDiv">
+              <input type="radio" id="notePriorityLow" name="notePriority" value="low" checked>
+              <input type="radio" id="notePriorityMed" name="notePriority" value="medium">
+              <input type="radio" id="notePriorityHigh" name="notePriority" value="high">
             </div>
-          </section>
-          <section id="noteButtons">
-            <button type="button" form="form" id="noteGroupButton" onclick="dialog.showModal()">Group: <p>(none)</p></button>
-            <button type="submit" form="form" id="noteSubmit">Task it!</button>
-          </section>
-        </form>
-      </div>`,
+        </div>
+      </section>
+      <section id="noteButtons">
+
+        <button type="button" form="form" id="noteGroupButton">Group: <p id="noteGroupP">All</p></button>
+        <button type="submit" form="form" id="noteSubmit">Task it!</button>
+      </section>
+
+      <div id="groupPopup">
+        <button class="group-btns">All</button>
+        <button class="group-btns">Work</button>
+        <button class="group-btns">Personal</button>
+      </div>
+
+    </form>
+  </div>`,
 
     trashDiv: `<div id="trashBtnsMainDiv">
         <button type="button" id="emptyTrash" class="btnShadow trashBtns">Empty Trash?</button>
