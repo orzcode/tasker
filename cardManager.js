@@ -66,7 +66,6 @@ const cardManager = () => {
   };
 
   const renderCards = (pageLink_or_object) => {
-    console.log("RenderCards called")
 
     switch (pageLink_or_object) {
       case "trashDiv":

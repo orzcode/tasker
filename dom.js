@@ -1,7 +1,6 @@
 // dom.js
 import storage from "./storage";
 import cardManager from "./cardManager.js";
-//import Manager from "./index.js";
 
 const domMgr = () => {
   const getTags = () => {
@@ -222,7 +221,6 @@ const actions = () => {
   };
 
   const linksHandler = () => {
-    console.log("linkshandler called");
     domMgr()
       .getTags()
       .trashLink.addEventListener("click", () => links("trashDiv"));
