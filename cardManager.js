@@ -45,7 +45,28 @@ const cardManager = () => {
     const cardEditModal = (cardHTML, object, card) => {
       const cardModal = document.querySelector("#cardModal");
       
-      cardModal.innerHTML = cardHTML;
+      cardModal.innerHTML = DOMPurify.sanitize(`
+      <div class="noteTitleAndIcons">
+      <input type="text" maxlength="25" class="noteTitle" value="${object.title}"></input>
+      <div>
+        <p class="material-symbols-sharp notePaletteIcon">palette</p>
+        <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+      </div>
+      </div>
+    
+      <div class="grow-wrap">
+      <textarea class="noteSpan" onInput="this.parentNode.dataset.replicatedValue = this.value">${object.spanText}</textarea>
+      </div>
+      
+      <div class="noteDateAndPriority">
+      <div class="noteDate">Due date: ${formattedDate}</div>
+      <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+      </div>
+    
+      <div class="noteGroup">Group: ${object.group}</div>
+    `);
+
+
       cardModal.showModal()
 
     }
