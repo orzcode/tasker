@@ -15,7 +15,6 @@ html {
   );
   font-family: Roboto;
   font-size: 62.5%;
-
   overflow-x: hidden;
   /* scrollbar-gutter: stable; */
   /* FONTSIZE TRICK-- 1 rem = 10 px here, usually 1 rem = 16px */
@@ -54,6 +53,10 @@ a {
   transform: translate3d(0.5px, 1px, 0);
 }
 /* ---------------------------------------------------- */
+::selection {
+  color: rgb(200, 200, 200);
+  background: rgb(50, 50, 50);
+}
 /* ---------------------------------------------------- */
 #container {
   display: grid;
@@ -240,7 +243,6 @@ form * {
 
   width: 100%;
   height: 100%;
- 
 
   max-height: 70rem;
 
@@ -282,9 +284,10 @@ input[type="date"],
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
 }
 
-input[type="date"]:hover, ::-webkit-calendar-picker-indicator:hover{
+input[type="date"]:hover,
+::-webkit-calendar-picker-indicator:hover {
   border-radius: 2px;
-  filter: brightness(1.1) drop-shadow(1px 1px 2px rgba(0, 0, 0, 1)); 
+  filter: brightness(1.1) drop-shadow(1px 1px 2px rgba(0, 0, 0, 1));
 }
 
 #notePriorityDiv {
@@ -310,7 +313,7 @@ input[type="date"]:hover, ::-webkit-calendar-picker-indicator:hover{
 }
 #noteGroupButton:hover {
   border-radius: 1rem;
-  filter: brightness(1.1) drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5)); 
+  filter: brightness(1.1) drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
 #noteSubmit {
   color: white;
@@ -326,11 +329,6 @@ input[type="date"]:hover, ::-webkit-calendar-picker-indicator:hover{
 /* ---------------------------------------------------- */
 /* FORM INPUTS END HERE */
 /* ---------------------------------------------------- */
-
-
-
-
-
 
 /* ---------------------------------------------------- */
 /* CARD DESIGNS START HERE */
@@ -377,6 +375,7 @@ input[type="date"]:hover, ::-webkit-calendar-picker-indicator:hover{
 /* CARD DESIGNS END HERE */
 /* ---------------------------------------------------- */
 
+/* Utterly cursed styling for card edit dialog box.
 /* ---------------------------------------------------- */
 dialog {
   border-radius: 15px;
@@ -385,15 +384,17 @@ dialog {
   filter: drop-shadow(1px 1px 5px black);
 
   width: calc(40rem + 20vw);
-  height: calc((40rem + 20vw) * 0.75);
-
+  height: calc((40rem + 30vh) * 0.75);
 
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) scale(0);
 
-  display: grid;
-  grid-template-rows: 5rem auto 5rem 5rem;
+  /* display: grid;
+  grid-template-rows: 5rem auto 5rem 5rem; */
+
+  display: flex;
+  flex-direction: column;
 
   gap: 2rem;
   padding: 2rem;
@@ -403,21 +404,46 @@ dialog {
 }
 dialog * {
   border-style: none;
-  caret-color: inherit;
-outline: 1px solid red;
+  caret-color: blue;
   font-size: 2rem;
-display: flex;
-align-items: center;
-
-
+  display: flex;
+  align-items: center;
+  outline: none;
 }
 
+dialog .noteTitleAndIcons {
+  height: 5rem;
+}
+dialog .noteTitle {
+  font-size: 3rem;
+  background-color: initial;
+  caret-color: rgb(0, 0, 0);
+  color: black;
+  width: 100%;
+  user-select: text;
+}
+dialog .noteTopIcons {
+  gap: 1rem;
+
+}
+dialog .noteDeleteIcon,
+dialog .notePaletteIcon,
+dialog .notePriorityIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+dialog .grow-wrap {
+  height: 100%;
+}
+/*Heights go here??*/
 dialog .noteSpan {
-caret-color: rgb(200, 200, 200, 1);
-user-select: auto;
+  caret-color: rgb(200, 200, 200, 1);
+  user-select: auto;
 
   overflow-y: scroll;
-background-color: blue;
 }
 dialog .noteSpan::-webkit-scrollbar {
   display: none;
@@ -425,28 +451,16 @@ dialog .noteSpan::-webkit-scrollbar {
 dialog .grow-wrap > textarea,
 dialog .grow-wrap::after {
   background-color: inherit;
-
-}
-/*Heights go here^*/
-
-dialog .noteTitle {
-font-size: 3rem;
-background-color: initial;
-  caret-color: rgb(200, 200, 200, 1);
-  color: black;
-  width: 100%;
-  user-select: auto;
-
+  caret-color: rgb(0, 0, 0);
 }
 
-dialog .noteDeleteIcon, dialog .notePaletteIcon, dialog .notePriorityIcon{
- display: flex;
- align-items: center;
- justify-content: center;
+dialog .noteDateAndPriority {
+  height: 5rem;
 }
 
-
-
+dialog .noteGroup {
+  height: 5rem;
+}
 
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.1);
@@ -458,7 +472,7 @@ dialog[open] {
 dialog:not([open]) {
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-} 
+}
 /* ---------------------------------------------------- */
 @media only screen and (max-width: 800px) {
   #nav p:nth-child(1) {
@@ -516,7 +530,7 @@ dialog:not([open]) {
 
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.5));
 
-  font-size:smaller;
+  font-size: smaller;
 }
 .group-btns:hover {
   filter: brightness(1.1) drop-shadow(1px 1px 3px rgba(0, 0, 0, 1));

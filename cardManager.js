@@ -48,7 +48,7 @@ const cardManager = () => {
       cardModal.innerHTML = DOMPurify.sanitize(`
       <div class="noteTitleAndIcons">
       <input type="text" maxlength="40" class="noteTitle" value="${object.title}"></input>
-      <div>
+      <div class="noteTopIcons">
         <p class="material-symbols-sharp notePaletteIcon">palette</p>
         <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
       </div>
