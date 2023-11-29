@@ -63,7 +63,10 @@ const cardManager = () => {
       <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
       </div>
     
+      <div class="modalBottomRow">
       <div class="noteGroup">Group: ${object.group}</div>
+      <button class="modalCloseButton">Save & Close</button>
+      </div>
     `);
 
 

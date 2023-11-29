@@ -424,7 +424,6 @@ dialog .noteTitle {
 }
 dialog .noteTopIcons {
   gap: 1rem;
-
 }
 dialog .noteDeleteIcon,
 dialog .notePaletteIcon,
@@ -458,8 +457,21 @@ dialog .noteDateAndPriority {
   height: 5rem;
 }
 
-dialog .noteGroup {
+dialog .modalBottomRow {
   height: 5rem;
+}
+
+dialog .modalCloseButton {
+  font-weight: bold;
+  font-size: larger;
+  background-color: inherit;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+  text-wrap: nowrap;
+}
+dialog .modalCloseButton:hover {
+  background-color: rgba(153, 153, 153, 0.5);
 }
 
 dialog::backdrop {
