@@ -385,7 +385,7 @@ dialog {
   filter: drop-shadow(1px 1px 5px black);
 
   width: calc(40rem + 20vw);
-  /* height: minmax(calc((20rem + 20vw) * 0.75), calc((40rem + 20vw) * 0.75)); */
+  height: calc((40rem + 20vw) * 0.75);
 
 
   left: 50%;
@@ -393,7 +393,7 @@ dialog {
   transform: translate(-50%, -50%) scale(0);
 
   display: grid;
-
+  grid-template-rows: 5rem auto 5rem 5rem;
 
   gap: 2rem;
   padding: 2rem;
@@ -404,10 +404,12 @@ dialog {
 dialog * {
   border-style: none;
   caret-color: inherit;
-
+outline: 1px solid red;
   font-size: 2rem;
+display: flex;
+align-items: center;
 
-  outline: none;
+
 }
 
 dialog .noteSpan {
@@ -415,24 +417,35 @@ caret-color: rgb(200, 200, 200, 1);
 user-select: auto;
 
   overflow-y: scroll;
-
+background-color: blue;
 }
 dialog .noteSpan::-webkit-scrollbar {
   display: none;
 }
 dialog .grow-wrap > textarea,
 dialog .grow-wrap::after {
-  background-color: lightblue;
+  background-color: inherit;
 
 }
 /*Heights go here^*/
 
 dialog .noteTitle {
 font-size: 3rem;
+background-color: initial;
   caret-color: rgb(200, 200, 200, 1);
-  color: rgb(200, 200, 200, 1);
+  color: black;
+  width: 100%;
   user-select: auto;
+
 }
+
+dialog .noteDeleteIcon, dialog .notePaletteIcon, dialog .notePriorityIcon{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+
 
 
 dialog::backdrop {

@@ -284,7 +284,7 @@ const actions = () => {
   const headerVariants = {
     formDiv: `<div id="formBoxDiv">
     <form id="form" tabindex="0">
-      <input type="text" id="noteTitle" name="noteTitle" placeholder="Title" maxlength="25" autocomplete="off">
+      <input type="text" id="noteTitle" name="noteTitle" placeholder="Title" maxlength="40" autocomplete="off">
       <div class="grow-wrap">
         <textarea required name="noteSpan" id="noteSpan" placeholder="Enter note..." onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
       </div>
