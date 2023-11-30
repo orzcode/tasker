@@ -331,6 +331,46 @@ input[type="date"]:hover,
 /* ---------------------------------------------------- */
 
 /* ---------------------------------------------------- */
+/* Group popup for form
+/* ---------------------------------------------------- */
+
+#groupPopup {
+  display: none;
+  position: absolute;
+  z-index: 5;
+
+  bottom: -2rem;
+  padding: 4px;
+  border-radius: 1rem;
+
+  background-color: rgb(69, 69, 69);
+  outline: 1px solid rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(1px 1px 2px black);
+
+  width: min-content;
+  max-width: 50%;
+}
+
+.group-btns {
+  color: whitesmoke;
+
+  border-radius: 1rem;
+  background-color: rgb(100, 100, 100);
+  padding: 1px 5px;
+
+  margin: 2px;
+
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.5));
+
+  font-size: smaller;
+}
+.group-btns:hover {
+  filter: brightness(1.1) drop-shadow(1px 1px 3px rgba(0, 0, 0, 1));
+}
+/* ---------------------------------------------------- */
+/* ---------------------------------------------------- */
+
+/* ---------------------------------------------------- */
 /* CARD DESIGNS START HERE */
 /* ---------------------------------------------------- */
 .note {
@@ -513,38 +553,4 @@ dialog:not([open]) {
   }
   /* max lines of text before ellipsis, for notes */
 }
-/* ---------------------------------------------------- */
-#groupPopup {
-  display: none;
-  position: absolute;
-  z-index: 5;
 
-  bottom: -2rem;
-  padding: 4px;
-  border-radius: 1rem;
-
-  background-color: rgb(69, 69, 69);
-  outline: 1px solid rgba(0, 0, 0, 0.5);
-  filter: drop-shadow(1px 1px 2px black);
-
-  width: min-content;
-  max-width: 50%;
-}
-
-.group-btns {
-  color: whitesmoke;
-
-  border-radius: 1rem;
-  background-color: rgb(100, 100, 100);
-  padding: 1px 5px;
-
-  margin: 2px;
-
-  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.5));
-
-  font-size: smaller;
-}
-.group-btns:hover {
-  filter: brightness(1.1) drop-shadow(1px 1px 3px rgba(0, 0, 0, 1));
-}
-/* ---------------------------------------------------- */

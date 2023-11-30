@@ -29,6 +29,9 @@ const domMgr = () => {
       ddmmyy: document.querySelector('input[type="date"]'),
 
       headerContainer: document.querySelector("#headerContainer"),
+
+      cardEditModal: document.querySelector("#cardModal"),
+      modalSaveClose: document.querySelector("#cardModal .modalCloseButton")
     };
   };
 
@@ -177,8 +180,23 @@ const eventHandlers = () => {
   //   });
   // };
 
+    ////////////////////////////////////////////////////////////
+
+  // const editCardHandler = () => {
+  //   domMgr().getTags().modalSaveClose.addEventListener("click", function (event) {
+  //     domMgr().getTags().cardEditModal.close()
+  //   });
+    
+  // }
+
+
   return { trashHandler, formHandler, popupHandler };
 };
+
+
+
+
+
 
 const trashButtons = () => {
   const showHide = (showHide) => {

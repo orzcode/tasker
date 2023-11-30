@@ -70,8 +70,30 @@ const cardManager = () => {
     `);
 
 
-      cardModal.showModal()
 
+    document.querySelector("#cardModal .modalCloseButton").addEventListener("click", function (event) {
+     object.title = document.querySelector("#cardModal .noteTitle").value;
+     object.spanText = document.querySelector("#cardModal .noteSpan").value;
+     //updates object title before sending
+      //  PROBLEM HERE! VIEW CONSOLE TO CHECK - UPDATES OK BUT GIVES ERROR
+     
+     const indexInNotePool = storage.localArrays.notePool.indexOf(object);
+
+     if (indexInNotePool !== -1) {
+       // Update the object in notePool
+       storage.localArrays.notePool[indexInNotePool] = object;
+   
+       // Update localStorage notePool
+       storage.localStorage = storage.localArrays.notePool;
+     }
+
+     clearBoard()
+     renderCards("formDiv")
+
+      cardModal.close();    
+    })
+
+      cardModal.showModal()
     }
 
     ////////////////////////////////////////////////////////////
