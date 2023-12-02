@@ -50,13 +50,17 @@ const cardManager = () => {
       const deleteOrRestoreIcon = storage.localArrays.trashPool.includes(object) ? restoreIcon : deleteIcon;
     
       deleteOrRestoreIcon.addEventListener("click", () => {
+        event.stopPropagation();
         if (storage.localArrays.trashPool.includes(object)) manageCard(card, object, "restore");
         else manageCard(card, object, "delete");
       });
 
     ////////////////////////////////////////////////////////////
-
-    card.addEventListener("click", () => cardEditModal(object, card));
+    card.addEventListener("click", () => {
+      if (!storage.localArrays.trashPool.includes(object)) {
+        cardEditModal(object, card);
+      }
+    });
     ////////////////////////////////////////////////////////////
     return card;
   };

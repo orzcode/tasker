@@ -170,27 +170,17 @@ const eventHandlers = () => {
     emptyTrashYes.addEventListener("click", () => trashButtons().emptyTrash());
   };
 
-  // const dialogHandler = () => {
-  //   window.addEventListener("click", (event) => {
-  //     if (event.target == document.querySelector("dialog")) {
-  //       document.querySelector("dialog").close();
-  //       console.log("dialog close() fired");
-  //     }
-  //     //closes modal when clicking outside of it? I'm Ron Burgundy???
-  //   });
-  // };
+  const dialogHandler = () => {
+    window.addEventListener("click", (event) => {
+      if (event.target == document.querySelector("dialog")) {
+        document.querySelector("dialog").close();
+        console.log("dialog close() fired");
+      }
+      //closes modal when clicking outside of it? I'm Ron Burgundy???
+    });
+  };
 
-    ////////////////////////////////////////////////////////////
-
-  // const editCardHandler = () => {
-  //   domMgr().getTags().modalSaveClose.addEventListener("click", function (event) {
-  //     domMgr().getTags().cardEditModal.close()
-  //   });
-    
-  // }
-
-
-  return { trashHandler, formHandler, popupHandler };
+  return { trashHandler, formHandler, popupHandler, dialogHandler };
 };
 
 
@@ -266,7 +256,7 @@ const actions = () => {
       cardManager().renderCards(link);
 
       fadeCards(1);
-    }, 500); // Adjust the duration to match your CSS transition duration
+    }, 500);
   }
 
   function replaceHeader(link) {
@@ -286,15 +276,6 @@ const actions = () => {
   }
 
   function fadeCards(targetOpacity) {
-    // const notes = domMgr().getTags().notes;
-    // notes.forEach((note) => {
-    //   note.style.opacity = targetOpacity;
-    // });
-    //fades cards
-
-    //Problem is that 'new' cards don't get faded in
-    //Solution: fade the container instead
-
     domMgr().getTags().mainDiv.style.opacity = targetOpacity;
     //fades #main area (all the cards)
 
