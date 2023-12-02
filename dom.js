@@ -220,6 +220,8 @@ const trashButtons = () => {
 };
 
 const actions = () => {
+  
+  ///////////////////////////////////////////////////////////
   const formSubmit = (event) => {
     event.preventDefault();
 
@@ -235,6 +237,7 @@ const actions = () => {
     //previously:
     //cardManager().renderCards({ ...domMgr().formInputsObject });
   };
+///////////////////////////////////////////////////////////
 
   const linksHandler = () => {
     domMgr()
