@@ -34,11 +34,25 @@ const cardManager = () => {
 			  <div class="noteGroup">Group: ${object.group}</div>
 			`);
 
-    // Add delete event listener
-    const deleteIcon = card.querySelector(".noteDeleteIcon");
-    deleteIcon.addEventListener("click", () => deleteCard(card, object));
-    //May be the cause of deleteIcon bug when only rendering one object
-    //Though, fixed that by rendering full array each time.
+      const deleteIcon = card.querySelector(".noteDeleteIcon");
+      const restoreIcon = card.querySelector(".noteRestoreIcon");
+    
+      // Conditionally show delete or restore icon
+      if (storage.localArrays.trashPool.includes(object)) {
+        deleteIcon.style.display = "none";
+        restoreIcon.style.display = "inline-block";
+      } else {
+        deleteIcon.style.display = "inline-block";
+        restoreIcon.style.display = "none";
+      }
+    
+      // Add delete or restore event listener
+      const deleteOrRestoreIcon = storage.localArrays.trashPool.includes(object) ? restoreIcon : deleteIcon;
+    
+      deleteOrRestoreIcon.addEventListener("click", () => {
+        if (storage.localArrays.trashPool.includes(object)) manageCard(card, object, "restore");
+        else manageCard(card, object, "delete");
+      });
 
     ////////////////////////////////////////////////////////////
 
@@ -118,34 +132,34 @@ const cardManager = () => {
 
       if (deleteIcon) {
         // Delete button inside the modal was clicked
-        deleteCard(card, object);
+        manageCard(card, object, "delete");
         cardModal.close();
       }
     });
     ////////////////////////////////////////////
   };
 
-  const deleteCard = (card, object) => {
-    // Find the index of the object in the notePool array
-    const index = storage.localArrays.notePool.indexOf(object);
-
-    if (index !== -1) {
-      // Remove the object from notePool
-      storage.localArrays.notePool.splice(index, 1);
-
-      // Move the object to the trash array
+  const manageCard = (card, object, action) => {
+    const indexInNotePool = storage.localArrays.notePool.indexOf(object);
+    const indexInTrash = storage.localArrays.trashPool.indexOf(object);
+  
+    if (action === "delete" && indexInNotePool !== -1) {
+      // If the action is to delete and the card is in the notePool
+      storage.localArrays.notePool.splice(indexInNotePool, 1);
       storage.localArrays.trashPool.push(object);
-
-      storage.trash = storage.localArrays.trashPool;
-      storage.localStorage = storage.localArrays.notePool;
-      //Update localStorage trash and notepool
-
       console.log("Moved to trash!");
-      //console.log(storage.localArrays.trashPool);
-
-      // Remove the card from the DOM via native method
-      card.remove();
+    } else if (action === "restore" && indexInTrash !== -1) {
+      // If the action is to restore and the card is in the trash
+      storage.localArrays.trashPool.splice(indexInTrash, 1);
+      storage.localArrays.notePool.push(object);
+      console.log("Restored from trash!");
     }
+  
+    storage.trash = storage.localArrays.trashPool;
+    storage.localStorage = storage.localArrays.notePool;
+  
+    // Remove the card from the DOM via native method
+    card.remove();
   };
 
   const renderCards = (pageLink_or_object) => {
