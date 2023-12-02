@@ -18,8 +18,9 @@ const cardManager = () => {
 			  <div class="noteTitleAndIcons">
 				<h3 class="noteTitle">${object.title}</h3>
 				<div>
-				  <p class="material-symbols-sharp notePaletteIcon">palette</p>
-				  <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+				  <p class="material-symbols-sharp notePaletteIcon" style="display: none;">palette</p>
+          <p class="material-symbols-sharp noteDeleteIcon" style="display: inline-block;">delete_sweep</p>
+          <p class="material-symbols-sharp noteRestoreIcon" style="display: none;">restore_from_trash</p>
 				</div>
 			  </div>
 		  
@@ -68,7 +69,7 @@ const cardManager = () => {
     <div class="noteTitleAndIcons">
     <input type="text" maxlength="40" class="noteTitle" value="${object.title}"></input>
     <div class="noteTopIcons">
-      <p class="material-symbols-sharp notePaletteIcon">palette</p>
+      <p class="material-symbols-sharp notePaletteIcon" style="display: none;">palette</p>
       <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
     </div>
     </div>

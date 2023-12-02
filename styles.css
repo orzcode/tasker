@@ -258,7 +258,7 @@ form * {
   color: rgb(200, 200, 200, 1);
   user-select: auto;
 }
-.noteDeleteIcon {
+.noteDeleteIcon, .noteRestoreIcon, .notePaletteIcon {
   cursor: pointer;
 }
 #noteSpan {
@@ -467,6 +467,7 @@ dialog .noteTopIcons {
 }
 dialog .noteDeleteIcon,
 dialog .notePaletteIcon,
+dialog .noteRestoreIcon,
 dialog .notePriorityIcon {
   display: flex;
   align-items: center;
