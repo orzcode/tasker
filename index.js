@@ -20,6 +20,6 @@ import cardManager from "./cardManager.js";
 //   cardManager().renderCards("formDiv");
 // })();
 
-document.querySelector("h1").addEventListener("click", (event) => {
-  document.querySelector("h1").innerHTML = "Hahaha";
+document.querySelector("li").addEventListener("click", (event) => {
+  document.querySelector("#headerContainer").innerHTML = "Hahaha";
 })
