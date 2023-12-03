@@ -5,17 +5,21 @@ import cardManager from "./cardManager.js";
 //storage.clear;
 //Note: color icon css and card JS exists, but is 'display: none'd in cardManager
 
-const firstLoad = (() => {
-  storage.localArrays.notePool = storage.localStorage || [];
+// const firstLoad = (() => {
+//   storage.localArrays.notePool = storage.localStorage || [];
 
-  storage.localArrays.trashPool = storage.trash || [];
+//   storage.localArrays.trashPool = storage.trash || [];
 
-  eventHandlers().formHandler();
-  eventHandlers().dialogHandler();
-  eventHandlers().popupHandler();
+//   eventHandlers().formHandler();
+//   eventHandlers().dialogHandler();
+//   eventHandlers().popupHandler();
 
-  actions().linksHandler();
-  //appends navbar link actions
+//   actions().linksHandler();
+//   //appends navbar link actions
 
-  cardManager().renderCards("formDiv");
-})();
+//   cardManager().renderCards("formDiv");
+// })();
+
+document.querySelector("h1").addEventListener("click", (event) => {
+  document.querySelector("h1").innerHTML = "Hahaha";
+})
