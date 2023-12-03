@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Oswald"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <title>Tasker</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,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" />
+    <script type="module" crossorigin src="/assets/index-PCw3mTGO.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-JlBHlq4f.css">
+  </head>
+  <body>
+    <div id="container">
+      <nav id="nav">
+        <h1>Tasker</h1>
+        <ul>
+          <li data-link="notepool">
+            <p>All notes</p>
+            <p class="material-symbols-sharp">view_kanban</p>
+          </li>
+          <li data-link="groupsLink">
+            <p>Groups</p>
+            <p class="material-symbols-sharp">rebase_edit</p>
+          </li>
+          <li data-link="trashpool">
+            <p>Trash</p>
+            <p class="material-symbols-sharp">delete</p>
+          </li>
+        </ul>
+        <div id='footer'><p>By Orz </p><a href='https://github.com/orzcode' target='_blank'>
+          <i class='fa-brands fa-github'></i></a>
+      </nav>
+
+      <header id="header">
+        
+        <div id="headerContainer">
+
+          <div id="formBoxDiv">
+            <form id="form">
+              <input type="text" id="noteTitle" name="noteTitle" placeholder="Title" maxlength="40" autocomplete="off">
+              <div class="grow-wrap">
+                <textarea required name="noteSpan" id="noteSpan" placeholder="Enter note..." onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+              </div>
+            
+              <section id="noteDateAndPriority">
+            
+                <div><label for="noteDate">Due date: <input type="date" id="noteDate" name="noteDate"></label></div>
+            
+                <div id="notePriorityDiv">
+                  <legend>Priority</legend>
+                    <div id="radiosDiv">
+                      <input type="radio" id="notePriorityLow" name="notePriority" value="low" checked>
+                      <input type="radio" id="notePriorityMed" name="notePriority" value="medium">
+                      <input type="radio" id="notePriorityHigh" name="notePriority" value="high">
+                    </div>
+                </div>
+              </section>
+              <section id="noteButtons">
+
+                <button type="button" form="form" id="noteGroupButton">Group: <p id="noteGroupP">All</p></button>
+                <button type="submit" form="form" id="noteSubmit">Task it!</button>
+              </section>
+
+              <div id="groupPopup">
+                <button class="group-btns">All</button>
+                <button class="group-btns">Work</button>
+                <button class="group-btns">Personal</button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+
+      </header>
+
+
+      <main id="mainContainer">
+        <div id="main">
+        <!-- NOTE EXAMPLE SCAFFOLD/STYLING HERE -->
+
+        <!-- <div class="note">
+          <div class="noteTitleAndIcons">
+            <h3 class="noteTitle">Title H3</h3>
+            <div>
+              <p class="material-symbols-sharp notePaletteIcon">palette</p>
+              <p class="material-symbols-sharp noteDeleteIcon">delete_sweep</p>
+            </div>
+          </div>
+
+          <span class="noteSpan">Fuckface ipsum dolor sit amet consectetur adipisicing elit. Mollitia, voluptatum quas! Repudiandae consequatur consectetur repellendus, tempora magni deleniti ullam esse hic! Autem odit recusandae dicta praesentium incidunt vero, animi adipisci.</span>
+
+         <div class="noteDateAndPriority">
+           <div class="noteDate"></div>
+                   <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+         </div>
+
+        <div class="noteGroup">Group: </div>
+        </div> -->
+        
+          <!-- NOTE EXAMPLE SCAFFOLD/STYLING HERE -->
+<dialog id="cardModal"></dialog>
+        </div>
+      </main>
+    </div>
+
+  </body>
+</html>
