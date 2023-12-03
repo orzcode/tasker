@@ -121,42 +121,35 @@ const eventHandlers = () => {
   };
   ////////////////////////////////////////////////////////////
   const popupHandler = () => {
-    document.addEventListener("mousedown", function (event) {
-      groupPopup.style.display = "none";
-    });
-    //closes popup when clicking outside it
+    const tags = domMgr().getTags();
 
-    // window.onclick = function(event) {
-    //   if (event.target == modal) {
-    //     modal.style.display = "none";
-    //   }
-
-    domMgr()
-      .getTags()
-      .noteGroupBtn.addEventListener("click", function (event) {
-        groupPopup.style.display = "flex";
-      });
-    //displays (flex) popup when clicking notegroup button
-
-    domMgr()
-      .getTags()
-      .ddmmyy.addEventListener("click", function (event) {
-        domMgr().getTags().ddmmyy.showPicker();
-      });
-    //makes date picker click area extend to date itself, not just the icon
-
+    if (!groupPopup) {
+      return; //Only runs if it's the Form page
+    } else
+  
+    document.addEventListener("mousedown", (event) => {
+      tags.groupPopup.style.display = "none";
+    });//closes popup when clicking outside it
+  
+      
+    tags.noteGroupBtn.addEventListener("click", (event) => {
+      groupPopup.style.display = "flex";
+    });//displays (flex) popup when clicking notegroup button
+  
+    tags.ddmmyy.addEventListener("click", (event) => {
+      tags.ddmmyy.showPicker();
+    });//makes date picker click area extend to date itself, not just the icon
+  
     const selectGroup = (group) => {
-      domMgr().getTags().noteGroupP.innerHTML = group
-    }
-    //updates Group on form - which is used during submission
-
-    domMgr().getTags().groupBtns.forEach(function(button) {
-      button.addEventListener('mousedown', function() {
+      tags.noteGroupP.innerHTML = group;
+    };//updates Group on form - which is used during submission
+  
+    tags.groupBtns.forEach(function (button) {
+      button.addEventListener("mousedown", function () {
         let buttonText = button.textContent.trim();
         selectGroup(buttonText);
-      });
+      });//adds click to each button to update with the respective text
     });
-    //adds click to each button to update with the respective text
 
     return {selectGroup}
   };
@@ -268,6 +261,7 @@ const actions = () => {
       case "formDiv":
         domMgr().getTags().headerContainer.innerHTML = headerVariants.formDiv;
         eventHandlers().formHandler();
+        eventHandlers().popupHandler();
         break;
       case "groupsDiv":
         domMgr().getTags().headerContainer.innerHTML = headerVariants.groupsDiv;
