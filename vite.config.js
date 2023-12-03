@@ -1,4 +1,9 @@
 // vite.config.js
 export default {
-	// Your configuration options go here
+	resolve: {
+		alias: {
+		  '@': '/', // Adjust the alias to match your project structure
+		},
+		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.vue'], // Include necessary file extensions
+	  },
   };
