@@ -1,7 +1,7 @@
 import { domMgr } from "./dom.js";
 import storage from "./storage";
 
-import { format } from "date-fns";
+import { format } from "./node_modules/date-fns/esm/index.js";
 import DOMPurify from "isomorphic-dompurify";
 
 const cardManager = () => {
