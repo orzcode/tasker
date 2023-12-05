@@ -1,5 +1,5 @@
 // dom.js
-import storage from "./storage";
+import storage from "./storage.js";
 import cardManager from "./cardManager.js";
 
 const domMgr = () => {
