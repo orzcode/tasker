@@ -1,4 +1,6 @@
 // vite.config.js
-export default {
-	// Your configuration options go here
-  };
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+	base: "/tasker/"
+  })
