@@ -187,12 +187,14 @@ const eventHandlers = () => {
     cardManager().clearBoard();
     if (selectedGroup === "All"){
       cardManager().renderCards("groupsDiv");
-    }
+    }//renders 'All' cards
+
+      //or
 
     else storage.localArrays.notePool.forEach((note) => {
       if (note.group === selectedGroup) {
         cardManager().renderCards(note);
-      }
+      }//renders the selected group only
     });
   }
 ////////////////////////////////////////////////////////////
