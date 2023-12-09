@@ -324,9 +324,14 @@ const actions = () => {
     groupsDiv: `<div id="groupsMainDiv">
     <h3>Group</h3>
     <div id="groupBtnsDiv">
-      <button type="button" class="btnShadow groupBtns">All</button>
-      <button type="button" class="btnShadow groupBtns">Personal</button>
-      <button type="button" class="btnShadow groupBtns">Work</button>
+    <input type="radio" name="group" id="allBtn" class="groupBtns" checked>
+    <label for="allBtn" class="btnShadow groupLabels">All</label>
+  
+    <input type="radio" name="group" id="personalBtn" class="groupBtns">
+    <label for="personalBtn" class="btnShadow groupLabels">Personal</label>
+  
+    <input type="radio" name="group" id="workBtn" class="groupBtns">
+    <label for="workBtn" class="btnShadow groupLabels">Work</label>
     </div>
   </div>`,
   };
