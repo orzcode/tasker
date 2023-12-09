@@ -152,14 +152,14 @@ h1 {
 }
 /* ---------------------------------------------------- */
 .trashBtns {
-  font-size: clamp(3rem, 2vw, 6rem);
-  border-radius: 15px;
+  font-size: clamp(2rem, 1vw, 6rem);
+  border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   background-color: rgba(200, 200, 200);
   filter: drop-shadow(1px 1px 5px black);
   padding: 1rem 2rem;
 }
-#trashBtnsMainDiv {
+#trashBtnsMainDiv, #groupsMainDiv {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -177,6 +177,25 @@ h1 {
 /* ---------------------------------------------------- */
 #groupsMainDiv {
   /* display: none; */
+}
+#groupsMainDiv h3 {
+  font-size: clamp(2rem, 2vw, 4rem);
+  filter: drop-shadow(1px 1px 5px black);
+  color: whitesmoke;
+  text-align: center;
+}
+#groupBtnsDiv {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+}
+.groupBtns {
+  font-size: clamp(2rem, 1vw, 6rem);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: rgba(200, 200, 200);
+  filter: drop-shadow(1px 1px 5px black);
+  padding: 0.5rem 1rem;
 }
 /* ---------------------------------------------------- */
 /* FORM INPUTS START HERE */
@@ -198,7 +217,7 @@ form {
   caret-color: transparent;
   color: rgb(200, 200, 200, 1);
   outline: 1px solid rgb(200, 200, 200, 0.25);
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 form * {
@@ -323,7 +342,7 @@ input[type="date"]:hover,
 }
 #noteSubmit:hover {
   outline: 1px solid rgba(245, 245, 245, 0.25);
-  border-radius: 15px;
+  border-radius: 10px;
   text-shadow: 2px 2px 2px rgb(0, 0, 0);
 }
 /* ---------------------------------------------------- */
@@ -347,8 +366,8 @@ input[type="date"]:hover,
   outline: 1px solid rgba(0, 0, 0, 0.5);
   filter: drop-shadow(1px 1px 2px black);
 
-  width: min-content;
-  max-width: 50%;
+  width: fit-content;
+  max-width: min-content;
 }
 
 .group-btns {
@@ -357,6 +376,7 @@ input[type="date"]:hover,
   border-radius: 1rem;
   background-color: rgb(100, 100, 100);
   padding: 1px 5px;
+  width: fit-content;
 
   margin: 2px;
 
@@ -374,7 +394,7 @@ input[type="date"]:hover,
 /* CARD DESIGNS START HERE */
 /* ---------------------------------------------------- */
 .note {
-  border-radius: 15px;
+  border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   /* background-color: rgb(60, 60, 60); */
   background-color: rgba(200, 200, 200);
@@ -418,7 +438,7 @@ input[type="date"]:hover,
 /* Utterly cursed styling for card edit dialog box.
 /* ---------------------------------------------------- */
 dialog {
-  border-radius: 15px;
+  border-radius: 10px;
   outline: 1px solid rgba(0, 0, 0, 0.5);
   background-color: rgba(200, 200, 200);
   filter: drop-shadow(1px 1px 5px black);

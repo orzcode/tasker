@@ -322,8 +322,13 @@ const actions = () => {
       </div>`,
 
     groupsDiv: `<div id="groupsMainDiv">
-        <p>Fuck</p>
-      </div>`,
+    <h3>Group</h3>
+    <div id="groupBtnsDiv">
+      <button type="button" class="btnShadow groupBtns">All</button>
+      <button type="button" class="btnShadow groupBtns">Personal</button>
+      <button type="button" class="btnShadow groupBtns">Work</button>
+    </div>
+  </div>`,
   };
 
   return { formSubmit, linksHandler };
