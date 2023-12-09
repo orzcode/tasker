@@ -190,17 +190,6 @@ const cardManager = () => {
         break;
     }
 
-    // if (Array.isArray(pageLink_or_object)) {
-
-    //   pageLink_or_object.forEach((object) => {
-    //     const card = createCard(object);
-    //     domMgr().getTags().mainDiv.appendChild(card);
-
-    //   });
-
-    //   //this part probably wont be used, but keeping here anyway
-    // } else
-
     if (typeof pageLink_or_object === "object") {
       const card = createCard(pageLink_or_object);
       domMgr().getTags().mainDiv.appendChild(card);

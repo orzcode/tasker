@@ -18,6 +18,7 @@ const domMgr = () => {
       emptyTrashNo: document.querySelector("#emptyTrashNo"),
 
       groupsDiv: document.querySelector("#groupsMainDiv"),
+      groupsDivRadios: document.querySelectorAll('.groupBtns'),
 
       formDiv: document.querySelector("#formBoxDiv"),
 
@@ -172,8 +173,30 @@ const eventHandlers = () => {
       //closes modal when clicking outside of it? I'm Ron Burgundy???
     });
   };
+////////////////////////////////////////////////////////////
+  const groupsHandler = () => {
+    domMgr().getTags().groupsDivRadios.forEach((input) => {
+      input.addEventListener('change', () => {
+        const groupName = input.id.replace("Btn", ""); // Extract the group name from id
+        renderCardsByGroup(groupName);
+      });
+    });
+    //add event to call a fn to render cards based on radio input on Group page
+  }
+  function renderCardsByGroup(selectedGroup) {
+    cardManager().clearBoard();
+    if (selectedGroup === "All"){
+      cardManager().renderCards("groupsDiv");
+    }
 
-  return { trashHandler, formHandler, popupHandler, dialogHandler };
+    else storage.localArrays.notePool.forEach((note) => {
+      if (note.group === selectedGroup) {
+        cardManager().renderCards(note);
+      }
+    });
+  }
+////////////////////////////////////////////////////////////
+  return { trashHandler, formHandler, popupHandler, dialogHandler, groupsHandler };
 };
 
 
@@ -265,10 +288,12 @@ const actions = () => {
         break;
       case "groupsDiv":
         domMgr().getTags().headerContainer.innerHTML = headerVariants.groupsDiv;
+        eventHandlers().groupsHandler();
         break;
     }
   }
 
+////////////////////////////////////////////////////////////
   function fadeCards(targetOpacity) {
     domMgr().getTags().mainDiv.style.opacity = targetOpacity;
     //fades #main area (all the cards)
@@ -324,14 +349,14 @@ const actions = () => {
     groupsDiv: `<div id="groupsMainDiv">
     <h3>Group</h3>
     <div id="groupBtnsDiv">
-    <input type="radio" name="group" id="allBtn" class="groupBtns" checked>
-    <label for="allBtn" class="btnShadow groupLabels">All</label>
+    <input type="radio" name="group" id="AllBtn" class="groupBtns" checked>
+    <label for="AllBtn" class="btnShadow groupLabels">All</label>
   
-    <input type="radio" name="group" id="personalBtn" class="groupBtns">
-    <label for="personalBtn" class="btnShadow groupLabels">Personal</label>
+    <input type="radio" name="group" id="PersonalBtn" class="groupBtns">
+    <label for="PersonalBtn" class="btnShadow groupLabels">Personal</label>
   
-    <input type="radio" name="group" id="workBtn" class="groupBtns">
-    <label for="workBtn" class="btnShadow groupLabels">Work</label>
+    <input type="radio" name="group" id="WorkBtn" class="groupBtns">
+    <label for="WorkBtn" class="btnShadow groupLabels">Work</label>
     </div>
   </div>`,
   };
