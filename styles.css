@@ -5,7 +5,6 @@
   padding: 0;
   box-sizing: border-box;
   user-select: none;
-  /* outline: 1px solid rgba(165, 36, 36, 0.915); */
 }
 html {
   background: linear-gradient(
@@ -129,7 +128,10 @@ h1 {
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(calc(35rem + 2vw), 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, calc(35rem + 2vw)), 1fr)
+  );
 }
 
 #footer {
@@ -159,7 +161,8 @@ h1 {
   filter: drop-shadow(1px 1px 5px black);
   padding: 1rem 2rem;
 }
-#trashBtnsMainDiv, #groupsMainDiv {
+#trashBtnsMainDiv,
+#groupsMainDiv {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -200,7 +203,7 @@ h1 {
 .groupBtns {
   display: none;
 }
-.groupBtns:checked + label{
+.groupBtns:checked + label {
   transform: translate3d(0.5px, 1px, 0);
   background-color: rgba(150, 150, 150);
 }
@@ -284,7 +287,9 @@ form * {
   color: rgb(200, 200, 200, 1);
   user-select: auto;
 }
-.noteDeleteIcon, .noteRestoreIcon, .notePaletteIcon {
+.noteDeleteIcon,
+.noteRestoreIcon,
+.notePaletteIcon {
   cursor: pointer;
 }
 #noteSpan {
@@ -453,11 +458,8 @@ dialog {
   height: calc((40rem + 30vh) * 0.75);
 
 
-  /* --------*/
-  /*mobile test */
   max-width: 85vw;
   max-height: 75vh;
-/* --------*/
 
 
   left: 50%;
@@ -575,19 +577,14 @@ dialog:not([open]) {
   #footer i {
     margin: 50%;
   }
-
   #notePriorityDiv {
     gap: 0rem;
   }
-
   .noteSpan {
     -webkit-line-clamp: 12;
   }
-
   #main {
     padding: 0rem;
   }
-
   /* max lines of text before ellipsis, for notes */
 }
-
