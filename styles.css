@@ -59,11 +59,13 @@ a {
 /* ---------------------------------------------------- */
 #container {
   display: grid;
-  height: 100vh;
+  min-height: 100vh;
+  /* height: 100vh; */
   width: 100%;
   max-width: 100vw;
   grid-template-columns: clamp(4rem, 15%, 30rem) 8fr;
   grid-template-rows: minmax(25%, auto) 7.5fr;
+  /* grid-template-rows: minmax(25%, auto) 7.5fr; */
 }
 #nav {
   background-color: rgb(10, 10, 10);
@@ -583,8 +585,13 @@ dialog:not([open]) {
   .noteSpan {
     -webkit-line-clamp: 12;
   }
+  /* max lines of text before ellipsis, for notes */
   #main {
     padding: 0rem;
   }
-  /* max lines of text before ellipsis, for notes */
+
+  #container {
+    grid-template-rows: minmax(25%, auto) minmax(7.5fr, auto);
+    /* testing */
+  }
 }
