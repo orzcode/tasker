@@ -13,6 +13,7 @@ const firstLoad = (() => {
   eventHandlers().formHandler();
   eventHandlers().dialogHandler();
   eventHandlers().popupHandler();
+  eventHandlers().priorityHandler();
 
   actions().linksHandler();
   //appends navbar link actions

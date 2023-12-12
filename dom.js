@@ -32,7 +32,11 @@ const domMgr = () => {
       headerContainer: document.querySelector("#headerContainer"),
 
       cardEditModal: document.querySelector("#cardModal"),
-      modalSaveClose: document.querySelector("#cardModal .modalCloseButton")
+      modalSaveClose: document.querySelector("#cardModal .modalCloseButton"),
+
+      exclamationLabels: document.querySelectorAll('#radiosDiv label'),
+      exclamationIcons: document.querySelectorAll('.notePriorityIcon'),
+      
     };
   };
 
@@ -198,7 +202,56 @@ const eventHandlers = () => {
     });
   }
 ////////////////////////////////////////////////////////////
-  return { trashHandler, formHandler, popupHandler, dialogHandler, groupsHandler };
+const priorityHandler = () => {
+  const tags = domMgr().getTags();
+
+  // Event handler for priority icons
+  tags.exclamationLabels.forEach(label => {
+    label.addEventListener('click', function (event) {
+      //event.preventDefault(); // Prevent the default behavior of the label
+      const priority = this.getAttribute('data-priority');
+      setPriority(priority);
+    });
+  });
+
+  const selectedPriorities = new Set(['low']);
+
+  // Initial state
+  function setPriority(priority) {
+    if (priority === 'low') {
+      // Always keep Low priority selected
+      selectedPriorities.clear();
+      selectedPriorities.add('low');
+    } else {
+      if (selectedPriorities.has(priority)) {
+        selectedPriorities.delete(priority);
+      } else {
+        selectedPriorities.add(priority);
+      }
+    }
+
+    // Update the UI to reflect the selected priorities for icons
+    tags.exclamationIcons.forEach(icon => {
+      const iconPriority = icon.closest('label').getAttribute('data-priority');
+      icon.classList.toggle('active', selectedPriorities.has(iconPriority));
+    });
+
+    // Uncheck all radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.checked = false;
+    });
+
+    // Check the radio buttons corresponding to the selected priorities
+    selectedPriorities.forEach(priority => {
+      document.getElementById(`notePriority${priority.charAt(0).toUpperCase() + priority.slice(1)}`).checked = true;
+    });
+
+    // Update the values in your form input
+    domMgr().formInputsObject.priority = Array.from(selectedPriorities);
+  }
+}
+////////////////////////////////////////////////////////////
+  return { trashHandler, formHandler, popupHandler, dialogHandler, groupsHandler, priorityHandler };
 };
 
 

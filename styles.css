@@ -14,6 +14,7 @@ html {
   );
   font-family: Roboto;
   font-size: 62.5%;
+  scroll-behavior: smooth;
   overflow-x: hidden;
   /* scrollbar-gutter: stable; */
   /* FONTSIZE TRICK-- 1 rem = 10 px here, usually 1 rem = 16px */
@@ -209,6 +210,8 @@ h1 {
   transform: translate3d(0.5px, 1px, 0);
   background-color: rgba(150, 150, 150);
 }
+/* ---------------------------------------------------- */
+
 /* ---------------------------------------------------- */
 /* FORM INPUTS START HERE */
 /* ---------------------------------------------------- */
@@ -443,7 +446,20 @@ input[type="date"]:hover,
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   -webkit-box-pack: end;
+  padding: 2rem 0;
 }
+
+.notePriorityIcon {
+  cursor: pointer;
+  opacity: 0.5; /* Initial opacity for dimming */
+}
+.notePriorityIcon.active {
+  opacity: 1; /* Active state for lit up icon */
+}
+.disabledRadio {
+  display: none;
+}
+
 /* ---------------------------------------------------- */
 /* CARD DESIGNS END HERE */
 /* ---------------------------------------------------- */
