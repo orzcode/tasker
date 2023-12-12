@@ -243,7 +243,7 @@ const priorityHandler = () => {
 
     // Check the radio buttons corresponding to the selected priorities
     selectedPriorities.forEach(priority => {
-      document.getElementById(`notePriority${priority.charAt(0).toUpperCase() + priority.slice(1)}`).checked = true;
+      document.getElementById(`notePriority${priority}`).checked = true;
     });
 
     // Update the values in your form input
@@ -372,9 +372,9 @@ const actions = () => {
         <div id="notePriorityDiv">
           <legend>Priority</legend>
             <div id="radiosDiv">
-              <input type="radio" id="notePriorityLow" name="notePriority" value="low" checked>
-              <input type="radio" id="notePriorityMed" name="notePriority" value="medium">
-              <input type="radio" id="notePriorityHigh" name="notePriority" value="high">
+              <input type="radio" id="notePriorityLow" name="notePriority" value="Low" checked>
+              <input type="radio" id="notePriorityMed" name="notePriority" value="Medium">
+              <input type="radio" id="notePriorityHigh" name="notePriority" value="High">
             </div>
         </div>
       </section>
