@@ -237,6 +237,7 @@ const priorityHandler = () => {
         return 3;
     }
   }
+  return {getPriorityIndex}
 }
 ////////////////////////////////////////////////////////////
   return { trashHandler, formHandler, popupHandler, dialogHandler, groupsHandler, priorityHandler };

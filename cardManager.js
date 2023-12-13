@@ -1,10 +1,26 @@
 import { domMgr } from "./dom.js";
 import storage from "./storage";
+import { eventHandlers } from "./dom.js";
 
 import { format } from "date-fns";
 import DOMPurify from "isomorphic-dompurify";
 
 const cardManager = () => {
+////////////////////////////////////////////////////////////
+  const generatePriorityIcons = (priority) => {
+    const icons = [];
+    const priorityIndex = eventHandlers().priorityHandler().getPriorityIndex(priority);
+
+    for (let i = 0; i < priorityIndex; i++) {
+      const icon = document.createElement("p");
+      icon.classList.add("material-symbols-sharp", "notePriorityIcon", "active");
+      icon.textContent = "priority_high";
+      icons.push(icon);
+    }
+  
+    return icons;
+  };
+////////////////////////////////////////////////////////////
   const createCard = (object) => {
     const card = document.createElement("div");
     card.classList.add("note");
@@ -28,11 +44,20 @@ const cardManager = () => {
 		  
 			  <div class="noteDateAndPriority">
 				<div class="noteDate">Due date: ${formattedDate}</div>
-				<p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+				<div class="priorityIcons"></div>
 			  </div>
 		  
 			  <div class="noteGroup">Group: ${object.group}</div>
 			`);
+////////////////////////////////////////////////////////////
+      const priorityIconsContainer = card.querySelector(".priorityIcons");
+      const priorityIcons = generatePriorityIcons(object.priority);
+  
+      // Append the generated icons to the container
+      priorityIcons.forEach((icon) => {
+        priorityIconsContainer.appendChild(icon);
+      });
+////////////////////////////////////////////////////////////
 
       const deleteIcon = card.querySelector(".noteDeleteIcon");
       const restoreIcon = card.querySelector(".noteRestoreIcon");
@@ -62,8 +87,11 @@ const cardManager = () => {
       }
     });
     ////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////
     return card;
   };
+
 
   const cardEditModal = (object, card) => {
     let cardModal = document.querySelector("#cardModal");
