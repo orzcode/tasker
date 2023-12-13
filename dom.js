@@ -210,44 +210,32 @@ const priorityHandler = () => {
     label.addEventListener('click', function (event) {
       //event.preventDefault(); // Prevent the default behavior of the label
       const priority = this.getAttribute('data-priority');
-      setPriority(priority);
+      
+      document.getElementById(`notePriority${priority}`).checked = true;
+      //check/set the appropriate radio button
+
+      setPriorityIcon(priority);
     });
   });
 
-  const selectedPriorities = new Set(['low']);
-
-  // Initial state
-  function setPriority(priority) {
-    if (priority === 'low') {
-      // Always keep Low priority selected
-      selectedPriorities.clear();
-      selectedPriorities.add('low');
-    } else {
-      if (selectedPriorities.has(priority)) {
-        selectedPriorities.delete(priority);
+  function setPriorityIcon(priority) {  
+    tags.exclamationIcons.forEach((icon, index) => {
+      if (index < getPriorityIndex(priority)) {
+        icon.classList.add('active');
       } else {
-        selectedPriorities.add(priority);
+        icon.classList.remove('active');
       }
+    });
+  }  
+  function getPriorityIndex(priority) {
+    switch (priority) {
+      case 'Low':
+        return 1;
+      case 'Med':
+        return 2;
+      case 'High':
+        return 3;
     }
-
-    // Update the UI to reflect the selected priorities for icons
-    tags.exclamationIcons.forEach(icon => {
-      const iconPriority = icon.closest('label').getAttribute('data-priority');
-      icon.classList.toggle('active', selectedPriorities.has(iconPriority));
-    });
-
-    // Uncheck all radio buttons
-    document.querySelectorAll('input[type="radio"]').forEach(radio => {
-      radio.checked = false;
-    });
-
-    // Check the radio buttons corresponding to the selected priorities
-    selectedPriorities.forEach(priority => {
-      document.getElementById(`notePriority${priority}`).checked = true;
-    });
-
-    // Update the values in your form input
-    domMgr().formInputsObject.priority = Array.from(selectedPriorities);
   }
 }
 ////////////////////////////////////////////////////////////
@@ -366,17 +354,27 @@ const actions = () => {
       </div>
     
       <section id="noteDateAndPriority">
-    
-        <div><label for="noteDate">Due date: <input type="date" id="noteDate" name="noteDate"></label></div>
-    
-        <div id="notePriorityDiv">
-          <legend>Priority</legend>
-            <div id="radiosDiv">
-              <input type="radio" id="notePriorityLow" name="notePriority" value="Low" checked>
-              <input type="radio" id="notePriorityMed" name="notePriority" value="Medium">
-              <input type="radio" id="notePriorityHigh" name="notePriority" value="High">
-            </div>
-        </div>
+      <div><label for="noteDate">Due date: <input type="date" id="noteDate" name="noteDate"></label></div>
+            
+      <div id="notePriorityDiv">
+        <legend>Priority</legend>
+          <div id="radiosDiv">
+            <input type="radio" id="notePriorityLow" data-priority="Low" class="disabledRadio" name="notePriority" value="Low" checked>
+            <input type="radio" id="notePriorityMed" data-priority="Med" class="disabledRadio" name="notePriority" value="Med">
+            <input type="radio" id="notePriorityHigh" data-priority="High" class="disabledRadio" name="notePriority" value="High">
+
+                <!-- Labels representing icons -->
+<label for="notePriorityLow" data-priority="Low">
+<p class="material-symbols-sharp notePriorityIcon active">priority_high</p>
+</label>
+<label for="notePriorityMed" data-priority="Med">
+<p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+</label>
+<label for="notePriorityHigh" data-priority="High">
+<p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+</label>
+          </div>
+      </div>
       </section>
       <section id="noteButtons">
 
