@@ -6,21 +6,31 @@ import { format } from "date-fns";
 import DOMPurify from "isomorphic-dompurify";
 
 const cardManager = () => {
-////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+  //creates icons for the CARDS on the PAGE.
+  //that's all - note that cards on the page only show 1 2 or 3 icons. Not all 3 like with modal
   const generatePriorityIcons = (priority) => {
     const icons = [];
-    const priorityIndex = eventHandlers().priorityHandler().getPriorityIndex(priority);
+    const priorityIndex = eventHandlers()
+      .priorityHandler()
+      .getPriorityIndex(priority);
 
     for (let i = 0; i < priorityIndex; i++) {
       const icon = document.createElement("p");
-      icon.classList.add("material-symbols-sharp", "notePriorityIcon", "active");
+      icon.classList.add(
+        "material-symbols-sharp",
+        "notePriorityIcon",
+        "active"
+      );
       icon.textContent = "priority_high";
       icons.push(icon);
     }
-  
+
     return icons;
   };
-////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////////////////
   const createCard = (object) => {
     const card = document.createElement("div");
     card.classList.add("note");
@@ -49,36 +59,39 @@ const cardManager = () => {
 		  
 			  <div class="noteGroup">Group: ${object.group}</div>
 			`);
-////////////////////////////////////////////////////////////
-      const priorityIconsContainer = card.querySelector(".priorityIcons");
-      const priorityIcons = generatePriorityIcons(object.priority);
-  
-      // Append the generated icons to the container
-      priorityIcons.forEach((icon) => {
-        priorityIconsContainer.appendChild(icon);
-      });
-////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
+    const priorityIconsContainer = card.querySelector(".priorityIcons");
+    const priorityIcons = generatePriorityIcons(object.priority);
 
-      const deleteIcon = card.querySelector(".noteDeleteIcon");
-      const restoreIcon = card.querySelector(".noteRestoreIcon");
-    
-      // Conditionally show delete or restore icon
-      if (storage.localArrays.trashPool.includes(object)) {
-        deleteIcon.style.display = "none";
-        restoreIcon.style.display = "inline-block";
-      } else {
-        deleteIcon.style.display = "inline-block";
-        restoreIcon.style.display = "none";
-      }
-    
-      // Add delete or restore event listener
-      const deleteOrRestoreIcon = storage.localArrays.trashPool.includes(object) ? restoreIcon : deleteIcon;
-    
-      deleteOrRestoreIcon.addEventListener("click", () => {
-        event.stopPropagation();
-        if (storage.localArrays.trashPool.includes(object)) manageCard(card, object, "restore");
-        else manageCard(card, object, "delete");
-      });
+    // Append the generated icons to the container
+    priorityIcons.forEach((icon) => {
+      priorityIconsContainer.appendChild(icon);
+    });
+    ////////////////////////////////////////////////////////////
+
+    const deleteIcon = card.querySelector(".noteDeleteIcon");
+    const restoreIcon = card.querySelector(".noteRestoreIcon");
+
+    // Conditionally show delete or restore icon
+    if (storage.localArrays.trashPool.includes(object)) {
+      deleteIcon.style.display = "none";
+      restoreIcon.style.display = "inline-block";
+    } else {
+      deleteIcon.style.display = "inline-block";
+      restoreIcon.style.display = "none";
+    }
+
+    // Add delete or restore event listener
+    const deleteOrRestoreIcon = storage.localArrays.trashPool.includes(object)
+      ? restoreIcon
+      : deleteIcon;
+
+    deleteOrRestoreIcon.addEventListener("click", () => {
+      event.stopPropagation();
+      if (storage.localArrays.trashPool.includes(object))
+        manageCard(card, object, "restore");
+      else manageCard(card, object, "delete");
+    });
 
     ////////////////////////////////////////////////////////////
     card.addEventListener("click", () => {
@@ -92,10 +105,9 @@ const cardManager = () => {
     return card;
   };
 
-
   const cardEditModal = (object, card) => {
     let cardModal = document.querySelector("#cardModal");
-    
+
     if (!cardModal) {
       // If the modal is null, create a new one
       cardModal = document.createElement("dialog");
@@ -104,7 +116,6 @@ const cardManager = () => {
     }
 
     cardModal.showModal();
-
 
     const formattedDate = object.dueDate
       ? format(new Date(object.dueDate), "do MMM")
@@ -126,7 +137,18 @@ const cardManager = () => {
     
     <div class="noteDateAndPriority">
     <div class="noteDate">Due date: ${formattedDate}</div>
+
+    <div class="notePriorityDiv">
+    <label for="notePriorityLow" data-priority="Low">
+    <p class="material-symbols-sharp notePriorityIcon active">priority_high</p>
+  </label>
+  <label for="notePriorityMed" data-priority="Med">
+    <p class="material-symbols-sharp notePriorityIcon" data-priority="Med">priority_high</p>
+  </label>
+  <label for="notePriorityHigh" data-priority="High">
     <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+  </label>
+  </div>
     </div>
   
     <div class="modalBottomRow">
@@ -134,6 +156,16 @@ const cardManager = () => {
     <button class="modalCloseButton">Save & Close</button>
     </div>
   `);
+ ////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////
+    //let pri = eventHandlers().priorityHandler().getPriorityIndex(object.priority);
+
+      //eventHandlers().priorityHandler().setPriorityIcon(pri);
+    
+      //makes a change to all the instances of this class - needs to be more contained
+      ////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
 
     //////adds the close functionality////////////
     document
@@ -174,7 +206,7 @@ const cardManager = () => {
   const manageCard = (card, object, action) => {
     const indexInNotePool = storage.localArrays.notePool.indexOf(object);
     const indexInTrash = storage.localArrays.trashPool.indexOf(object);
-  
+
     if (action === "delete" && indexInNotePool !== -1) {
       // If the action is to delete and the card is in the notePool
       storage.localArrays.notePool.splice(indexInNotePool, 1);
@@ -186,10 +218,10 @@ const cardManager = () => {
       storage.localArrays.notePool.push(object);
       console.log("Restored from trash!");
     }
-  
+
     storage.trash = storage.localArrays.trashPool;
     storage.localStorage = storage.localArrays.notePool;
-  
+
     // Remove the card from the DOM via native method
     card.remove();
   };

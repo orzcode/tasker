@@ -214,12 +214,12 @@ const priorityHandler = () => {
       document.getElementById(`notePriority${priority}`).checked = true;
       //check/set the appropriate radio button
 
-      setPriorityIcon(priority);
+      setPriorityIcon(priority, tags.exclamationIcons);
     });
   });
 
-  function setPriorityIcon(priority) {  
-    tags.exclamationIcons.forEach((icon, index) => {
+  function setPriorityIcon(priority, location) {
+    location.forEach((icon, index) => {
       if (index < getPriorityIndex(priority)) {
         icon.classList.add('active');
       } else {
@@ -237,7 +237,7 @@ const priorityHandler = () => {
         return 3;
     }
   }
-  return {getPriorityIndex}
+  return {getPriorityIndex, setPriorityIcon}
 }
 ////////////////////////////////////////////////////////////
   return { trashHandler, formHandler, popupHandler, dialogHandler, groupsHandler, priorityHandler };
