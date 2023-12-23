@@ -216,8 +216,13 @@ const priorityHandler = () => {
 
       setPriorityIcon(priority, tags.exclamationIcons);
     });
+    //for the radio labels (excl. icons) - which are linked to the (hidden) radio inputs,
+    //this adds click event to:
+    //(1) check/set the appropriate radio
+    //(2) reflect the appropriate icon highlight
   });
 
+  //needs to be fed either form or modal queryselector
   function setPriorityIcon(priority, location) {
     location.forEach((icon, index) => {
       if (index < getPriorityIndex(priority)) {
