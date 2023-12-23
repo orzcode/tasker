@@ -274,7 +274,16 @@ const cardManager = () => {
     domMgr().getTags().mainDiv.innerHTML = "";
   };
 
-  return { renderCards, clearBoard };
+  const tutorialCard = {
+      title: "Welcome!",
+      spanText: "Hope you get some use out of Tasker 💪🏼",
+      dueDate: "",
+      priority: "Med",
+      group: "All",
+      color: null
+  }
+
+  return { renderCards, clearBoard, tutorialCard };
 };
 
 export default cardManager;

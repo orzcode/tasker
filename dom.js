@@ -18,7 +18,7 @@ const domMgr = () => {
       emptyTrashNo: document.querySelector("#emptyTrashNo"),
 
       groupsDiv: document.querySelector("#groupsMainDiv"),
-      groupsDivRadios: document.querySelectorAll('.groupBtns'),
+      groupsDivRadios: document.querySelectorAll(".groupBtns"),
 
       formDiv: document.querySelector("#formBoxDiv"),
 
@@ -34,13 +34,16 @@ const domMgr = () => {
       cardEditModal: document.querySelector("#cardModal"),
       modalSaveClose: document.querySelector("#cardModal .modalCloseButton"),
 
-      exclamationLabels: document.querySelectorAll('#radiosDiv label'),
-      exclamationIcons: document.querySelectorAll('#radiosDiv .notePriorityIcon'),
+      exclamationLabels: document.querySelectorAll("#radiosDiv label"),
+      exclamationIcons: document.querySelectorAll(
+        "#radiosDiv .notePriorityIcon"
+      ),
       //Labels are essentially radio buttons
       //Icons are the visual representation
-      modalLabels: document.querySelectorAll('#modalRadiosDiv label'),
-      modalIcons: document.querySelectorAll('#modalRadiosDiv .notePriorityIcon'),
-      
+      modalLabels: document.querySelectorAll("#modalRadiosDiv label"),
+      modalIcons: document.querySelectorAll(
+        "#modalRadiosDiv .notePriorityIcon"
+      ),
     };
   };
 
@@ -135,32 +138,31 @@ const eventHandlers = () => {
     // if (!groupPopup) {
     //   return; //Only runs if it's the Form page
     // } else
-  
+
     document.addEventListener("mousedown", (event) => {
       tags.groupPopup.style.display = "none";
-    });//closes popup when clicking outside it
-  
-      
+    }); //closes popup when clicking outside it
+
     tags.noteGroupBtn.addEventListener("click", (event) => {
       groupPopup.style.display = "flex";
-    });//displays (flex) popup when clicking notegroup button
-  
+    }); //displays (flex) popup when clicking notegroup button
+
     tags.ddmmyy.addEventListener("click", (event) => {
       tags.ddmmyy.showPicker();
-    });//makes date picker click area extend to date itself, not just the icon
-  
+    }); //makes date picker click area extend to date itself, not just the icon
+
     const selectGroup = (group) => {
       tags.noteGroupP.innerHTML = group;
-    };//updates Group on form - which is used during submission
-  
+    }; //updates Group on form - which is used during submission
+
     tags.groupBtns.forEach(function (button) {
       button.addEventListener("mousedown", function () {
         let buttonText = button.textContent.trim();
         selectGroup(buttonText);
-      });//adds click to each button to update with the respective text
+      }); //adds click to each button to update with the respective text
     });
 
-    return {selectGroup}
+    return { selectGroup };
   };
   ////////////////////////////////////////////////////////////
 
@@ -181,101 +183,107 @@ const eventHandlers = () => {
       //closes modal when clicking outside of it? I'm Ron Burgundy???
     });
   };
-////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
   const groupsHandler = () => {
-    domMgr().getTags().groupsDivRadios.forEach((input) => {
-      input.addEventListener('change', () => {
-        const groupName = input.id.replace("Btn", ""); // Extract the group name from id
-        renderCardsByGroup(groupName);
+    domMgr()
+      .getTags()
+      .groupsDivRadios.forEach((input) => {
+        input.addEventListener("change", () => {
+          const groupName = input.id.replace("Btn", ""); // Extract the group name from id
+          renderCardsByGroup(groupName);
+        });
       });
-    });
     //add event to call a fn to render cards based on radio input on Group page
-  }
+  };
   function renderCardsByGroup(selectedGroup) {
     cardManager().clearBoard();
-    if (selectedGroup === "All"){
+    if (selectedGroup === "All") {
       cardManager().renderCards("groupsDiv");
-    }//renders 'All' cards
+    } //renders 'All' cards
 
-      //or
-
-    else storage.localArrays.notePool.forEach((note) => {
-      if (note.group === selectedGroup) {
-        cardManager().renderCards(note);
-      }//renders the selected group only
-    });
-  }
-////////////////////////////////////////////////////////////
-const priorityHandler = () => {
-  const tags = domMgr().getTags();
-
-  // Event handler for priority icons
-  const formOrModalClickEvent = (formOrModal, objPriority) => {
-    switch(formOrModal) {
-      case "form":
-        tags.exclamationLabels.forEach(label => {
-          label.addEventListener('click', function (event) {
-            //event.preventDefault(); // Prevent the default behavior of the label
-            const priority = this.getAttribute('data-priority');
-            
-            document.getElementById(`notePriority${priority}`).checked = true;
-            //check/set the appropriate radio button
-      
-            setPriorityIcon(priority, tags.exclamationIcons);
-          });
-        });
-        break;
-     //////////////
-      case "modal":  //3 things here differ from above (labels, radio, icons)//
-      tags.modalLabels.forEach(label => {
-        label.addEventListener('click', function (event) {
-          //event.preventDefault(); // Prevent the default behavior of the label
-          const priority = this.getAttribute('data-priority');
-          
-          document.getElementById(`modalPriority${priority}`).checked = true;
-          //check/set the appropriate radio button
-    
-          setPriorityIcon(priority, tags.modalIcons);
-        });
+    //or
+    else
+      storage.localArrays.notePool.forEach((note) => {
+        if (note.group === selectedGroup) {
+          cardManager().renderCards(note);
+        } //renders the selected group only
       });
-        break;
-    }
-    //for the radio labels (excl. icons) - which are linked to the (hidden) radio inputs,
-    //this adds click event to:
-    //(1) check/set the appropriate radio
-    //(2) reflect the appropriate icon highlight  
-}
-
-  //needs to be fed either form or modal queryselector
-  function setPriorityIcon(priority, location) {
-    location.forEach((icon, index) => {
-      if (index < getPriorityIndex(priority)) {
-        icon.classList.add('active');
-      } else {
-        icon.classList.remove('active');
-      }
-    });
-  }  
-  function getPriorityIndex(priority) {
-    switch (priority) {
-      case 'Low':
-        return 1;
-      case 'Med':
-        return 2;
-      case 'High':
-        return 3;
-    }
   }
-  return {getPriorityIndex, setPriorityIcon, formOrModalClickEvent}
-}
-////////////////////////////////////////////////////////////
-  return { trashHandler, formHandler, popupHandler, dialogHandler, groupsHandler, priorityHandler };
+  ////////////////////////////////////////////////////////////
+  const priorityHandler = () => {
+    const tags = domMgr().getTags();
+
+    // Event handler for priority icons
+    const formOrModalClickEvent = (formOrModal, objPriority) => {
+      switch (formOrModal) {
+        case "form":
+          tags.exclamationLabels.forEach((label) => {
+            label.addEventListener("click", function (event) {
+              //event.preventDefault(); // Prevent the default behavior of the label
+              const priority = this.getAttribute("data-priority");
+
+              document.getElementById(`notePriority${priority}`).checked = true;
+              //check/set the appropriate radio button
+
+              setPriorityIcon(priority, tags.exclamationIcons);
+            });
+          });
+          break;
+        //////////////
+        case "modal": //3 things here differ from above (labels, radio, icons)//
+          tags.modalLabels.forEach((label) => {
+            label.addEventListener("click", function (event) {
+              //event.preventDefault(); // Prevent the default behavior of the label
+              const priority = this.getAttribute("data-priority");
+
+              document.getElementById(
+                `modalPriority${priority}`
+              ).checked = true;
+              //check/set the appropriate radio button
+
+              setPriorityIcon(priority, tags.modalIcons);
+            });
+          });
+          break;
+      }
+      //for the radio labels (excl. icons) - which are linked to the (hidden) radio inputs,
+      //this adds click event to:
+      //(1) check/set the appropriate radio
+      //(2) reflect the appropriate icon highlight
+    };
+
+    //needs to be fed either form or modal queryselector
+    function setPriorityIcon(priority, location) {
+      location.forEach((icon, index) => {
+        if (index < getPriorityIndex(priority)) {
+          icon.classList.add("active");
+        } else {
+          icon.classList.remove("active");
+        }
+      });
+    }
+    function getPriorityIndex(priority) {
+      switch (priority) {
+        case "Low":
+          return 1;
+        case "Med":
+          return 2;
+        case "High":
+          return 3;
+      }
+    }
+    return { getPriorityIndex, setPriorityIcon, formOrModalClickEvent };
+  };
+  ////////////////////////////////////////////////////////////
+  return {
+    trashHandler,
+    formHandler,
+    popupHandler,
+    dialogHandler,
+    groupsHandler,
+    priorityHandler,
+  };
 };
-
-
-
-
-
 
 const trashButtons = () => {
   const showHide = (showHide) => {
@@ -299,7 +307,14 @@ const trashButtons = () => {
 };
 
 const actions = () => {
-  
+  ////////////////////////////////////////////////////////////
+  const tutorialCard = () => {
+    if(storage.localStorage && storage.localStorage.length === 0){
+      storage.localArrays.notePool.push(cardManager().tutorialCard)
+    }
+  };
+  ////////////////////////////////////////////////////////////
+
   ///////////////////////////////////////////////////////////
   const formSubmit = (event) => {
     event.preventDefault();
@@ -308,7 +323,7 @@ const actions = () => {
     //'converts' or spreads it to an actual object, then pushes to library
 
     storage.localStorage = storage.localArrays.notePool;
-
+    replaceHeader("formDiv");
     cardManager().clearBoard();
     cardManager().renderCards("formDiv");
     //clears and re-does the whole array, solving minor bug with delete button
@@ -316,7 +331,7 @@ const actions = () => {
     //previously:
     //cardManager().renderCards({ ...domMgr().formInputsObject });
   };
-///////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
 
   const linksHandler = () => {
     domMgr()
@@ -367,7 +382,7 @@ const actions = () => {
     }
   }
 
-////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
   function fadeCards(targetOpacity) {
     domMgr().getTags().mainDiv.style.opacity = targetOpacity;
     //fades #main area (all the cards)
@@ -445,7 +460,7 @@ const actions = () => {
   </div>`,
   };
 
-  return { formSubmit, linksHandler };
+  return { formSubmit, linksHandler, tutorialCard };
 };
 
 export { domMgr, eventHandlers, actions };

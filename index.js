@@ -18,5 +18,7 @@ const firstLoad = (() => {
   actions().linksHandler();
   //appends navbar link actions
 
+  actions().tutorialCard();
+
   cardManager().renderCards("formDiv");
 })();
