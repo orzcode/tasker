@@ -137,6 +137,7 @@ const cardManager = () => {
     
     <div class="noteDateAndPriority">
     <div class="noteDate">Due date: ${formattedDate}</div>
+    
 
     <div class="notePriorityDiv">
     <div id="modalRadiosDiv">

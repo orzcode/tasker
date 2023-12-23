@@ -132,9 +132,9 @@ const eventHandlers = () => {
   const popupHandler = () => {
     const tags = domMgr().getTags();
 
-    if (!groupPopup) {
-      return; //Only runs if it's the Form page
-    } else
+    // if (!groupPopup) {
+    //   return; //Only runs if it's the Form page
+    // } else
   
     document.addEventListener("mousedown", (event) => {
       tags.groupPopup.style.display = "none";
