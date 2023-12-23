@@ -206,21 +206,43 @@ const priorityHandler = () => {
   const tags = domMgr().getTags();
 
   // Event handler for priority icons
-  tags.exclamationLabels.forEach(label => {
-    label.addEventListener('click', function (event) {
-      //event.preventDefault(); // Prevent the default behavior of the label
-      const priority = this.getAttribute('data-priority');
+  const formOrModalClickEvent = (formOrModal) => {
+    switch(formOrModal) {
+      case "form":
+        tags.exclamationLabels.forEach(label => {
+          label.addEventListener('click', function (event) {
+            //event.preventDefault(); // Prevent the default behavior of the label
+            const priority = this.getAttribute('data-priority');
+            
+            document.getElementById(`notePriority${priority}`).checked = true;
+            //check/set the appropriate radio button
       
-      document.getElementById(`notePriority${priority}`).checked = true;
-      //check/set the appropriate radio button
-
-      setPriorityIcon(priority, tags.exclamationIcons);
-    });
+            setPriorityIcon(priority, tags.exclamationIcons);
+          });
+        });
+        break;
+     //////////////
+      case "modal":     //3 things here//
+      dialogLABELSselector.forEach(label => {
+        label.addEventListener('click', function (event) {
+          //event.preventDefault(); // Prevent the default behavior of the label
+          const priority = this.getAttribute('data-priority');
+          
+          document.getElementById(`modalPriority${priority}`).checked = true;
+          //check/set the appropriate radio button
+    
+          setPriorityIcon(priority, dialogICONSselector);
+        });
+      });
+        break;
+    }
     //for the radio labels (excl. icons) - which are linked to the (hidden) radio inputs,
     //this adds click event to:
     //(1) check/set the appropriate radio
-    //(2) reflect the appropriate icon highlight
-  });
+    //(2) reflect the appropriate icon highlight  
+}
+
+
 
   //needs to be fed either form or modal queryselector
   function setPriorityIcon(priority, location) {
@@ -242,7 +264,7 @@ const priorityHandler = () => {
         return 3;
     }
   }
-  return {getPriorityIndex, setPriorityIcon}
+  return {getPriorityIndex, setPriorityIcon, formOrModalClickEvent}
 }
 ////////////////////////////////////////////////////////////
   return { trashHandler, formHandler, popupHandler, dialogHandler, groupsHandler, priorityHandler };
@@ -334,6 +356,7 @@ const actions = () => {
         domMgr().getTags().headerContainer.innerHTML = headerVariants.formDiv;
         eventHandlers().formHandler();
         eventHandlers().popupHandler();
+        eventHandlers().priorityHandler().formOrModalClickEvent("form");
         break;
       case "groupsDiv":
         domMgr().getTags().headerContainer.innerHTML = headerVariants.groupsDiv;
