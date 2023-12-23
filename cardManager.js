@@ -139,15 +139,22 @@ const cardManager = () => {
     <div class="noteDate">Due date: ${formattedDate}</div>
 
     <div class="notePriorityDiv">
-    <label for="notePriorityLow" data-priority="Low">
-    <p class="material-symbols-sharp notePriorityIcon active">priority_high</p>
-  </label>
-  <label for="notePriorityMed" data-priority="Med">
-    <p class="material-symbols-sharp notePriorityIcon" data-priority="Med">priority_high</p>
-  </label>
-  <label for="notePriorityHigh" data-priority="High">
-    <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
-  </label>
+    <div id="modalRadiosDiv">
+      <input type="radio" id="modalPriorityLow" data-priority="Low" class="disabledRadio" name="modalPriority" value="Low" checked>
+      <input type="radio" id="modalPriorityMed" data-priority="Med" class="disabledRadio" name="modalPriority" value="Med">
+      <input type="radio" id="modalPriorityHigh" data-priority="High" class="disabledRadio" name="modalPriority" value="High">
+
+<!-- Labels representing icons -->
+    <label for="modalPriorityLow" data-priority="Low">
+      <p class="material-symbols-sharp notePriorityIcon active">priority_high</p>
+    </label>
+    <label for="modalPriorityMed" data-priority="Med">
+      <p class="material-symbols-sharp notePriorityIcon" data-priority="Med">priority_high</p>
+    </label>
+    <label for="modalPriorityHigh" data-priority="High">
+      <p class="material-symbols-sharp notePriorityIcon">priority_high</p>
+    </label>
+                    </div>
   </div>
     </div>
   
@@ -156,16 +163,16 @@ const cardManager = () => {
     <button class="modalCloseButton">Save & Close</button>
     </div>
   `);
- ////////////////////////////////////////////////////////////
- ////////////////////////////////////////////////////////////
-    //let pri = eventHandlers().priorityHandler().getPriorityIndex(object.priority);
+    ////////////////////////////////////////////////////////////
+    //Handling form-LIKE format/editability of modal priority
+    ////////////////////////////////////////////////////////////    
+    eventHandlers().priorityHandler().setPriorityIcon(object.priority, domMgr().getTags().modalIcons);
+    //Sets up initial number of active icons on the Modal/Dialog
 
-      //eventHandlers().priorityHandler().setPriorityIcon(pri);
-    
-      //makes a change to all the instances of this class - needs to be more contained
-      ////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-
+    let priority = eventHandlers().priorityHandler().getPriorityIndex(object.priority);
+    eventHandlers().priorityHandler().formOrModalClickEvent("modal", priority)
+    ////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
 
     //////adds the close functionality////////////
     document
@@ -173,6 +180,10 @@ const cardManager = () => {
       .addEventListener("click", function (event) {
         object.title = document.querySelector("#cardModal .noteTitle").value;
         object.spanText = document.querySelector("#cardModal .noteSpan").value;
+        object.priority = document.querySelector('input[name="modalPriority"]:checked').value;
+        
+      //MORE HERE
+
         //updates object before sending
 
         const indexInNotePool = storage.localArrays.notePool.indexOf(object);

@@ -35,7 +35,11 @@ const domMgr = () => {
       modalSaveClose: document.querySelector("#cardModal .modalCloseButton"),
 
       exclamationLabels: document.querySelectorAll('#radiosDiv label'),
-      exclamationIcons: document.querySelectorAll('.notePriorityIcon'),
+      exclamationIcons: document.querySelectorAll('#radiosDiv .notePriorityIcon'),
+      //Labels are essentially radio buttons
+      //Icons are the visual representation
+      modalLabels: document.querySelectorAll('#modalRadiosDiv label'),
+      modalIcons: document.querySelectorAll('#modalRadiosDiv .notePriorityIcon'),
       
     };
   };
@@ -206,7 +210,7 @@ const priorityHandler = () => {
   const tags = domMgr().getTags();
 
   // Event handler for priority icons
-  const formOrModalClickEvent = (formOrModal) => {
+  const formOrModalClickEvent = (formOrModal, objPriority) => {
     switch(formOrModal) {
       case "form":
         tags.exclamationLabels.forEach(label => {
@@ -222,8 +226,8 @@ const priorityHandler = () => {
         });
         break;
      //////////////
-      case "modal":     //3 things here//
-      dialogLABELSselector.forEach(label => {
+      case "modal":  //3 things here differ from above (labels, radio, icons)//
+      tags.modalLabels.forEach(label => {
         label.addEventListener('click', function (event) {
           //event.preventDefault(); // Prevent the default behavior of the label
           const priority = this.getAttribute('data-priority');
@@ -231,7 +235,7 @@ const priorityHandler = () => {
           document.getElementById(`modalPriority${priority}`).checked = true;
           //check/set the appropriate radio button
     
-          setPriorityIcon(priority, dialogICONSselector);
+          setPriorityIcon(priority, tags.modalIcons);
         });
       });
         break;
@@ -241,8 +245,6 @@ const priorityHandler = () => {
     //(1) check/set the appropriate radio
     //(2) reflect the appropriate icon highlight  
 }
-
-
 
   //needs to be fed either form or modal queryselector
   function setPriorityIcon(priority, location) {
