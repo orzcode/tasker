@@ -306,7 +306,7 @@ const trashButtons = () => {
 const actions = () => {
   ////////////////////////////////////////////////////////////
   const tutorialCard = () => {
-    if(storage.localStorage && storage.localStorage.length === 0){
+    if(!storage.localStorage || storage.localStorage.length === 0){
       storage.localArrays.notePool.push(cardManager().tutorialCard)
     }
   };

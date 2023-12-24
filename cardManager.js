@@ -276,7 +276,7 @@ const cardManager = () => {
 
   const tutorialCard = {
       title: "Welcome!",
-      spanText: "Hope you get some use out of Tasker 💪🏼",
+      spanText: "Hope you get some use out of Tasker ☑",
       dueDate: "",
       priority: "Med",
       group: "All",
