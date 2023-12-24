@@ -12,8 +12,9 @@ One aim during this project was to improve and practise better modularization an
 This was also the first time using Vite and other dependancies (including a purification library to make sure bad actors can't insert nasty code via the form).
 
 ~~~
+Notes: 
 
-Notes: Setting `grid-template-rows: 0 0 0 0` in prep for a transition to grow, is great, so long as you set `overflow: hidden` on the dang children
+Setting `grid-template-rows: 0 0 0 0` in prep for a transition to grow, is great, so long as you set `overflow: hidden` on the dang children
 
 100vw on `body` is important to prevent vertical scrollbar jarring.
 
