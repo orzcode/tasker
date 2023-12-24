@@ -306,8 +306,11 @@ const trashButtons = () => {
 const actions = () => {
   ////////////////////////////////////////////////////////////
   const tutorialCard = () => {
-    if(!storage.localStorage || storage.localStorage.length === 0){
-      storage.localArrays.notePool.push(cardManager().tutorialCard)
+    const tutorialKey = 'tutorialShown';
+  
+    if (!storage.localStorage.getItem(tutorialKey)) {
+      storage.localStorage.setItem(tutorialKey, 'true');
+      storage.localArrays.notePool.push(cardManager().tutorialCard);
     }
   };
   ////////////////////////////////////////////////////////////
