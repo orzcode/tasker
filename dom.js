@@ -73,9 +73,6 @@ const domMgr = () => {
 
 const eventHandlers = () => {
   const formBox = domMgr().getTags().formBox;
-  const trashLink = domMgr().getTags().trashLink;
-  const noteLink = domMgr().getTags().noteLink;
-  const notes = domMgr().getTags().notes;
 
   ////////////////////////////////////////////////////////////
   // Actual form submission is called at bottom of this.
