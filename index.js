@@ -20,7 +20,11 @@ const firstLoad = (() => {
   actions().linksHandler();
   //appends navbar link actions
 
-  actions().tutorialCard();
+  //actions().tutorialCard();
+  //Tutorial card paused while bugfixing
+  //issue is with tutorial function's calling of localstorage
+  //may be able to fix by adding if check to the get/set localstorage functions
+  //e.g if tutorialkey, do this. If notepool, do that.
 
   cardManager().renderCards("formDiv");
 })();

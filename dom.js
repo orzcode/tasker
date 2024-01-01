@@ -307,7 +307,7 @@ const actions = () => {
   ////////////////////////////////////////////////////////////
   const tutorialCard = () => {
     const tutorialKey = 'tutorialShown';
-  
+  console.log(storage.localStorage.getItem(localStorage));
     if (!storage.localStorage.getItem(tutorialKey)) {
       storage.localStorage.setItem(tutorialKey, 'true');
       storage.localArrays.notePool.push(cardManager().tutorialCard);
